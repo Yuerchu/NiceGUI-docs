@@ -363,6 +363,23 @@ ui.run()
 
 此元素基于 Quasar 的 [QInput](https://quasar.dev/vue-components/input) 组件。
 
+每次按键都会响应 `on_change` 事件，并让相应的值更新。如果您希望等待到用户确认输入，那么您可以注册一个自定义事件回调，比如 `ui.input(...).on('keydown.enter', ...)` 或 `ui.input(...).on('blur', ...)`。
+
+可通过 validation 参数定义验证规则字典，当输入内容与验证过程不一致则触发验证失败。例如我们需要保证内容长度小于3，则可以用 `{'内容过长！': lambda value: len(value) < 3}` 进行验证。如果有多个验证规则则将首个验证失败的规则键作为错误信息显示。您也可传递返回可选错误信息的可调用对象。若要禁用每次值变更时的自动验证，可使用 `without_auto_validation` 方法。
+
+关于输入框样式的说明：Quasar 的 `QInput` 组件是对原生 `<input>` 元素的封装。这意味着您无法直接对输入框进行样式设置，但可以通过 `input-class` 和 `input-style` 属性来为原生 input 元素添加样式。更多详情请参阅 [`QInput`](https://quasar.dev/vue-components/input) 文档中的 Style 属性部分。
+
+| 参数 Param | 说明 Description |
+| ---------- | ---------------- |
+| label      | 输入框的标题     |
+| placeholder | 当输入框为空时显示的文字提示 |
+| value      | 输入框的初始值   |
+| password   | 是否需要隐藏输入内容 (默认值: `False`) |
+| password_toggle_button | 是否需要显示一个用于切换输入内容显示和隐藏的按钮 (默认值: `False`) |
+| on_change  | 当输入框的内容被改变时的回调函数 |
+| autocomplete | 可选，一个用于自动完成的列表 |
+| validation | 验证规则字典或返回错误信息的可调用对象 (默认值: `None`，代表不验证) |
+
 ```python
 from nicegui import ui
 
@@ -377,6 +394,16 @@ ui.run()
 ## 多行文本输入 Textarea
 
 此元素基于 Quasar 的 [QInput](https://quasar.dev/vue-components/input) 组件，与 [单行文本输入 Text Input](#单行文本输入-text-input) 相比，它被设计为可以进行多行输入。
+
+可通过 validation 参数定义验证规则字典，当输入内容与验证过程不一致则触发验证失败。例如我们需要保证内容长度小于3，则可以用 `{'内容过长！': lambda value: len(value) < 3}` 进行验证。如果有多个验证规则则将首个验证失败的规则键作为错误信息显示。您也可传递返回可选错误信息的可调用对象。若要禁用每次值变更时的自动验证，可使用 `without_auto_validation` 方法。
+
+| 参数 Param | 说明 Description |
+| ---------- | ---------------- |
+| label      | 输入框的标题     |
+| placeholder | 当输入框为空时显示的文字提示 |
+| value      | 输入框的初始值   |
+| on_change  | 当输入框的内容被改变时的回调函数 |
+| validation | 验证规则字典或返回错误信息的可调用对象 (默认值: `None`，代表不验证) |
 
 ```python
 from nicegui import ui
@@ -394,7 +421,271 @@ ui.run()
 
 支持超过 140 种语言的语法高亮、30 余种主题、行号显示、代码折叠、（有限的）自动补全等功能。
 
-支持的语言列表可查看 [@codemirror/language-data](https://github.com/codemirror/language-data/blob/main/src/language-data.ts) 包；主题列表可查看 [@uiw/codemirror-themes-all](https://github.com/uiwjs/react-codemirror/tree/master/themes/all) 包。
+::: details 支持的语言
+
+支持的语言列表可查看 [@codemirror/language-data](https://github.com/codemirror/language-data/blob/main/src/language-data.ts) 包。
+
+译者也推荐您参阅 `nicegui/elements/codemirror.py` 的 `SUPPORTED_LANGUAGES` 容器：
+
+```python
+SUPPORTED_LANGUAGES = Literal[
+    'Angular Template',
+    'APL',
+    'ASN.1',
+    'Asterisk',
+    'Brainfuck',
+    'C',
+    'C#',
+    'C++',
+    'Clojure',
+    'ClojureScript',
+    'Closure Stylesheets (GSS)',
+    'CMake',
+    'Cobol',
+    'CoffeeScript',
+    'Common Lisp',
+    'CQL',
+    'Crystal',
+    'CSS',
+    'Cypher',
+    'Cython',
+    'D',
+    'Dart',
+    'diff',
+    'Dockerfile',
+    'DTD',
+    'Dylan',
+    'EBNF',
+    'ECL',
+    'edn',
+    'Eiffel',
+    'Elm',
+    'Erlang',
+    'Esper',
+    'F#',
+    'Factor',
+    'FCL',
+    'Forth',
+    'Fortran',
+    'Gas',
+    'Gherkin',
+    'Go',
+    'Groovy',
+    'Haskell',
+    'Haxe',
+    'HTML',
+    'HTTP',
+    'HXML',
+    'IDL',
+    'Java',
+    'JavaScript',
+    'Jinja2',
+    'JSON',
+    'JSON-LD',
+    'JSX',
+    'Julia',
+    'Kotlin',
+    'LaTeX',
+    'LESS',
+    'Liquid',
+    'LiveScript',
+    'Lua',
+    'MariaDB SQL',
+    'Markdown',
+    'Mathematica',
+    'Mbox',
+    'mIRC',
+    'Modelica',
+    'MS SQL',
+    'MscGen',
+    'MsGenny',
+    'MUMPS',
+    'MySQL',
+    'Nginx',
+    'NSIS',
+    'NTriples',
+    'Objective-C',
+    'Objective-C++',
+    'OCaml',
+    'Octave',
+    'Oz',
+    'Pascal',
+    'Perl',
+    'PGP',
+    'PHP',
+    'Pig',
+    'PLSQL',
+    'PostgreSQL',
+    'PowerShell',
+    'Properties files',
+    'ProtoBuf',
+    'Pug',
+    'Puppet',
+    'Python',
+    'Q',
+    'R',
+    'RPM Changes',
+    'RPM Spec',
+    'Ruby',
+    'Rust',
+    'SAS',
+    'Sass',
+    'Scala',
+    'Scheme',
+    'SCSS',
+    'Shell',
+    'Sieve',
+    'Smalltalk',
+    'SML',
+    'Solr',
+    'SPARQL',
+    'Spreadsheet',
+    'SQL',
+    'SQLite',
+    'Squirrel',
+    'sTeX',
+    'Stylus',
+    'Swift',
+    'SystemVerilog',
+    'Tcl',
+    'Textile',
+    'TiddlyWiki',
+    'Tiki wiki',
+    'TOML',
+    'Troff',
+    'TSX',
+    'TTCN',
+    'TTCN_CFG',
+    'Turtle',
+    'TypeScript',
+    'VB.NET',
+    'VBScript',
+    'Velocity',
+    'Verilog',
+    'VHDL',
+    'Vue',
+    'Web IDL',
+    'WebAssembly',
+    'XML',
+    'XQuery',
+    'Xù',
+    'Yacas',
+    'YAML',
+    'Z80',
+]
+```
+:::
+
+::: details 支持的主题
+
+主题列表可查看 [@uiw/codemirror-themes-all](https://github.com/uiwjs/react-codemirror/tree/master/themes/all) 包。
+
+同样的，译者也推荐您参阅 `nicegui/elements/codemirror.py` 的 `SUPPORTED_THEMES` 容器：
+
+```python
+SUPPORTED_THEMES = Literal[
+    'abcdef',
+    'abcdefDarkStyle',
+    'abyss',
+    'abyssDarkStyle',
+    'androidstudio',
+    'androidstudioDarkStyle',
+    'andromeda',
+    'andromedaDarkStyle',
+    'atomone',
+    'atomoneDarkStyle',
+    'aura',
+    'auraDarkStyle',
+    'basicDark',
+    'basicDarkStyle',
+    'basicLight',
+    'basicLightStyle',
+    'bbedit',
+    'bbeditLightStyle',
+    'bespin',
+    'bespinDarkStyle',
+    'consoleDark',
+    'consoleLight',
+    'copilot',
+    'copilotDarkStyle',
+    'darcula',
+    'darculaDarkStyle',
+    'douToneLightStyle',
+    'dracula',
+    'draculaDarkStyle',
+    'duotoneDark',
+    'duotoneDarkStyle',
+    'duotoneLight',
+    'eclipse',
+    'eclipseLightStyle',
+    'githubDark',
+    'githubDarkStyle',
+    'githubLight',
+    'githubLightStyle',
+    'gruvboxDark',
+    'gruvboxDarkStyle',
+    'gruvboxLight',
+    'kimbie',
+    'kimbieDarkStyle',
+    'material',
+    'materialDark',
+    'materialDarkStyle',
+    'materialLight',
+    'materialLightStyle',
+    'monokai',
+    'monokaiDarkStyle',
+    'monokaiDimmed',
+    'monokaiDimmedDarkStyle',
+    'noctisLilac',
+    'noctisLilacLightStyle',
+    'nord',
+    'nordDarkStyle',
+    'okaidia',
+    'okaidiaDarkStyle',
+    'oneDark',
+    'quietlight',
+    'quietlightStyle',
+    'red',
+    'redDarkStyle',
+    'solarizedDark',
+    'solarizedDarkStyle',
+    'solarizedLight',
+    'solarizedLightStyle',
+    'sublime',
+    'sublimeDarkStyle',
+    'tokyoNight',
+    'tokyoNightDay',
+    'tokyoNightDayStyle',
+    'tokyoNightStorm',
+    'tokyoNightStormStyle',
+    'tokyoNightStyle',
+    'tomorrowNightBlue',
+    'tomorrowNightBlueStyle',
+    'vscodeDark',
+    'vscodeDarkStyle',
+    'vscodeLight',
+    'vscodeLightStyle',
+    'whiteDark',
+    'whiteDarkStyle',
+    'whiteLight',
+    'whiteLightStyle',
+    'xcodeDark',
+    'xcodeDarkStyle',
+    'xcodeLight',
+    'xcodeLightStyle',
+]
+```
+:::
+
+| 参数 Param | 说明 Description |
+| ---------- | ---------------- |
+| value      | 编辑器的初始值   |
+| on_change  | 当编辑器中的内容被改变时的回调函数 |
+| language   | 编辑器的初始语言 (不区分大小写，默认值: `None`) |
+| theme      | 编辑器的初始主题 (默认值: `"basicLight"`) |
+| indent     | 用于缩进的字符串 (必须由相同空白字符组成的任意字符，默认值: `" "`) |
+| line_wrapping | 是否自动换行 (默认值: `False`) |
+| highlight_whitespace | 是否高亮空白字符 (默认值: False) |
 
 ```python
 from nicegui import ui
@@ -412,6 +703,23 @@ ui.run()
 
 此元素基于 Quasar 的 [QInput](https://quasar.dev/vue-components/input) 组件。
 
+可通过 validation 参数定义验证规则字典，当输入内容与验证过程不一致则触发验证失败。例如我们需要保证内容长度小于3，则可以用 `{'太小啦！': lambda value: value > 3}` 进行验证。如果有多个验证规则则将首个验证失败的规则键作为错误信息显示。您也可传递返回可选错误信息的可调用对象。若要禁用每次值变更时的自动验证，可使用 `without_auto_validation` 方法。
+
+| 参数 Param | 说明 Description |
+| ---------- | ---------------- |
+| label      | 数字输入框的标题 |
+| placeholder | 当输入框为空时显示的文字提示 |
+| value      | 输入框的初始值   |
+| min        | 允许的最小值     |
+| max        | 允许的最大值     |
+| precision  | 允许的小数位数（默认: 无限制，负值表示小数点前的位数） |
+| step       | 步进按钮的步长   |
+| prefix     | 显示值前添加的前缀 |
+| suffix     | 显示值后添加的后缀 |
+| format | 格式化显示值的字符串，如 `%.2f` |
+| on_change  | 当输入框中的内容被改变时的回调函数 |
+| validation | 验证规则字典或返回错误信息的可调用对象 (默认值: `None`，代表不验证) |
+
 ```python
 from nicegui import ui
 
@@ -424,7 +732,20 @@ ui.run()
 
 ## 旋钮 Knob
 
-此元素基于 Quasar 的 [QKnob](https://quasar.dev/vue-components/knob) 组件。
+此元素基于 Quasar 的 [QKnob](https://quasar.dev/vue-components/knob) 组件。该元素用于通过鼠标/触摸滑动从用户处获取数字输入。
+
+| 参数 Param | 说明 Description |
+| ---------- | ---------------- |
+| value      | 初始值 (默认值: `0.0`) |
+| min        | 最小值 (默认值: `0.0`) |
+| max        | 最大值 (默认值: `1.0`) |
+| step       | 步进 (默认值: `0.01`) |
+| color      | 轨迹的颜色 (可以使用 Quasar、Tailwind、CSS 颜色或者 None，默认值: `"primary"`) |
+| center_color | 组件中心的颜色，比如 `primary` 或 `teal-10` |
+| track_color | 轨道的颜色，比如 `primary` 或 `teal-10` |
+| size       | CSS单元尺寸，包括单位名称或标准尺寸名称 `xs/sm/md/lg/xl`，例如 `16px` 和 `2rem` |
+| show_value | 是否显示旋钮的值 |
+| on_change  | 当旋钮的值被改变时的回调函数 |
 
 ```python
 from nicegui import ui
@@ -441,6 +762,14 @@ ui.run()
 
 此元素基于 Quasar 的 [QInput](https://quasar.dev/vue-components/input) 组件，但添加了一个颜色选择作为扩展。
 
+| 参数 Param | 说明 Description |
+| ---------- | ---------------- |
+| label      | RGB 色号输入框的标题 |
+| placeholder | 当输入框为空时显示的文字提示 |
+| value      | 输入框的初始值   |
+| on_change  | 当输入框中的色号被改变时的回调函数 |
+| preview    | 将选择的颜色应用到按钮背景 (默认值: `False`) |
+
 ```python
 from nicegui import ui
 
@@ -455,6 +784,11 @@ ui.run()
 
 此元素基于 Quasar 的 [QMenu](https://quasar.dev/vue-components/menu) 和 [QColor](https://quasar.dev/vue-components/color-picker) 组件。
 
+| 参数 Param | 说明 Description |
+| ---------- | ---------------- |
+| on_pick    | 当选择了一个色号执行的回调函数 |
+| value      | 选择器是否打开 (默认值: `False`) |
+
 ```python
 from nicegui import ui
 
@@ -466,20 +800,44 @@ ui.run()
 
 ## 日期选择器 Date Input
 
-此元素基于 Quasar 的 [QDate](https://quasar.dev/vue-components/date) 组件。
+此元素基于 Quasar 的 [QDate](https://quasar.dev/vue-components/date) 组件。日期是以 `mask` 参数定义的格式字符串。
+
+您还可以使用 `range` 或 `multiple` 属性来选择日期范围或多个日期。
+
+| 参数 Param | 说明 Description |
+| ---------- | ---------------- |
+| value      | 初始日期         |
+| mask       | 日期的格式 (默认值: `'YYYY-MM-DD'`) |
+| on_change  | 当选择了一个日期执行的回调函数 |
 
 ```python
 from nicegui import ui
 
-ui.date(value='2023-01-01', on_change=lambda e: result.set_text(e.value))
-result = ui.label()
+# 选择一个日期范围
+ui.date({'from': '2023-01-01', 'to': '2023-01-05'}, on_change=lambda e: result_1.set_text(e.value)).props('range')
+
+# 选择多个日期
+ui.date(['2023-01-01', '2023-01-02', '2023-01-03'], on_change=lambda e: result_2.set_text(e.value)).props('multiple')
+
+# 既要选择日期范围又要选择多个日期
+ui.date([{'from': '2023-01-01', 'to': '2023-01-05'}, '2023-01-07'], on_change=lambda e: result_3.set_text(e.value)).props('multiple range')
+
+result_1 = ui.label()
+result_2 = ui.label()
+result_3 = ui.label()
 
 ui.run()
 ```
 
 ## 时间选择器 Time Input
 
-此元素基于 Quasar 的 [QTime](https://quasar.dev/vue-components/time) 组件。
+此元素基于 Quasar 的 [QTime](https://quasar.dev/vue-components/time) 组件。时间是以 `mask` 参数定义的格式字符串。
+
+| 参数 Param | 说明 Description |
+| ---------- | ---------------- |
+| value      | 初始时间         |
+| mask       | 时间的格式 (默认值: `'HH:mm'`) |
+| on_change  | 当选择了一个时间执行的回调函数 |
 
 ```python
 from nicegui import ui
@@ -493,6 +851,18 @@ ui.run()
 ## 文件上传 File Upload
 
 此元素基于 Quasar 的 [QUploader](https://quasar.dev/vue-components/uploader) 组件。
+
+| 参数 Param | 说明 Description |
+| ---------- | ---------------- |
+| multiple | 是否允许一次性上传多个文件 (默认值: `False`) |
+| max_file_size | 单个文件的最大大小 (单位: 字节) (默认值: `0`) |
+| max_total_size | 所有文件总大小的上限 (单位: 字节) (默认值: `0`) |
+| max_files | 最大文件数量限制 (默认值: `0`) |
+| on_upload | 每个文件上传完成后执行的回调函数 |
+| on_multi_upload | 多个文件全部上传完成后执行的回调函数 |
+| on_rejected | 每个被拒绝的文件执行的回调函数 |
+| label | 上传组件的标签文字 (默认值: `''`) |
+| auto_upload | 选择文件后自动上传 (默认值: `False`) |
 
 ```python
 from nicegui import ui
