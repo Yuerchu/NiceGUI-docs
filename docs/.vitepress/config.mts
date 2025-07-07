@@ -65,6 +65,11 @@ export default defineConfig({
             link: '/documentation/section_data_elements',
             items: []
           },
+          {
+            text: '绑定属性',
+            link: '/documentation/section_binding_properties',
+            items: []
+          },
         ]
       }
     ],
