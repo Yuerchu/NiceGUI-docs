@@ -21,7 +21,7 @@ color 参数接受 Quasar 颜色、Tailwind 颜色或 CSS 颜色。 如果使用
 ```python
 from nicegui import ui
 
-ui.button('点我', on_click=lambda: ui.notify('你点了我'))
+ui.button('点我', on_click=lambda: ui.notify('您点了我'))
 
 ui.run()
 ```
@@ -40,9 +40,9 @@ ui.run()
 from nicegui import ui
 
 with ui.button_group():
-    ui.button('一', on_click=lambda: ui.notify('你按下了按钮 1!'))
-    ui.button('二', on_click=lambda: ui.notify('你按下了按钮 2!'))
-    ui.button('三', on_click=lambda: ui.notify('你按下了按钮 3!'))
+    ui.button('一', on_click=lambda: ui.notify('您按下了按钮 1!'))
+    ui.button('二', on_click=lambda: ui.notify('您按下了按钮 2!'))
+    ui.button('三', on_click=lambda: ui.notify('您按下了按钮 3!'))
 
 ui.run()
 ```
@@ -89,7 +89,7 @@ ui.run()
 ```python
 from nicegui import ui
 
-with ui.button('Click me!', on_click=lambda: badge.set_text(int(badge.text) + 1)):
+with ui.button('点我则会计数+1', on_click=lambda: badge.set_text(int(badge.text) + 1)):
     badge = ui.badge('0', color='red').props('floating')
 
 ui.run()
@@ -236,8 +236,8 @@ ui.run()
 ```python
 from nicegui import ui
 
-switch = ui.switch('switch me')
-ui.label('Switch!').bind_visibility_from(switch, 'value')
+switch = ui.switch('打开我')
+ui.label('您打开了按钮').bind_visibility_from(switch, 'value')
 
 ui.run()
 ```
@@ -383,9 +383,9 @@ ui.run()
 ```python
 from nicegui import ui
 
-ui.input(label='Text', placeholder='start typing',
-         on_change=lambda e: result.set_text('you typed: ' + e.value),
-         validation={'Input too long': lambda value: len(value) < 20})
+ui.input(label='Text', placeholder='开始输入',
+         on_change=lambda e: result.set_text('您输入了: ' + e.value),
+         validation={'太长了!': lambda value: len(value) < 20})
 result = ui.label()
 
 ui.run()
@@ -408,8 +408,8 @@ ui.run()
 ```python
 from nicegui import ui
 
-ui.textarea(label='Text', placeholder='start typing',
-            on_change=lambda e: result.set_text('you typed: ' + e.value))
+ui.textarea(label='Text', placeholder='开始输入',
+            on_change=lambda e: result.set_text('您输入了: ' + e.value))
 result = ui.label()
 
 ui.run()
@@ -690,7 +690,7 @@ SUPPORTED_THEMES = Literal[
 ```python
 from nicegui import ui
 
-editor = ui.codemirror('print("Edit me!")', language='Python').classes('h-32')
+editor = ui.codemirror('print("开始您的编辑")', language='Python').classes('h-32')
 ui.select(editor.supported_languages, label='Language', clearable=True) \
     .classes('w-32').bind_value(editor, 'language')
 ui.select(editor.supported_themes, label='Theme') \
@@ -724,7 +724,7 @@ ui.run()
 from nicegui import ui
 
 ui.number(label='Number', value=3.1415927, format='%.2f',
-          on_change=lambda e: result.set_text(f'you entered: {e.value}'))
+          on_change=lambda e: result.set_text(f'您输入了: {e.value}'))
 result = ui.label()
 
 ui.run()
@@ -773,7 +773,7 @@ ui.run()
 ```python
 from nicegui import ui
 
-label = ui.label('Change my color!')
+label = ui.label('选一个颜色吧！')
 ui.color_input(label='Color', value='#000000',
                on_change=lambda e: label.style(f'color:{e.value}'))
 
@@ -867,7 +867,7 @@ ui.run()
 ```python
 from nicegui import ui
 
-ui.upload(on_upload=lambda e: ui.notify(f'Uploaded {e.name}')).classes('max-w-full')
+ui.upload(on_upload=lambda e: ui.notify(f'已上传 {e.name}')).classes('max-w-full')
 
 ui.run()
 ```

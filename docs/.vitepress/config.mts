@@ -54,7 +54,17 @@ export default defineConfig({
             text: '控制元素',
             link: '/documentation/section_controls',
             items: []
-          }
+          },
+          {
+            text: '视听元素',
+            link: '/documentation/section_audiovisual_elements',
+            items: []
+          },
+          {
+            text: '数据元素',
+            link: '/documentation/section_data_elements',
+            items: []
+          },
         ]
       }
     ],
@@ -74,9 +84,9 @@ export default defineConfig({
     editLink: {
       pattern: ({ filePath }) => {
         if (filePath.startsWith('packages/')) {
-          return `https://github.com/Yuerchu/NiceGUI_docs/edit/main/${filePath}`
+          return `https://github.com/Yuerchu/NiceGUI-docs/edit/main/${filePath}`
         } else {
-          return `https://github.com/Yuerchu/NiceGUI_docs/edit/main/docs/${filePath}`
+          return `https://github.com/Yuerchu/NiceGUI-docs/edit/main/docs/${filePath}`
         }
       },
       text: '在 GitHub 上编辑此页面',
