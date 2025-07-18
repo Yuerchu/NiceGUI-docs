@@ -70,8 +70,42 @@ export default defineConfig({
             link: '/documentation/section_binding_properties',
             items: []
           },
+          {
+            text: '页面布局',
+            link: '/documentation/section_page_layout',
+            items: []
+          },
+          {
+            text: '造型与外观',
+            link: '/documentation/section_styling_appearance',
+            items: []
+          },
+          {
+            text: '动作与事件',
+            link: '/documentation/section_action_events',
+            items: []
+          },
+          {
+            text: '页面与路由',
+            link: '/documentation/section_pages_routing',
+            items: []
+          },
+          {
+            text: '配置与部署',
+            link: '/documentation/section_configuration_deployment',
+            items: []
+          },
+          {
+            text: '测试',
+            link: '/documentation/section_testing',
+            items: []
+          }
         ]
-      }
+      },
+      {
+        text: '印记',
+        link: '/imprint_privacy',
+      },
     ],
 
     // 社交链接
@@ -81,8 +115,8 @@ export default defineConfig({
 
     // 页脚
     footer: {
-      copyright: 'Copyright © 2018-present <a href="https://www.yxqi.cn">于小丘Yuerchu</a> and <a href="https://www.zauberzeug.com/">Zauberzeug</a>。',
-      message: '<a href="https://beian.miit.gov.cn/">粤ICP备2024285776号-2</a> · <a href="http://www.beian.gov.cn/">粤公网安备 44020302000232 号</a>',
+      copyright: `Copyright © 2018-${new Date().getFullYear()} <a href="https://www.yxqi.cn">于小丘Yuerchu</a> and <a href="https://www.zauberzeug.com/">Zauberzeug</a>。`,
+      message: '别问为什么 yxqi.cn 被跳转到这来了，没钱买独服跑 Wordpress 了',
     },
 
     // 编辑链接
