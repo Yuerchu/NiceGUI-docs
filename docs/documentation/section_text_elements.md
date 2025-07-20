@@ -8,7 +8,7 @@
 | ---------- | ---------------- |
 | text       | 文本的内容       |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 ui.label('你好世界')
@@ -30,7 +30,7 @@ ui.label('你好世界')
 | target     | page 函数，同一页面上的 NiceGUI 元素或字符串，该字符串是一个绝对 URL 或相对于根 URL 的相对路径 |
 | new_tab    | 在新标签页中打开 (默认值: `False`) |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 ui.link('Github 上的 NiceGUI', 'https://github.com/zauberzeug/nicegui')
@@ -54,7 +54,7 @@ ui.run()
 | sent       | 是否为消息发送者(默认值：`False`) |
 | text_html  | 是否以 HTML 渲染消息(默认值：`False`) |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 ui.chat_message('Hello NiceGUI!',
@@ -76,7 +76,7 @@ ui.run()
 | tag        | 元素的 HTML 标签 |
 | _client    | 此元素的客户端(仅供内部测试) |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 with ui.element('div').classes('p-2 bg-blue-100'):
@@ -96,7 +96,7 @@ ui.run()
 | content    | Markdown 内容    |
 | extras     | 参考 [Markdown2 extensions](https://github.com/trentm/python-markdown2/wiki/Extras#implemented-extras) (默认值：`(default: ['fenced-code-blocks', 'tables'])`) |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 ui.markdown('这是一段 **Markdown**.')
@@ -114,7 +114,7 @@ ui.run()
 | ---------- | ---------------- |
 | content    | ReStructuredText 内容 |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 ui.restructured_text('这是一段 **reStructuredText**.')
@@ -151,7 +151,7 @@ ui.run()
 
 还可以使用 `ui.add_head_html` 将 HTML 代码添加到文档头部，使用 `ui.add_body_html` 将其添加到正文部分。
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 ui.html('这是一段 <strong>HTML</strong>.')
@@ -169,7 +169,7 @@ ui.run()
 与任何其他元素一样，您可以添加类名、样式、属性、工具提示和事件。
 其中一项便利之处在于，关键字参数会自动添加到元素的 props 字典中。
 
-```python
+```python:line-numbers
 from nicegui import html, ui
 
 with html.section().style('font-size: 120%'):

@@ -10,7 +10,7 @@ NiceGUI 基于 [Quasar 框架](https://quasar.dev/)构建，并且完美地继�
 
 这三类方法均支持 `remove` 和 `replace` 参数，以便在特定场景下覆盖预定义的样式效果。
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 ui.radio(['x', 'y', 'z'], value='x').props('inline color=green')
@@ -32,7 +32,7 @@ ui.run()
 
 请注意，有时 Tailwind 会被 Quasar 样式覆盖，例如在使用 `ui.button('Button').tailwind('bg-red-500')` 时。这是一个已知的限制，不完全在我们的控制范围内。但我们尝试提供解决方案，比如颜色参数：`ui.button('Button', color='red-500')`。
 
-```python
+```python:line-numbers
 from nicegui import Tailwind, ui
 
 ui.label('Label A').tailwind.font_weight('extrabold').text_color('blue-600').background_color('orange-200')

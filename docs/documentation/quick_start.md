@@ -6,7 +6,7 @@ NiceGUI 非常容易上手。它只需要三步：
 
 ### 1. 创建 `main.py`
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 ui.label('你好 NiceGUI!')

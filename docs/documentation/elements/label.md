@@ -6,7 +6,7 @@
 | ---------- | ---------------- |
 | text       | 文本的内容       |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 ui.label('你好世界')

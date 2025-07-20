@@ -42,7 +42,7 @@ ui.run()
 
 这里我们将标签的文本绑定到一个字典上。
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 data = {'name': 'Bob', 'age': 17}
@@ -59,7 +59,7 @@ ui.run()
 
 这里我们将日期选择器的值绑定到一个裸变量上。为此，我们使用了包含所有全局变量的字典 `globals()`。本演示基于 [官方日期选择器示例](https://nicegui.io/documentation/date#input_element_with_date_picker)。
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 date = '2023-01-01'
@@ -77,7 +77,7 @@ ui.run()
 
 我们还可以把东西绑定到 [app.storage]() 上。我们在此存储了文本区域在多次访问之间的值。该笔记还会在同一用户的所有标签页之间共享。
 
-```python
+```python:line-numbers
 from nicegui import app, ui
 
 @ui.page('/')
@@ -101,7 +101,7 @@ ui.run()
 
 以下示例演示了如何为首个示例中的 Demo 类定义和使用可绑定属性。number 属性现在作为 `BindableProperty`，使得NiceGUI能立即检测写入操作并触发值传播。
 
-```python
+```python:line-numbers
 from nicegui import binding, ui
 
 class Demo:
@@ -122,7 +122,7 @@ ui.run()
 
 `bindable_dataclass` 装饰器提供了一种便捷方式来创建具有可绑定属性的类。它扩展了Python标准 `dataclasses.dataclass` 装饰器的功能，通过自动使所有数据类字段可绑定。这消除了手动将每个字段声明为 `BindableProperty` 的需求，同时保留了常规数据类的所有优势。
 
-```python{3}
+```python:line-numbers{3}
 from nicegui import binding, ui
 
 @binding.bindable_dataclass

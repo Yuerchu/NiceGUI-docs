@@ -18,7 +18,7 @@ color 参数接受 Quasar 颜色、Tailwind 颜色或 CSS 颜色。 如果使用
 | color      | 按钮颜色（可以是 Quasar、TailWind 或者 CSS 颜色，或设为 None。 默认值： `'primary'` |
 | icon| 显示在按钮上的图标名称 (默认值: `None`) |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 ui.button('点我', on_click=lambda: ui.notify('您点了我'))
@@ -36,7 +36,7 @@ ui.run()
 您必须为按钮组和按钮使用相同的 `props` 设计。
 :::
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 with ui.button_group():
@@ -63,7 +63,7 @@ color 参数接受 Quasar 颜色、Tailwind 颜色或 CSS 颜色。 如果使用
 | on_click   | 按钮被点击时的回调函数 |
 | color      | 按钮颜色 (可以使用 Quasar、Tailwind、CSS 颜色或者 None，默认值: `"primary"`) |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 with ui.dropdown_button('打开我!', auto_close=True):
@@ -86,7 +86,7 @@ ui.run()
 | text_color | 文本颜色 (可以使用 Quasar、Tailwind、CSS 颜色或者 None，默认值: `"primary"`) |
 | outline   | 使用外框设计 (默认值：`False`) |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 with ui.button('点我则会计数+1', on_click=lambda: badge.set_text(int(badge.text) + 1)):
@@ -114,7 +114,7 @@ ui.run()
 | removable  | 此标签是否可被移除。如果可被移除则会显示一个 `×` 按钮 (默认值: `False`) |
 | on_value_change | 标签被移除或未被移除时调用的回调函数 |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 with ui.row().classes('gap-1'):
@@ -140,7 +140,7 @@ ui.run()
 | on_change  | 当选中项改变时的回调函数 |
 | clearable  | 选中状态是否可移除 (是否可以不选择项目，译者注) |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 toggle1 = ui.toggle([1, 2, 3], value=1)
@@ -161,7 +161,7 @@ ui.run()
 | value      | 初始选中的的值  |
 | on_change  | 当选中项改变时的回调函数 |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 radio1 = ui.radio([1, 2, 3], value=1).props('inline')
@@ -195,7 +195,7 @@ ui.run()
 | validation | 验证规则字典或返回错误信息的可调用对象 (默认值: `None`，代表不验证) |
 | key_generator | 为新增值生成字典键的回调函数或迭代器 |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 select1 = ui.select([1, 2, 3], value=1)
@@ -214,7 +214,7 @@ ui.run()
 | value      | 是否默认被选中 (默认值: `False`) |
 | on_change  | 当选中项改变时的回调函数 |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 checkbox = ui.checkbox('check me')
@@ -233,7 +233,7 @@ ui.run()
 | value      | 是否默认被打开 (默认值: `False`) |
 | on_change  | 当开启状态改变时的回调函数 |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 switch = ui.switch('打开我')
@@ -254,7 +254,7 @@ ui.run()
 | value      | 滑块的初始值     |
 | on_change  | 当滑块的值被改变时的回调函数 |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 slider = ui.slider(min=0, max=100, value=50)
@@ -275,7 +275,7 @@ ui.run()
 | value      | 选择器的初始值   |
 | on_change  | 当选择器的值被改变时的回调函数 |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 min_max_range = ui.range(min=0, max=100, value={'min': 20, 'max': 80})
@@ -300,7 +300,7 @@ ui.run()
 | size       | CSS单元尺寸，包括单位名称或标准尺寸名称 `xs/sm/md/lg/xl`，例如 `16px` 和 `2rem` |
 | on_change  | 当评分的值被改变时的回调函数 |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 ui.rating(value=4)
@@ -346,7 +346,7 @@ var options = {
 ```
 :::
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 ui.joystick(
@@ -380,7 +380,7 @@ ui.run()
 | autocomplete | 可选，一个用于自动完成的列表 |
 | validation | 验证规则字典或返回错误信息的可调用对象 (默认值: `None`，代表不验证) |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 ui.input(label='Text', placeholder='开始输入',
@@ -405,7 +405,7 @@ ui.run()
 | on_change  | 当输入框的内容被改变时的回调函数 |
 | validation | 验证规则字典或返回错误信息的可调用对象 (默认值: `None`，代表不验证) |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 ui.textarea(label='Text', placeholder='开始输入',
@@ -427,7 +427,7 @@ ui.run()
 
 译者也推荐您参阅 `nicegui/elements/codemirror.py` 的 `SUPPORTED_LANGUAGES` 容器：
 
-```python
+```python:line-numbers
 SUPPORTED_LANGUAGES = Literal[
     'Angular Template',
     'APL',
@@ -582,7 +582,7 @@ SUPPORTED_LANGUAGES = Literal[
 
 同样的，译者也推荐您参阅 `nicegui/elements/codemirror.py` 的 `SUPPORTED_THEMES` 容器：
 
-```python
+```python:line-numbers
 SUPPORTED_THEMES = Literal[
     'abcdef',
     'abcdefDarkStyle',
@@ -687,7 +687,7 @@ SUPPORTED_THEMES = Literal[
 | line_wrapping | 是否自动换行 (默认值: `False`) |
 | highlight_whitespace | 是否高亮空白字符 (默认值: False) |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 editor = ui.codemirror('print("开始您的编辑")', language='Python').classes('h-32')
@@ -720,7 +720,7 @@ ui.run()
 | on_change  | 当输入框中的内容被改变时的回调函数 |
 | validation | 验证规则字典或返回错误信息的可调用对象 (默认值: `None`，代表不验证) |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 ui.number(label='Number', value=3.1415927, format='%.2f',
@@ -747,7 +747,7 @@ ui.run()
 | show_value | 是否显示旋钮的值 |
 | on_change  | 当旋钮的值被改变时的回调函数 |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 knob = ui.knob(0.3, show_value=True)
@@ -770,7 +770,7 @@ ui.run()
 | on_change  | 当输入框中的色号被改变时的回调函数 |
 | preview    | 将选择的颜色应用到按钮背景 (默认值: `False`) |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 label = ui.label('选一个颜色吧！')
@@ -789,7 +789,7 @@ ui.run()
 | on_pick    | 当选择了一个色号执行的回调函数 |
 | value      | 选择器是否打开 (默认值: `False`) |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 with ui.button(icon='colorize') as button:
@@ -810,7 +810,7 @@ ui.run()
 | mask       | 日期的格式 (默认值: `'YYYY-MM-DD'`) |
 | on_change  | 当选择了一个日期执行的回调函数 |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 # 选择一个日期范围
@@ -839,7 +839,7 @@ ui.run()
 | mask       | 时间的格式 (默认值: `'HH:mm'`) |
 | on_change  | 当选择了一个时间执行的回调函数 |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 ui.time(value='12:00', on_change=lambda e: result.set_text(e.value))
@@ -864,7 +864,7 @@ ui.run()
 | label | 上传组件的标签文字 (默认值: `''`) |
 | auto_upload | 选择文件后自动上传 (默认值: `False`) |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 ui.upload(on_upload=lambda e: ui.notify(f'已上传 {e.name}')).classes('max-w-full')

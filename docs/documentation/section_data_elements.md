@@ -18,7 +18,7 @@
 
 如果选择模式为 `'single'` 或 `'multiple'`，则可通过 `selected` 属性访问已选中的行。
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 columns = [
@@ -48,7 +48,7 @@ ui.run()
 | theme | AG Grid主题样式（默认值: `"balham"`） |
 | auto_size_columns | 是否自动调整列宽以适应网格宽度（默认值: `True`） |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 grid = ui.aggrid({
@@ -95,7 +95,7 @@ ui.run()
 | on_point_drag | 拖拽数据点时触发的回调函数 |
 | on_point_drop | 释放拖拽的数据点时触发的回调函数 |
 
-```python
+```python:line-numbers
 from nicegui import ui
 from random import random
 
@@ -130,7 +130,7 @@ ui.run()
 | renderer | 使用的渲染器（"canvas" 或 "svg"）<Badge type="tip" text="^2.7.0" /> |
 | theme | EChart 主题配置（字典或返回 JSON 对象的 URL）<Badge type="tip" text="^2.15.0" /> |
 
-```python
+```python:line-numbers
 from nicegui import ui
 from random import random
 
@@ -162,7 +162,7 @@ ui.run()
 | close | 是否在退出上下文后关闭图表；设为 `False` 以便后续更新（默认值: `True`） |
 | kwargs | 传递给 [`pyplot.figure`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.figure.html) 的参数，如 `figsize` 等 |
 
-```python
+```python:line-numbers
 import numpy as np
 from matplotlib import pyplot as plt
 from nicegui import ui
@@ -183,7 +183,7 @@ ui.run()
 | ---------- | ---------------- |
 | kwargs | 传递给 [`pyplot.figure`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.figure.html) 的参数，如 `figsize` 等 |
 
-```python
+```python:line-numbers
 import numpy as np
 from nicegui import ui
 
@@ -205,7 +205,7 @@ ui.run()
 
 为获得最佳性能，建议使用声明式字典方法创建 Plotly 图表。
 
-```python
+```python:line-numbers
 import plotly.graph_objects as go
 from nicegui import ui
 
@@ -227,7 +227,7 @@ ui.run()
 | show_value | 是否在中心显示数值标签（默认值: `True`） |
 | color | 颜色（可以是Quasar、Tailwind或CSS颜色值，或设为None，默认值: `"primary"`） |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 slider = ui.slider(min=0, max=1, step=0.01, value=0.5)
@@ -249,7 +249,7 @@ ui.run()
 | show_value | 是否在中心显示数值标签（默认值: `True`） |
 | color      | 颜色 (可以使用 Quasar、Tailwind、CSS 颜色或者 None，默认值: `"primary"`) |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 slider = ui.slider(min=0, max=1, step=0.01, value=0.5)
@@ -286,7 +286,7 @@ ui.run()
 | drag_constraints | 用于约束拖动对象位置的 JavaScript 表达式（如: 'x = 0, z = y / 2'） |
 | background_color | 场景背景颜色（默认值: `"#eee"`） |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 with ui.scene().classes('w-full h-64') as scene:
@@ -332,7 +332,7 @@ ui.run()
 | hide_drawn_items | 是否隐藏地图上绘制的项目（默认值: `False`）<Badge type="tip" text="^2.0.0" /> |
 | additional_resources | 需要加载的额外资源如CSS或JS文件（默认值: `None`）<Badge type="tip" text="^2.11.0" /> |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 m = ui.leaflet(center=(51.505, -0.09))
@@ -367,7 +367,7 @@ ui.run()
 | on_tick    | 当节点勾选状态变化时触发的回调函数 |
 | tick_strategy | 是否及如何使用复选框（可选值: `"leaf"`/`"leaf-filtered"`/`"strict"`，默认值: `None`） |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 ui.tree([
@@ -386,7 +386,7 @@ ui.run()
 | ---------- | ---------------- |
 | max_lines  | 最大行数限制，超过时将丢弃最早的行（默认值: `None`） |
 
-```python
+```python:line-numbers
 from datetime import datetime
 from nicegui import ui
 
@@ -416,7 +416,7 @@ ui.run()
 | content    | 要显示的代码内容 |
 | language   | 代码语言（默认值: `"python"`） |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 ui.code('''
@@ -441,7 +441,7 @@ ui.run()
 | on_change  | 当内容发生变化时触发的回调函数 |
 | schema     | 用于验证被编辑数据的可选 JSON 模式 <Badge type="tip" text="^2.8.0" /> |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 json = {

@@ -8,7 +8,7 @@
 | ---------- | ---------------- |
 | source     | 图片源，可以是 URL, 本地文件路径，base64 编码的图片或者 PIL 图片 |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 ui.image('https://picsum.photos/id/377/640/360')
@@ -24,7 +24,7 @@ ui.run()
 
 您可以使用 [Quasar classes](https://quasar.dev/vue-components/img) 进行字幕的定位和样式设计。若需叠加 SVG，请确保 viewBox 与图像尺寸完全一致，并设置 100% 的宽度/高度以匹配实际渲染大小。
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 with ui.image('https://picsum.photos/id/29/640/360'):
@@ -62,7 +62,7 @@ ui.run()
 | events     | 需要订阅的JavaScript事件列表 (默认值: `['click']`) |
 | cross      | 是否显示十字准线或颜色字符串 (默认值: `False`) |
 
-```python
+```python:line-numbers
 from nicegui import events, ui
 
 def mouse_handler(e: events.MouseEventArguments):
@@ -90,7 +90,7 @@ ui.run()
 
 你可以看看 [audio - MDN web docs](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Reference/Elements/audio#事件) 中的事件，并可使用 `.on()` 方法进行订阅。
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 a = ui.audio('https://cdn.pixabay.com/download/audio/2022/02/22/audio_d1718ab41b.mp3')
@@ -128,7 +128,7 @@ ui.run()
 | size       | 图标尺寸（CSS单位，包含单位名称或标准尺寸名称 `xs/sm/md/lg/xl`，例如：`16px`, `2rem`） |
 | color      | 图标颜色（可以是 Quasar、Tailwind 或 CSS 颜色值，或设为 None，默认值: `None`） |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 ui.icon('thumb_up', color='primary').classes('text-5xl')
@@ -150,7 +150,7 @@ ui.run()
 | square     | 移除圆角使边框变为直角（默认值: `False`） |
 | rounded    | 为组件添加小标准圆角（默认值: `False`） |
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 ui.avatar('favorite_border', text_color='grey-11', square=True)
@@ -163,7 +163,7 @@ ui.run()
 
 您可通过 `ui.html()` 来添加 SVG 图片。
 
-```python
+```python:line-numbers
 from nicegui import ui
 
 content = '''
