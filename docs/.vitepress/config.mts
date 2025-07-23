@@ -23,7 +23,8 @@ export default defineConfig({
     // 顶部栏
     nav: [
       { text: '首页', link: '/' },
-      { text: '文档', link: '/documentation' },
+      { text: 'NiceGUI 文档', link: '/documentation' },
+      { text: 'NiceGUI 教程(独家)', link: '/tutorial' },
       { text: '官方网站(English)', link: 'https://nicegui.io/' },
       { text: '中文文档 GitHub', link: 'https://github.com/Yuerchu/NiceGUI-docs'}
     ],

@@ -52,7 +52,7 @@ ui.run()
 
 ## Query Selector
 
-## 预定义主题 Color Theming
+## 颜色主题 Color Theming
 
 ## CSS Variables
 

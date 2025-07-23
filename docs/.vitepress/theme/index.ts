@@ -1,12 +1,21 @@
 // .vitepress/theme/index.ts
 import DefaultTheme from 'vitepress/theme'
+import { Underline, BoxCube, Card, Links, Pill } from '@theojs/lumen'
+import '@theojs/lumen/style'
 
 import mediumZoom from 'medium-zoom';
 import { onMounted, watch, nextTick } from 'vue';
 import { useRoute } from 'vitepress';
 
 export default {
-    extends: DefaultTheme,
+    extends: DefaultTheme, 
+    enhanceApp: ({ app }) => {
+      app.component('Home', Underline)
+      app.component('Pill', Pill) 
+      app.component('Links', Links) 
+      app.component('Card', Card) 
+      app.component('BoxCube', BoxCube)
+    },
     setup() {
       const route = useRoute();
       const initZoom = () => {
