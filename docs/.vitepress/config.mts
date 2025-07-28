@@ -18,7 +18,26 @@ export default defineConfig({
     logo: '/static/favicon/android-chrome-384x384.png',
     
     // 启用搜索
-    search: {provider: 'local'},
+    search: {
+      provider: 'local',
+      options: {
+        translations: {
+          button: {
+            buttonText: '搜索',
+            buttonAriaLabel: '搜索',
+          },
+          modal: {
+            noResultsText: '没有找到结果',
+            resetButtonTitle: '重置搜索',
+            footer: {
+              selectText: '选择',
+              navigateText: '导航',
+              closeText: '关闭',
+            },
+          },
+        }
+      }
+    },
     
     // 顶部栏
     nav: [
@@ -139,14 +158,28 @@ export default defineConfig({
       next: '下一篇'
     },
 
-    // 移动端 - 外观
+    // 外观
     darkModeSwitchLabel: '外观',
 
-    // 移动端 - 返回顶部
+    // 当前页面
+    outline: {
+      label: '当前页面',
+    },
+
+    // 返回顶部
     returnToTopLabel: '返回顶部',
 
-    // 移动端 - menu
+    // menu
     sidebarMenuLabel: '菜单',
+
+    // 搜索
+
+    // 404
+    notFound: {
+      title: '页面未找到',
+      quote: 'HTTP 404 - Page Not Found',
+      linkText: '返回首页'
+    }
 
   },
 })

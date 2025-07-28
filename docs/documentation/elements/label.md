@@ -41,9 +41,8 @@ ui.run()
 
 - **classes**: `Classes[Self]`
     - 元素的 Classes 。
-- **html_id**: `str`
+- **html_id**: `str` <Badge type="tip" text="^2.16.0" />
     - 在 HTML DOM 中的元素 ID。
-    - > 在 v2.16.0 中被添加
 - **is_deleted**: `bool`
     - 元素是否被删除。
 - **is_ignoring_events**: `bool`

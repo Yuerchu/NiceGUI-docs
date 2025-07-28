@@ -2,6 +2,8 @@
 import DefaultTheme from 'vitepress/theme'
 import { Underline, BoxCube, Card, Links, Pill } from '@theojs/lumen'
 import '@theojs/lumen/style'
+import "@fontsource/maple-mono";
+import './style/custom.css'
 
 import mediumZoom from 'medium-zoom';
 import { onMounted, watch, nextTick } from 'vue';

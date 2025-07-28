@@ -9,6 +9,7 @@
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
+    "@fontsource/maple-mono": "^5.2.5",
     "@theojs/lumen": "^6.3.1"
   }
 }

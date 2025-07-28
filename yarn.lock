@@ -308,6 +308,11 @@
   resolved "https://registry.npmmirror.com/@esbuild/win32-x64/-/win32-x64-0.21.5.tgz#acad351d582d157bb145535db2a6ff53dd514b5c"
   integrity sha512-tQd/1efJuzPC6rCFwEvLtci/xNFcTZknmXs98FYDfGE4wP9ClFV98nyKrzJKVPMhdDnjzLhdUyMX4PsQAPjwIw==
 
+"@fontsource/maple-mono@^5.2.5":
+  version "5.2.5"
+  resolved "https://registry.npmmirror.com/@fontsource/maple-mono/-/maple-mono-5.2.5.tgz#1d457df644b8223388c52359c7036b89f87a14a9"
+  integrity sha512-iJR/yQj+7DatkzxJNMu3+1gvq1YOHhCjlS6MBOys/Fw/BEDnhC65mp3RZoBXDbk+00flvRO9b9G/IvxBk82Ekw==
+
 "@iconify-json/simple-icons@^1.2.21":
   version "1.2.40"
   resolved "https://registry.npmmirror.com/@iconify-json/simple-icons/-/simple-icons-1.2.40.tgz#9884000e80e8adacefeb4e67cedbd8a346c0cb8c"
