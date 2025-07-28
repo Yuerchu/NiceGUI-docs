@@ -3,7 +3,7 @@
 ## 绑定
 NiceGUI 能够直接将UI元素与模型绑定。这种绑定适用于UI元素的属性，如文本 `text`、值 `value` 或可见性 `visiable` ，也适用于作为（嵌套）类属性的模型属性。每个元素都提供了诸如 `bind_value` 和 `bind_visibility` 等方法，用于与相应属性建立双向绑定。若要定义单向绑定，可使用这些方法的 `_from` 和 `_to` 变体。只需将模型的某个属性作为参数传递给这些方法即可创建绑定。绑定后，数值会立即更新，并在任一属性发生变化时同步更新。
 
-```python{9-12}
+```python{9-12}:line-numbers
 from nicegui import ui
 
 class Demo:
@@ -28,7 +28,7 @@ ui.run()
 
 我们还想提到的是，为了在不同版本间获得最稳定的行为，最佳实践是让转换函数没有副作用，仅执行基本的转换操作。这样，无论 NiceGUI 以何种顺序调用它们或调用多少次，都不会产生影响。
 
-```python{5}
+```python{5}:line-numbers
 from nicegui import ui
 
 i = ui.input(value='Lorem ipsum')

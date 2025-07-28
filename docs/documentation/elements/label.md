@@ -17,7 +17,7 @@ ui.label('你好世界')
 你可以重写 `_handle_text_change` 方法，根据标签内容更新其其他属性。
 此技术同样适用于绑定，如下例所示。
 
-```python{4-9}
+```python{4-9}:line-numbers
 from nicegui import ui
 
 class status_label(ui.label):
