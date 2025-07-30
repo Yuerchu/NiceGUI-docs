@@ -35,7 +35,7 @@ Sales tax identification number according to §27a Sales Tax Act: DE286384205
 
 这些汇总的、非可识别的使用统计数据是基于我们的合法利益（《通用数据保护条例》第6条第1款第f项）进行处理，以分析和改进我们的网站。您有权随时反对此类处理。如需行使您的权利，请联系我们：`info@zauberzeug.com` 。  
 
-有关Plausible Analytics及其数据政策的更多详情，请访问 https://plausible.io/data-policy。
+有关Plausible Analytics及其数据政策的更多详情，请访问 https://plausible.io/data-policy 。
 
 We use Plausible Analytics to understand how you interact with our site. Plausible Analytics is a privacy-first analytics tool that does not use cookies or collect any personal data or personally identifiable information (PII). All data collected by Plausible is aggregated and anonymized.
 
