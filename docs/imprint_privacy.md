@@ -1,3 +1,34 @@
+<script setup>
+import { VPTeamMembers } from 'vitepress/theme'
+
+const members = [
+  {
+    avatar: 'https://www.github.com/Zauberzeug.png',
+    name: 'Zauberzeug',
+    title: 'NiceGUI 创造者',
+    sponsor: 'https://github.com/sponsors/zauberzeug',
+    actionText: "前往 Github 赞助",
+    links: [
+      { icon: 'github', link: 'https://github.com/Zauberzeug' },
+      { icon: 'instagram', link: 'https://www.instagram.com/zauberzeug_com/?lang=zh' },
+      { icon: 'youtube', link: 'https://www.youtube.com/@zauberzeug_gmbh?lang=de' }
+    ]
+  },
+  {
+    avatar: 'https://www.github.com/Yuerchu.png',
+    name: '于小丘',
+    title: 'NiceGUI 中文网发起者',
+    sponsor: 'https://afdian.com/a/yuerchu',
+    actionText: '前往爱发电赞助',
+    links: [
+        { icon: 'github', link: "https://github.com/Yuerchu" },
+        { icon: 'bilibili', link: 'https://space.bilibili.com/361858612' },
+        { icon: 'qq', link: "https://wpa.qq.com/msgrd?v=3&uin=2372526808&site=qq&menu=yes" }
+    ]
+  }
+]
+</script>
+
 # 印记 Imprint & Privacy
 
 ## NiceGUI 官方 - Zauberzeug 团队
@@ -59,5 +90,9 @@ NiceGUI 中文网 是由 [@于小丘](https://github.com/Yuerchu) 发起的 Nice
 我希望，我们可以用 NiceGUI 继续创造，使其不只是 NiceGUI，而是 NiceWorld ~
 
 我们建议您使用 [nicegui.cn](https://nicegui.cn) 访问 NiceGUI 中文网。虽然 [yxqi.cn](https://yxqi.cn) 也可以进入，但在不久的将来将会重启原来的博客项目。
+
+NiceGUI 中文网感谢你们的支持（排名不分先后）：
+
+<VPTeamMembers size="small" :members />
 
 [待补充……]

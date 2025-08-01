@@ -7,7 +7,7 @@ export default defineConfig({
   description: "一个非官方的 NiceGUI 中文文档站",
   head: [
     [
-      'link', { rel: 'icon', href: '/static/favicon/favicon.ico' }
+      'link', { rel: 'icon', href: '/static/favicon/favicon.ico' } // 站点图标
     ],
   ],
   lastUpdated: true,
@@ -182,4 +182,8 @@ export default defineConfig({
     }
 
   },
+  
+  ignoreDeadLinks: [
+    '/documentation/elements'
+  ]
 })
