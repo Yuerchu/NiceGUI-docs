@@ -10,7 +10,7 @@
 | callback   | 间隔到期时执行的函数或协程 |
 | active     | 是否执行回调 (运行时可以修改) |
 | once       | 是否仅在指定间隔后执行一次 (默认值: `False`) |
-| immediate  | 是否立即执行回调 (默认值: `True`, 当once为True时忽略) <Badge type="tip" text="^2.9.0" /> |
+| immediate  | 是否立即执行回调 (默认值: `True`, 当 `once` 为 `True` 时忽略) <Badge type="tip" text="^2.9.0" /> |
 
 ```python:line-numbers
 from datetime import datetime

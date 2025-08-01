@@ -1,0 +1,7 @@
+{
+    "vp.docsDir": "docs",
+    "vp.port": 5173,
+    "vp.autoStart": true,
+    "vp.debug": true,
+    "livePreview.portNumber": 5173
+}

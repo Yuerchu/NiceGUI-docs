@@ -86,6 +86,36 @@ ui.link('show page with fancy layout', page_layout)
 ui.run()
 ```
 
+## 子页面 Sub Pages
+
+子页面通过基于 URL 的导航实现不同视图间的切换，便于轻松构建单页应用（SPA）。`ui.sub_pages` 元素本身作为当前活动子页面的容器，您只需为每个视图构建函数提供路由配置。NiceGUI 会在 URL 变更时自动替换内容，无需触发整页重载。
+
+::: warning 注意
+这是一个实验性的特性。相关内容会随着更新而改动。
+:::
+
+```python:line-numbers
+from nicegui import ui
+from uuid import uuid4
+
+@ui.page('/')
+@ui.page('/{_:path}')  # NOTE: our page should catch all paths
+def index():
+    ui.label(f'This ID {str(uuid4())[:6]} changes only on reload.')
+    ui.separator()
+    ui.sub_pages({'/': main, '/other': other})
+
+def main():
+    ui.label('Main page content')
+    ui.link('Go to other page', '/other')
+
+def other():
+    ui.label('Another page content')
+    ui.link('Go to main page', '/')
+
+ui.run()
+```
+
 ## 参数注入 Parameter Injection
 
 得益于 FastAPI，页面函数可接受可选参数，用于提供路径参数、查询参数或整个传入请求，以便访问请求体内容、头部信息、cookies 等。

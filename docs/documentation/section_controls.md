@@ -244,6 +244,14 @@ ui.run()
 | clearable  | 是否显示清除选择的按钮 |
 | validation | 验证规则字典或返回错误信息的可调用对象 (默认值: `None`表示不验证) |
 
+```python:line-numbers
+from nicegui import ui
+
+ui.input_chips('My favorite chips', value=['Pringles', 'Doritos', "Lay's"])
+
+ui.run()
+```
+
 ## 复选框 Checkbox
 
 基于 Quasar 的 [QCheckBox](https://quasar.dev/vue-components/checkbox) 组件。
