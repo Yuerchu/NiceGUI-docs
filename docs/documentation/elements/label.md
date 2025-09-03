@@ -41,6 +41,8 @@ ui.run()
 
 - **classes**: `Classes[Self]`
     - 元素的 Classes 。
+- **client**: `Client`
+    - The client this element belongs to.
 - **html_id**: `str` <Badge type="tip" text="^2.16.0" />
     - 在 HTML DOM 中的元素 ID。
 - **is_deleted**: `bool`

@@ -136,7 +136,7 @@ export default defineConfig({
     // 页脚
     footer: {
       copyright: `Copyright © 2018-${new Date().getFullYear()} <a href="https://www.yxqi.cn">于小丘Yuerchu</a> and <a href="https://www.zauberzeug.com/">Zauberzeug</a>。`,
-      message: '别问为什么 yxqi.cn 被跳转到这来了，没钱买独服跑 Wordpress 了',
+      message: 'All Right Reserved.',
     },
 
     // 编辑链接
