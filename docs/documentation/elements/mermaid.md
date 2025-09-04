@@ -28,3 +28,36 @@ graph LR;
 
 ui.run()
 ```
+
+### 处理点击事件
+
+您可以通过向节点添加 `click` 指令并发出自定义事件来注册点击事件。请确保在 `config` 参数中将 `securityLevel` 设置为 `loose` 以允许执行 JavaScript。
+
+```python:line-numbers
+from nicegui import ui
+
+ui.mermaid('''
+graph LR;
+    A((点我!));
+    click A call emitEvent("mermaid_click", "你点了我!")
+''', config={'securityLevel': 'loose'})
+ui.on('mermaid_click', lambda e: ui.notify(e.args))
+
+ui.run()
+```
+
+### 处理错误
+
+您可以通过监听 `error` 事件来处理错误。事件的参数包含 `hash`、`message`、`str` 属性以及一个带有附加信息的 `error` 对象。
+
+```python:line-numbers
+from nicegui import ui
+
+ui.mermaid('''
+graph LR;
+    A --> B;
+    A -> C;
+''').on('error', lambda e: print(e.args['message']))
+
+ui.run()
+```

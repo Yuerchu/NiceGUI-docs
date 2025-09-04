@@ -67,6 +67,38 @@ export default defineConfig({
               {
                 text: '文本 Label',
                 link: '/documentation/elements/label',
+              },
+              {
+                text: '超链接 Link',
+                link: '/documentation/elements/link',
+              },
+              {
+                text: '聊天消息 Chat Message',
+                link: '/documentation/elements/chat_message',
+              },
+              {
+                text: '通用元素 Generic Element',
+                link: '/documentation/elements/element',
+              },
+              {
+                text: 'Markdown',
+                link: '/documentation/elements/markdown',
+              },
+              {
+                text: 'reSTructured 文本',
+                link: '/documentation/elements/restructured_text',
+              },
+              {
+                text: '美人鱼图 Mermaid',
+                link: '/documentation/elements/mermaid',
+              },
+              {
+                text: 'HTML',
+                link: '/documentation/elements/html',
+              },
+              {
+                text: '其他 HTML 元素',
+                link: '/documentation/section_text_elements.html#other_html_elements',
               }
             ]
           },
