@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@mdi/font": "^7.4.47",
     "medium-zoom": "^1.1.0",
     "vitepress": "^1.6.3"
   },
@@ -10,6 +11,6 @@
   },
   "dependencies": {
     "@fontsource/maple-mono": "^5.2.5",
-    "@theojs/lumen": "^6.3.1"
+    "vuetify": "^3.9.7"
   }
 }

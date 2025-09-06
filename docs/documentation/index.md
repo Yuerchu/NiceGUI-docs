@@ -6,11 +6,19 @@ next:
 
 # NiceGUI 文档
 
-::: tip 赞助我们
-- 如果你喜欢 NiceGUI ，欢迎前往并成为 **[赞助者](https://github.com/sponsors/zauberzeug)** 或者 **贡献者**
-- 如果你喜欢 NiceGUI 中文网，你也可以通过 [爱发电](https://afdian.com/a/yuerchu) 来维持本站的无偿运营
+::: warning ⚠️ 重要提示
+目前文档还尚未完成，部分内容可能还没来得及添加或者已被 NiceGUI 官方更改/废弃，请以 NiceGUI 官方为准
 
-也欢迎你加入译者的QQ交流群 `云星启智网络交流群` 和我们一起聊天吹水~~玩抽象~~：[140438837](https://qm.qq.com/cgi-bin/qm/qr?k=UoeELbwfZ79HzmtKKLBa1dPgWXXRZcBP&jump_from=webapi&authKey=sejwNIgWE2Lybw42epVTkvQle+nWLXMxxx1KiV8FhwL9FNbdeNPzpkBrkwsHSQy2)
+更新日期请前往页面底部查看
+
+我们正在引入一些新的东西，诸如Vuetify，以方便在本站模拟英文官方网站的演示功能。这可能导致布局出现严重的问题，敬请谅解。
+:::
+
+::: tip 赞助我们
+- 如果你喜欢 NiceGUI ，欢迎前往 **[赞助者](https://github.com/sponsors/zauberzeug)** 页面捐赠 NiceGUI ，或者提交议题/拉取请求来成为 **贡献者**
+- 如果你喜欢 NiceGUI 中文网，你也可以通过 [爱发电](https://afdian.com/a/yuerchu) 来维持本站的无偿运营，或者前往 [NiceGUI 中文网 - Github 仓库](https://github.com/Yuerchu/NiceGUI-docs) 来提交/改进翻译。
+
+[AD] 欢迎你加入译者的QQ交流群 `云星启智网络交流群` 和我们一起聊天吹水~~玩抽象~~：[140438837](https://qm.qq.com/cgi-bin/qm/qr?k=UoeELbwfZ79HzmtKKLBa1dPgWXXRZcBP&jump_from=webapi&authKey=sejwNIgWE2Lybw42epVTkvQle+nWLXMxxx1KiV8FhwL9FNbdeNPzpkBrkwsHSQy2)
 :::
 
 [[toc]]

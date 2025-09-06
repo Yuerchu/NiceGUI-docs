@@ -167,8 +167,8 @@ export default defineConfig({
 
     // 页脚
     footer: {
-      copyright: `Copyright © 2018-${new Date().getFullYear()} <a href="https://www.yxqi.cn">于小丘Yuerchu</a> and <a href="https://www.zauberzeug.com/">Zauberzeug</a>。`,
-      message: 'All Right Reserved.',
+      copyright: `Copyright © 2018-${new Date().getFullYear()} <a href="https://www.yxqi.cn">于小丘Yuerchu</a> and <a href="https://www.zauberzeug.com/">Zauberzeug</a>. All Right Reserved.`,
+      message: '更新日期: 2025 年 9 月 6 日', // 每次提交都记得在这里改一下时间和日期
     },
 
     // 编辑链接

@@ -21,3 +21,21 @@ with ui.dropdown_button('打开我!', auto_close=True):
 
 ui.run()
 ```
+
+### 下拉按钮内的自定义元素
+
+您可以在下拉按钮中放置任何元素。下面是一个包含几个开关的示例。
+
+```python:line-numbers
+from nicegui import ui
+
+with ui.dropdown_button('设置', icon='settings', split=True):
+    with ui.row().classes('p-4 items-center'):
+        ui.icon('volume_up', size='sm')
+        ui.switch().props('color=negative')
+        ui.separator().props('vertical')
+        ui.icon('mic', size='sm')
+        ui.switch().props('color=negative')
+
+ui.run()
+```
