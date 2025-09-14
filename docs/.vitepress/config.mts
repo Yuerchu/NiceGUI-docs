@@ -105,7 +105,112 @@ export default defineConfig({
           {
             text: '控制元素',
             link: '/documentation/section_controls',
-            items: []
+            items: [
+              {
+                text: '按钮 Button',
+                link: '/documentation/elements/button',
+              },
+              {
+                text: '按钮组 Button Group',
+                link: '/documentation/elements/button_group',
+              },
+              {
+                text: '下拉按钮 Dropdown Button',
+                link: '/documentation/elements/button_dropdown',
+              },
+              {
+                text: '浮动按钮 FAB',
+                link: '/documentation/elements/fab',
+              },
+              {
+                text: '标签 Badge',
+                link: '/documentation/elements/badge',
+              },
+              {
+                text: '小标签 Chip',
+                link: '/documentation/elements/chip',
+              },
+              {
+                text: '切换器 Toggle',
+                link: '/documentation/elements/toggle',
+              },
+              {
+                text: '单项选择器 Radio Selection',
+                link: '/documentation/elements/radio',
+              },
+              {
+                text: '下拉选择器 Dropdown Selection',
+                link: '/documentation/elements/select',
+              },
+              {
+                text: '芯片输入器 Input Chips',
+                link: '/documentation/elements/input_chips',
+              },
+              {
+                text: '复选框 Checkbox',
+                link: '/documentation/elements/checkbox',
+              },
+              {
+                text: '开关 Switch',
+                link: '/documentation/elements/switch',
+              },
+              {
+                text: '滑块 Slider',
+                link: '/documentation/elements/slider',
+              },
+              {
+                text: '范围选择器 Range',
+                link: '/documentation/elements/range',
+              },
+              {
+                text: '评分 Rating',
+                link: '/documentation/elements/rating',
+              },
+              {
+                text: '虚拟摇杆 Joystick',
+                link: '/documentation/elements/joystick',
+              },
+              {
+                text: '文本输入框 Text Input',
+                link: '/documentation/elements/input',
+              },
+              {
+                text: '多行文本输入框 Textarea',
+                link: '/documentation/elements/textarea',
+              },
+              {
+                text: '代码编辑器 CodeMirror',
+                link: '/documentation/elements/codemirror',
+              },
+              {
+                text: '数字输入器 Number Input',
+                link: '/documentation/elements/number',
+              },
+              {
+                text: '旋钮 Knob',
+                link: '/documentation/elements/knob',
+              },
+              {
+                text: '颜色输入器 Color Input',
+                link: '/documentation/elements/color_input',
+              },
+              {
+                text: '颜色选择器 Color Picker',
+                link: '/documentation/section_controls#颜色选择器-color-picker',
+              },
+              {
+                text: '日期选择器 Date Input',
+                link: '/documentation/section_controls#日期选择器-date-input',
+              },
+              {
+                text: '时间选择器 Time Input',
+                link: '/documentation/section_controls#时间选择器-time-input',
+              },
+              {
+                text: '文件上传器 File Upload',
+                link: '/documentation/section_controls#文件上传-file-upload',
+              },
+            ]
           },
           {
             text: '视听元素',
@@ -168,7 +273,7 @@ export default defineConfig({
     // 页脚
     footer: {
       copyright: `Copyright © 2018-${new Date().getFullYear()} <a href="https://www.yxqi.cn">于小丘Yuerchu</a> and <a href="https://www.zauberzeug.com/">Zauberzeug</a>. All Right Reserved.`,
-      message: '更新日期: 2025 年 9 月 6 日', // 每次提交都记得在这里改一下时间和日期
+      message: '更新日期: 2025 年 9 月 14 日', // 每次提交都记得在这里改一下时间和日期
     },
 
     // 编辑链接

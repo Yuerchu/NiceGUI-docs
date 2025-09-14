@@ -3,6 +3,9 @@
 layout: home
 
 hero:
+  Notice:
+      title: 'NiceGUI 3.0 即将发布'
+      link: 'https://www.reddit.com/r/nicegui/comments/1n970xn/nicegui_30_release_candidate_1_with_script_mode/'
   name: "NiceGUI"
   text: 高性能
   textsuffix: "的 Python WebUI 框架"

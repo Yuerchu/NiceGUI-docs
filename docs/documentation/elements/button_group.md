@@ -17,14 +17,6 @@ with ui.button_group():
 ui.run()
 ```
 
-<v-btn-group
-    divided
->
-    <v-btn>一</v-btn>
-    <v-btn>二</v-btn>
-    <v-btn>三</v-btn>
-</v-btn-group>
-
 ### 带下拉按钮的按钮组
 
 您也可以在按钮组中添加一个下拉按钮。

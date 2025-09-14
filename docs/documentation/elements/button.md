@@ -24,10 +24,6 @@ ui.button('点我', on_click=lambda: ui.notify('您点了我'))
 ui.run()
 ```
 
-<v-btn @click="ClickMe = true">
-  点我
-</v-btn>
-
 ### 图标
 
 您也可以给按钮添加一个图标。
@@ -45,13 +41,6 @@ with ui.row():
 
 ui.run()
 ```
-
-<v-row>
-    <v-btn class="mr-2" prepend-icon="mdi-history">
-    demo
-    </v-btn>
-    <v-btn class="ml-2" prepend-icon="mdi-thumb-up"></v-btn>
-</v-row>
 
 ### 等待按钮点击
 

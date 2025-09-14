@@ -1,22 +1,42 @@
+// .vitepress/theme/index.ts
 import DefaultTheme from 'vitepress/theme'
+import { Underline, BoxCube, Card, Links, Pill } from '@theojs/lumen'
+import '@theojs/lumen/style'
 import "@fontsource/maple-mono";
-import 'vuetify/styles'
 import './style/custom.css'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
-import { createVuetify } from 'vuetify'
-import '@mdi/font/css/materialdesignicons.css'
+import { h } from 'vue'
+import { Notice } from '@theojs/lumen'
 
-const vuetify = createVuetify({ 
-  components, directives,
-  icons: {
-    defaultSet: 'mdi',
-  },
-})
+import mediumZoom from 'medium-zoom';
+import { onMounted, watch, nextTick } from 'vue';
+import { useRoute } from 'vitepress';
 
 export default {
-  ...DefaultTheme,
-  enhanceApp({ app }) {
-    app.use(vuetify)
-  },
+    extends: DefaultTheme, 
+    enhanceApp: ({ app }) => {
+      app.component('Home', Underline)
+      app.component('Pill', Pill) 
+      app.component('Links', Links) 
+      app.component('Card', Card) 
+      app.component('BoxCube', BoxCube)
+    },
+    setup() {
+      const route = useRoute();
+      const initZoom = () => {
+        // mediumZoom('[data-zoomable]', { background: 'var(--vp-c-bg)' }); // 默认
+        mediumZoom(".main img", { background: "var(--vp-c-bg)" }); // 不显式添加{data-zoomable}的情况下为所有图像启用此功能
+      };
+      onMounted(() => {
+        initZoom(); 
+      }); 
+      watch(  
+        () => route.path,
+        () => nextTick(() => initZoom())
+      );
+    },
+    Layout() {
+      return h(DefaultTheme.Layout, null, {
+        'home-hero-info-before': () => h(Notice)
+      }) 
+    },
 }

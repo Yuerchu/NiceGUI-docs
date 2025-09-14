@@ -2,7 +2,7 @@
 
 ## 按钮 `Button`
 
-<!--@include: ./elements/button.md{3,29}-->
+<!--@include: ./elements/button.md{3,26}-->
 
 [查看更多...](./elements/button)
 
