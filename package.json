@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@fontsource/maple-mono": "^5.2.5",
+    "@theojs/lumen": "^6.4.4",
+    "global": "^4.4.0",
     "vuetify": "^3.9.7"
   }
 }
