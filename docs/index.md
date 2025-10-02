@@ -5,7 +5,7 @@ layout: home
 hero:
   Notice:
       title: 'NiceGUI 3.0 即将发布'
-      link: 'https://www.reddit.com/r/nicegui/comments/1n970xn/nicegui_30_release_candidate_1_with_script_mode/'
+      link: '/version/v3'
   name: "NiceGUI"
   text: 高性能
   textsuffix: "的 Python WebUI 框架"
@@ -21,6 +21,7 @@ hero:
       text: 官方网站↗
       link: https://nicegui.io
 
+# 下面这个Features有个bug，只有在被window.href过来才能显示details，后面抽空修一修
 features:
   - icon: 🎯
     title: 交互
@@ -43,7 +44,16 @@ features:
 
 ---
 <home />
-<h2>通过按钮、对话框、3D场景及可视化图表等丰富组件 —— 实现与Python代码的实时双向交互操作。</h2>
+
+---
+
+# 首页
+
+NiceGUI 是一个基于 Python + FastAPI 的高性能 WebUI 框架。 您可以创建按钮，对话框，富文本，3D 图形，图表以及其他形形色色的组件。
+
+它易于创建一些小型网站，仪表盘，机器人项目，智能家居，以及我们想不到的事情。
+
+## 通过按钮、对话框、3D场景及可视化图表等丰富组件 —— 实现与Python代码的实时双向交互操作。
 
 NiceGUI 为您封装底层 Web 开发细节，助您专注核心业务逻辑的 Python 实现，完美适配：
 

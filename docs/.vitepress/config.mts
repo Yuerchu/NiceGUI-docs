@@ -43,7 +43,7 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: 'NiceGUI 文档', link: '/documentation' },
-      { text: 'NiceGUI 教程(独家)', link: '/tutorial' },
+      { text: 'NiceGUI Wiki', link: '/wiki' },
       { text: '官方网站(English)', link: 'https://nicegui.io/' },
       { text: '中文文档 GitHub', link: 'https://github.com/Yuerchu/NiceGUI-docs'}
     ],
@@ -273,7 +273,7 @@ export default defineConfig({
     // 页脚
     footer: {
       copyright: `Copyright © 2018-${new Date().getFullYear()} <a href="https://www.yxqi.cn">于小丘Yuerchu</a> and <a href="https://www.zauberzeug.com/">Zauberzeug</a>. All Right Reserved.`,
-      message: '更新日期: 2025 年 9 月 14 日', // 每次提交都记得在这里改一下时间和日期
+      message: '更新日期: 2025 年 10 月 2 日', // 每次提交都记得在这里改一下时间和日期
     },
 
     // 编辑链接
