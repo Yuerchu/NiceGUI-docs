@@ -1,3 +1,13 @@
+---
+title: 快速开始
+prev:
+  text: 'NiceGUI 文档'
+  link: '/documentation'
+next:
+  text: '文本元素'
+  link: '/documentation/section_text_elements'
+---
+
 # 快速开始
 
 ## 最简单的方式

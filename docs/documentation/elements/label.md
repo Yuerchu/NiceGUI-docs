@@ -12,8 +12,6 @@ from nicegui import ui
 ui.label('你好世界')
 ```
 
-你好世界
-
 ## 根据内容改变外观
 
 你可以重写 `_handle_text_change` 方法，根据标签内容更新其其他属性。

@@ -4,12 +4,11 @@ layout: home
 
 hero:
   Notice:
-      title: 'NiceGUI 3.0 即将发布'
+      title: 'NiceGUI 3.0 已正式发布'
       link: '/version/v3'
   name: "NiceGUI"
-  text: 高性能
-  textsuffix: "的 Python WebUI 框架"
-  tagline: 让任意浏览器即刻成为您Python代码的前端交互界面。
+  text: 高性能 Python WebUI 框架
+  tagline: 让任意浏览器即刻成为您 Python 代码的前端交互界面。
   image:
     src: /static/favicon/android-chrome-384x384.png
     alt: NiceGUI
@@ -18,7 +17,7 @@ hero:
       text: 阅读文档
       link: /documentation
     - theme: alt
-      text: 官方网站↗
+      text: 官方网站 ↗
       link: https://nicegui.io
 
 # 下面这个Features有个bug，只有在被window.href过来才能显示details，后面抽空修一修
@@ -40,7 +39,7 @@ features:
     details: <ul><li><a href="">-> 通过路由实现多页面</a></li><li>-> 当代码被修改时自动重载</a></li><li><a href="">-> 多种用户存储方式</a></li><li><a href="/documentation/section_testing">-> 得心应手的测试框架</a></li></ul>
   - icon: 🛠️
     title: 技术栈
-    details: <ul><li><a href="https://cn.vuejs.org">-> 通过 Vue 与 Python 绑定</a></li><li><a href="https://quasar.nodejs.cn/">-> 使用 Quasar 创建动态图形界面</a></li><li><a href="https://fastapi.tiangolo.com/zh">-> 高性能的 FastAPI 服务器</a></li><li>-> Python 3.8+</li></ul>
+    details: <ul><li><a href="https://cn.vuejs.org">-> 通过 Vue 与 Python 绑定</a></li><li><a href="https://quasar.nodejs.cn/">-> 使用 Quasar 创建动态图形界面</a></li><li><a href="https://fastapi.tiangolo.com/zh">-> 高性能的 FastAPI 服务器</a></li><li>-> Python 3.9+ (NiceGUI ≥ 3.0.0) / Python 3.8+ (NiceGUI < 3.0.0)</li></ul>
 
 ---
 <home />

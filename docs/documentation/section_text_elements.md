@@ -1,14 +1,24 @@
+---
+title: 文本元素
+prev:
+  text: '快速开始'
+  link: '/documentation/quick_start'
+next:
+  text: '控制元素'
+  link: '/documentation/section_controls'
+---
+
 # 文本元素
 
 ## 文本 `Label` {#label}
 
-<!--@include: ./elements/label.md{3,15}-->
+<!--@include: ./elements/label.md{3,13}-->
 
 [查看更多...](./elements/label)
 
 ## 超链接 `Link` {#link}
 
-<!--@include: ./elements/link.md{3,21}-->
+<!--@include: ./elements/link.md{3,19}-->
 
 [查看更多...](./elements/link)
 

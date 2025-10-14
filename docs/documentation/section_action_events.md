@@ -1,3 +1,13 @@
+---
+title: 动作与事件
+prev:
+  text: '造型与外观'
+  link: '/documentation/section_styling_appearance'
+next:
+  text: '页面与路由'
+  link: '/documentation/section_pages_routing'
+---
+
 # 动作与事件
 
 ## 定时刷新时钟 {#Timer}
@@ -382,7 +392,7 @@ ui.run(reload=False)
 
 NiceGUI 为应用程序内的数据持久化提供了简洁的机制，内置五种存储类型：
 
-- `app.storage.tab`：存储于服务端内存中，每个独立标签页会话拥有专属字典，可保存任意对象。服务器重启时数据将丢失（直至https://github.com/zauberzeug/nicegui/discussions/2841功能实现）。该存储仅限页面构建函数内使用，需通过 `await client.connected()` 建立连接后访问。
+- `app.storage.tab`：存储于服务端内存中，每个独立标签页会话拥有专属字典，可保存任意对象。服务器重启时数据将丢失（直至 [https://github.com/zauberzeug/nicegui/discussions/2841](https://github.com/zauberzeug/nicegui/discussions/2841) 功能实现。该存储仅限页面构建函数内使用，需通过 `await client.connected()` 建立连接后访问。
 - `app.storage.client`：同样存储于服务端内存，每个客户端连接拥有独立字典，可保存任意对象。页面刷新或跳转时数据将被清除。与可留存数日的标签页存储不同，此存储适合缓存高耗资源对象（如动态更新所需的流媒体或数据库连接），用户离开页面或关闭浏览器时立即释放。该存储仅限页面构建函数内使用。
 - `app.storage.user`：基于服务端存储，通过浏览器会话 cookie 中的唯一标识符关联用户。跨标签页共享，`app.storage.browser['id']` 用于用户识别。需在 `ui.run()` 中配置 storage_secret 参数签署 cookie，仅限页面构建函数内使用。
 - `app.storage.general`：服务端存储的共享字典，所有用户均可访问。

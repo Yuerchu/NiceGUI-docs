@@ -1,3 +1,13 @@
+---
+title: 页面布局
+prev:
+  text: '绑定属性'
+  link: '/documentation/section_binding_properties'
+next:
+  text: '造型与外观'
+  link: '/documentation/section_styling_appearance'
+---
+
 # 页面布局
 
 ## 自动上下文

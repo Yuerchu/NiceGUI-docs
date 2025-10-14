@@ -1,3 +1,13 @@
+---
+title: 视听元素
+prev:
+  text: '控制元素'
+  link: '/documentation/section_controls'
+next:
+  text: '数据元素'
+  link: '/documentation/section_data_elements'
+---
+
 # 视听元素
 
 ## 图片 Image

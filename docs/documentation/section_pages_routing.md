@@ -1,3 +1,13 @@
+---
+title: 页面与路由
+prev:
+  text: '动作与事件'
+  link: '/documentation/section_action_events'
+next:
+  text: '配置与部署'
+  link: '/documentation/section_configuration_deployment'
+---
+
 # 页面与路由
 
 ## 页面 Page

@@ -15,8 +15,6 @@ ui.markdown('这是一段 **Markdown**.')
 ui.run()
 ```
 
-这是一段 **Markdown**.
-
 ### 带缩进的Markdown
 
 每行开头的常见缩进会自动去除。因此，你可以对 Markdown 元素进行缩进，它们仍能正确渲染。

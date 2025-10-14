@@ -1,3 +1,13 @@
+---
+title: 控制元素
+prev:
+  text: '文本元素'
+  link: '/documentation/section_text_elements'
+next:
+  text: '视听元素'
+  link: '/documentation/section_audiovisual_elements'
+---
+
 # 控制元素
 
 ## 按钮 `Button`

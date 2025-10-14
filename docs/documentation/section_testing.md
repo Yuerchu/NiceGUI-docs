@@ -1,3 +1,11 @@
+---
+title: 测试
+prev:
+  text: '配置与部署'
+  link: '/documentation/section_configuration_deployment'
+next: false
+---
+
 # 测试
 
 ## 项目结构

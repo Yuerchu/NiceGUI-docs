@@ -1,26 +1,18 @@
 // .vitepress/theme/index.ts
-import DefaultTheme from 'vitepress/theme'
-import { Underline, BoxCube, Card, Links, Pill } from '@theojs/lumen'
-import '@theojs/lumen/style'
 import "@fontsource/maple-mono";
 import './style/custom.css'
-import { h } from 'vue'
-import { Notice } from '@theojs/lumen'
+
+import Teek, { teekConfigContext } from "vitepress-theme-teek";
+import "vitepress-theme-teek/index.css";
 
 import mediumZoom from 'medium-zoom';
-import { onMounted, watch, nextTick } from 'vue';
+import { onMounted, watch, nextTick, provide } from 'vue';
 import { useRoute } from 'vitepress';
 
 export default {
-    extends: DefaultTheme, 
-    enhanceApp: ({ app }) => {
-      app.component('Home', Underline)
-      app.component('Pill', Pill) 
-      app.component('Links', Links) 
-      app.component('Card', Card) 
-      app.component('BoxCube', BoxCube)
-    },
+    extends: Teek, 
     setup() {
+      provide(teekConfigContext, {});
       const route = useRoute();
       const initZoom = () => {
         // mediumZoom('[data-zoomable]', { background: 'var(--vp-c-bg)' }); // 默认
@@ -33,10 +25,5 @@ export default {
         () => route.path,
         () => nextTick(() => initZoom())
       );
-    },
-    Layout() {
-      return h(DefaultTheme.Layout, null, {
-        'home-hero-info-before': () => h(Notice)
-      }) 
     },
 }

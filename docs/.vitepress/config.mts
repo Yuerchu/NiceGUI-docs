@@ -1,10 +1,35 @@
 import { defineConfig } from 'vitepress'
+import { createRewrites, defineTeekConfig } from "vitepress-theme-teek/config";
+
+// Teek 主题配置
+const teekConfig = defineTeekConfig({
+  teekHome: false,
+  windowTransition: true,
+  author: {
+    name: "Yuerchu",
+    link: "https://github.com/Yuerchu"
+  },
+  footerInfo: {
+    copyright: {
+      show: true,
+      createYear: 2018,
+      suffix: "于小丘 Yuerchu"
+    }
+  },
+  vitePlugins: {
+    sidebar: false,
+  },
+});
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  extends: teekConfig,
   lang: 'zh-CN',
   title: "NiceGUI 中文网",
   description: "一个非官方的 NiceGUI 中文文档站",
+  sitemap: {
+    hostname: 'https://nicegui.cn',
+  },
   head: [
     [
       'link', { rel: 'icon', href: '/static/favicon/favicon.ico' } // 站点图标
@@ -272,8 +297,7 @@ export default defineConfig({
 
     // 页脚
     footer: {
-      copyright: `Copyright © 2018-${new Date().getFullYear()} <a href="https://www.yxqi.cn">于小丘Yuerchu</a> and <a href="https://www.zauberzeug.com/">Zauberzeug</a>. All Right Reserved.`,
-      message: '更新日期: 2025 年 10 月 2 日', // 每次提交都记得在这里改一下时间和日期
+      message: '更新日期: 2025 年 10 月 15 日', // 每次提交都记得在这里改一下时间和日期
     },
 
     // 编辑链接
@@ -320,6 +344,8 @@ export default defineConfig({
 
   },
   
+  rewrites: createRewrites(),
+
   ignoreDeadLinks: [
     '/documentation/elements'
   ]

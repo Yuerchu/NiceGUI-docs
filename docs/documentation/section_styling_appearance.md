@@ -1,3 +1,13 @@
+---
+title: 造型与外观
+prev:
+  text: '页面布局'
+  link: '/documentation/section_page_layout'
+next:
+  text: '动作与事件'
+  link: '/documentation/section_action_events'
+---
+
 # 造型与外观
 
 ## 样式设计 Styling

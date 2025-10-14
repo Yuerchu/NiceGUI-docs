@@ -1,3 +1,13 @@
+---
+title: 配置与部署
+prev:
+  text: '页面与路由'
+  link: '/documentation/section_pages_routing'
+next:
+  text: '测试'
+  link: '/documentation/section_testing'
+---
+
 # 配置与部署
 
 ## URLs

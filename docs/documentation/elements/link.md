@@ -18,8 +18,6 @@ ui.link('Github 上的 NiceGUI', 'https://github.com/zauberzeug/nicegui')
 ui.run()
 ```
 
-<a href="https://github.com/zauberzeug/nicegui">Github 上的 NiceGUI</a>
-
 ## 跳转到其他元素
 
 需要让其他元素呈现在屏幕上，你可以使用 `ui.link_target('target_name')` 来放置锚点或者直接跳转到元素。

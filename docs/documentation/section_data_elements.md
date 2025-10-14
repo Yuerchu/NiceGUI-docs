@@ -1,3 +1,14 @@
+---
+title: 数据元素
+prev:
+  text: '视听元素'
+  link: '/documentation/section_audiovisual_elements'
+next:
+  text: '绑定属性'
+  link: '/documentation/section_binding_properties'
+---
+
+
 # 数据元素
 
 ## 表格 Table
