@@ -129,7 +129,7 @@ with ui.list().props('dense separator'):
 ui.run()
 ```
 
-# 滑块项目 Slide Item <Badge type="tip" text="^2.12.0" />
+## 滑块项目 Slide Item <Badge type="tip" text="^2.12.0" />
 
 此元素基于 Quasar 的 [QSlideItem](https://quasar.dev/vue-components/slide-item/) 组件。
 
