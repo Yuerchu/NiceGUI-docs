@@ -18,3 +18,23 @@ radio2 = ui.radio({1: 'A', 2: 'B', 3: 'C'}).props('inline').bind_value(radio1, '
 
 ui.run()
 ```
+
+## 注入任意内容
+
+借助 [`ui.teleport` 元素](teleport)，您可以为单选按钮选项使用任意内容。
+
+```python:line-numbers
+from nicegui import ui
+
+options = ['star', 'good', 'love']
+radio = ui.radio({x: '' for x in options}, value='star').props('inline')
+with ui.teleport(f'#{radio.html_id} > div:nth-child(1) .q-radio__label'):
+    ui.icon('star', size='md')
+with ui.teleport(f'#{radio.html_id} > div:nth-child(2) .q-radio__label'):
+    ui.icon('thumb_up', size='md')
+with ui.teleport(f'#{radio.html_id} > div:nth-child(3) .q-radio__label'):
+    ui.icon('favorite', size='md')
+ui.label().bind_text_from(radio, 'value')
+
+ui.run()
+```

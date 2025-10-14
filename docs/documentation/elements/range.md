@@ -19,3 +19,38 @@ ui.label().bind_text_from(min_max_range, 'value',
 
 ui.run()
 ```
+
+## 自定义标签
+
+您可以通过单独设置或整体设置来自定义范围及其标签的颜色。
+
+```python:line-numbers
+from nicegui import ui
+
+ui.label('为整个范围着色')
+ui.range(min=0, max=100, value={'min': 20, 'max': 80}) \
+    .props('label snap color="secondary"')
+
+ui.label('自定义标签颜色')
+ui.range(min=0, max=100, value={'min': 40, 'max': 80}) \
+    .props('label-always snap label-color="secondary" right-label-text-color="black"')
+
+ui.run()
+```
+
+## 改变范围限制
+
+此演示展示了如何通过点击按钮来改变限制值。
+
+```python:line-numbers
+from nicegui import ui
+
+def increase_limits():
+    r.min -= 10
+    r.max += 10
+
+ui.button('增加限制', on_click=increase_limits)
+r = ui.range(min=0, max=100, value={'min': 30, 'max': 70}).props('label-always')
+
+ui.run()
+```

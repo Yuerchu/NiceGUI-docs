@@ -3,7 +3,10 @@
     "allow": [
       "WebFetch(domain:nicegui.io)",
       "Bash(for:*)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(wc:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:github.com)"
     ],
     "deny": [],
     "ask": []

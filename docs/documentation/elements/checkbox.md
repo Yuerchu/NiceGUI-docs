@@ -11,8 +11,25 @@
 ```python:line-numbers
 from nicegui import ui
 
-checkbox = ui.checkbox('check me')
-ui.label('Check!').bind_visibility_from(checkbox, 'value')
+checkbox = ui.checkbox('勾选我')
+ui.label('已勾选！').bind_visibility_from(checkbox, 'value')
+
+ui.run()
+```
+
+## 处理用户交互
+
+通过参数传递的 `on_change` 函数会在复选框被点击*以及*通过 `set_value` 调用更改值时被调用。要仅在用户与复选框交互时执行函数，您可以使用通用的 `on` 方法。
+
+```python:line-numbers
+from nicegui import ui
+
+with ui.row():
+    c1 = ui.checkbox(on_change=lambda e: ui.notify(str(e.value)))
+    ui.button('设置值', on_click=lambda: c1.set_value(not c1.value))
+with ui.row():
+    c2 = ui.checkbox().on('click', lambda e: ui.notify(str(e.sender.value)))
+    ui.button('设置值', on_click=lambda: c2.set_value(not c2.value))
 
 ui.run()
 ```

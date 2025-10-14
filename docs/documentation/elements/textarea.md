@@ -21,3 +21,16 @@ result = ui.label()
 
 ui.run()
 ```
+
+## 可清除
+
+来自 [Quasar](https://quasar.dev/) 的 `clearable` 属性会在文本域中添加一个用于清除文本的按钮。
+
+```python:line-numbers
+from nicegui import ui
+
+i = ui.textarea(value='一些文本').props('clearable')
+ui.label().bind_text_from(i, 'value')
+
+ui.run()
+```

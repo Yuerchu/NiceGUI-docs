@@ -31,3 +31,56 @@ select2 = ui.select({1: 'One', 2: 'Two', 3: 'Three'}).bind_value(select1, 'value
 
 ui.run()
 ```
+
+## 输入搜索
+
+您可以激活 `with_input` 来获得一个带自动完成的文本输入框。选项会在您输入时被过滤。
+
+```python:line-numbers
+from nicegui import ui
+
+continents = [
+    '亚洲',
+    '非洲',
+    '南极洲',
+    '欧洲',
+    '大洋洲',
+    '北美洲',
+    '南美洲',
+]
+ui.select(options=continents, with_input=True,
+          on_change=lambda e: ui.notify(e.value)).classes('w-40')
+
+ui.run()
+```
+
+## 多选
+
+您可以激活 `multiple` 以允许选择多个项目。
+
+```python:line-numbers
+from nicegui import ui
+
+names = ['Alice', 'Bob', 'Carol']
+ui.select(names, multiple=True, value=names[:2], label='逗号分隔') \
+    .classes('w-64')
+ui.select(names, multiple=True, value=names[:2], label='使用标签') \
+    .classes('w-64').props('use-chips')
+
+ui.run()
+```
+
+## 更新选项
+
+可以通过 `options` 属性更改选项。但随后您还需要调用 `update()` 以使更改生效。`set_options` 是一个快捷方法，它同时执行这两个操作，对于 lambda 表达式非常有用。
+
+```python:line-numbers
+from nicegui import ui
+
+select = ui.select([1, 2, 3], value=1)
+with ui.row():
+    ui.button('4, 5, 6', on_click=lambda: select.set_options([4, 5, 6], value=4))
+    ui.button('1, 2, 3', on_click=lambda: select.set_options([1, 2, 3], value=1))
+
+ui.run()
+```

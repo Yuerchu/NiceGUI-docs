@@ -28,3 +28,29 @@ result = ui.label()
 
 ui.run()
 ```
+
+## 可清除
+
+来自 [Quasar](https://quasar.dev/) 的 `clearable` 属性会在输入框中添加一个用于清除文本的按钮。
+
+```python:line-numbers
+from nicegui import ui
+
+i = ui.number(value=42).props('clearable')
+ui.label().bind_text_from(i, 'value')
+
+ui.run()
+```
+
+## 小数位数
+
+您可以使用 `precision` 参数指定小数位数。负值表示小数点前的位数。舍入发生在输入失去焦点时、当净化参数（如 min、max 或 precision）更改时，或手动调用 `sanitize()` 时。
+
+```python:line-numbers
+from nicegui import ui
+
+n = ui.number(value=3.14159265359, precision=5)
+n.sanitize()
+
+ui.run()
+```
