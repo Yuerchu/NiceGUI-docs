@@ -221,19 +221,19 @@ export default defineConfig({
               },
               {
                 text: '颜色选择器 Color Picker',
-                link: '/documentation/section_controls#颜色选择器-color-picker',
+                link: '/documentation/elements/color_picker',
               },
               {
                 text: '日期选择器 Date Input',
-                link: '/documentation/section_controls#日期选择器-date-input',
+                link: '/documentation/elements/date',
               },
               {
                 text: '时间选择器 Time Input',
-                link: '/documentation/section_controls#时间选择器-time-input',
+                link: '/documentation/elements/time',
               },
               {
                 text: '文件上传器 File Upload',
-                link: '/documentation/section_controls#文件上传-file-upload',
+                link: '/documentation/elements/upload',
               },
             ]
           },

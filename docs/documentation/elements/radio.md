@@ -21,7 +21,7 @@ ui.run()
 
 ## 注入任意内容
 
-借助 [`ui.teleport` 元素](teleport)，您可以为单选按钮选项使用任意内容。
+借助 [`ui.teleport` 元素](#)，您可以为单选按钮选项使用任意内容。
 
 ```python:line-numbers
 from nicegui import ui
