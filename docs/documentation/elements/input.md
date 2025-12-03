@@ -92,3 +92,24 @@ ui.input('姓名', validation={'太短了': lambda value: len(value) >= 5})
 
 ui.run()
 ```
+
+## 前缀与后缀
+
+您可以为 NiceGUI 的输入框添加一些前后缀。具体可参考 [前缀与后缀 - Quasar](https://quasar.dev/vue-components/input#prefix-and-suffix)
+
+- **前缀**: 使用 `prefix`
+- **后缀**: 使用 `suffix`
+
+比如您有一个网站，需要用户填写邮箱，但限定了只能用 QQ 邮箱。那么此时您可以使用 `.props('suffix="@qq.com"')` 即可。
+
+```python:line-numbers
+from nicegui import ui
+
+async def get_email():
+    # 在这里需要把这个验证补回来
+    return email.value + "@qq.com"
+
+email = ui.input('QQ邮箱').props('suffix="@qq.com"')
+
+ui.run()
+```
