@@ -1,7 +1,7 @@
 # NiceGUI Wiki
 
 这里是我们的额外内容托管区，社区成员可以轻松编辑。
-查看[常见问题解答](wiki/FAQs)以及我们官方文档中的数百个实时示例，网址为 https://nicegui.io。
+查看[常见问题解答](/wiki/FAQs)以及我们官方文档中的数百个实时示例，网址为 https://nicegui.io。
 
 ## 社区项目
 
