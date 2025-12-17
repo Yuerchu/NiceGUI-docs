@@ -1,10 +1,10 @@
-# NiceGUI 常见问题解答
+# FAQs
 
 ## 社区
 
 ### 我在哪里可以获取帮助？
 
-请查看此常见问题解答，在以下渠道寻求帮助：
+您可以查看此常见问题解答，也可以在以下渠道寻求帮助：
 
 - [GitHub 讨论](https://github.com/zauberzeug/nicegui/discussions)
 - [Reddit](https://www.reddit.com/r/nicegui/)
@@ -56,11 +56,15 @@ CPU 密集型任务需要在另一个进程中运行，这可以通过 NiceGUI �
 - [进度](https://github.com/zauberzeug/nicegui/blob/main/examples/progress/main.py)
 - [脚本执行器](https://github.com/zauberzeug/nicegui/blob/main/examples/script_executor/main.py)
 
-**重要提示：** `run.cpu_bound` 任务不应访问类属性。正如在 [讨论 #2221](https://github.com/zauberzeug/nicegui/discussions/2221#discussioncomment-7920864) 中所解释的那样，`run.cpu_bound` 需要在单独的进程中执行函数。为此，它需要将传递的函数的整个状态传输到该进程（这是通过 pickle 完成的）。
+::: warning 重要提示
+`run.cpu_bound` 任务不应访问类属性。正如在 [讨论 #2221](https://github.com/zauberzeug/nicegui/discussions/2221#discussioncomment-7920864) 中所解释的那样，`run.cpu_bound` 需要在单独的进程中执行函数。为此，它需要将传递的函数的整个状态传输到该进程（这是通过 pickle 完成的）。
 
 建议创建静态方法（或自由函数），这些方法将所有数据作为简单参数获取（例如，不包含类/用户界面逻辑），并返回结果（而不是将其写入类属性或全局变量）。
+:::
 
-**关于页面装饰器：** 如果使用 `@ui.page` 装饰的页面构建器未被标记为 `async`，FastAPI 将会在一个后台线程中运行它（详情请见：https://fastapi.tiangolo.com/async/#path-operation-functions）。这意味着您可以非常放心地在这些函数中使用 IO 阻塞代码，例如文件读取、数据库访问或请求，而不会暂停主线程。只需注意，后续将其重构为异步的页面构建器将会破坏您的代码。这就是为什么我们建议尽可能避免依赖这种模式。
+::: info 关于页面装饰器
+如果使用 `@ui.page` 装饰的页面构建器未被标记为 `async`，FastAPI 将会在一个后台线程中运行它（详情请见：https://fastapi.tiangolo.com/async/#path-operation-functions）。这意味着您可以非常放心地在这些函数中使用 IO 阻塞代码，例如文件读取、数据库访问或请求，而不会暂停主线程。只需注意，后续将其重构为异步的页面构建器将会破坏您的代码。这就是为什么我们建议尽可能避免依赖这种模式。
+:::
 
 #### 调试阻塞代码
 
@@ -75,7 +79,9 @@ def startup():
 app.on_startup(startup)
 ```
 
-**警告：** 不要在生产环境中使用此功能，因为它会显著减慢执行速度。
+::: warning 警告
+不要在生产环境中使用此功能，因为它会显著减慢执行速度。
+:::
 
 ### 我可以做些什么来提高性能？
 
@@ -103,7 +109,7 @@ NiceGUI 要求浏览器"粘附"到最初提供内容的服务器实例。这无�
 使用负载均衡器时，您应该注意：
 
 - 不要使用全局状态（因为每个实例都有自己的状态）
-- 只有 `app.storage.browser` 可以正常工作；对于所有其他存储类型，您需要 [激活 Redis 存储](https://nicegui.io/documentation/storage#redis_storage) 或创建自己的数据库
+- **只有 `app.storage.browser` 可以正常工作**；对于所有其他存储类型，您需要 [激活 Redis 存储](https://nicegui.io/documentation/storage#redis_storage) 或创建自己的数据库
 
 请参阅我们的 [Redis 示例](https://nicegui.io/documentation/storage#redis_storage)，了解如何设置带有粘性会话并通过 `app.storage` 同步状态的 Traefik 负载均衡器。
 
@@ -117,7 +123,7 @@ NiceGUI 要求浏览器"粘附"到最初提供内容的服务器实例。这无�
 
 ### 为什么我所有的元素都具有相同的值？
 
-您可能正在经历 Python 的"后期绑定"问题。
+您可能正在经历 Python 的 `后期绑定` 问题。
 
 **问题示例：**
 
@@ -145,7 +151,7 @@ for i in [1, 2, 3]:
 ui.run(reload=False)
 ```
 
-当然，您会失去方便的自动重新加载功能。但对于生产环境，这可能是可行的方法。
+当然，您会失去方便的自动重新加载功能。但在生产环境中务必使用它。
 
 **选项 2：使用主保护**
 
@@ -253,10 +259,7 @@ ui.run(native=True)
 
 您可以使用两者，但需要注意细微的不兼容性，例如在 [定义断点](https://github.com/zauberzeug/nicegui/discussions/1333) 时。
 
-NiceGUI 使用 Vue3 和 Quasar 作为 Web 框架，因为它拥有：
-
-- 大量高度可定制的 UI 元素
-- 一个庞大的社区
+NiceGUI 使用 Vue3 和 Quasar 作为 Web 框架，因为它拥有大量高度可定制的 UI 元素和一个庞大的社区。
 
 除此之外，我们很早就决定 Tailwind 会增加很多不错的样式功能，而这些功能单独使用 Quasar 会更难实现。
 
@@ -341,4 +344,4 @@ NiceGUI 的 WebSocket 连接每条消息的限制为 `1,000,000` 字节。如果
 - [修复方法](https://gist.github.com/evnchn/b2ea50e5d4174af290a343a2f0cb51f2)
 - 取自 [GitHub Issue #4509](https://github.com/zauberzeug/nicegui/issues/4509#issuecomment-2741554729)
 
-**警告：** 在运行代码前检查代码的修订版本。在撰写本文时，两个版本的代码中都没有恶意软件。
+在运行代码前检查代码的修订版本。在撰写本文时，两个版本的代码中都没有恶意软件。
