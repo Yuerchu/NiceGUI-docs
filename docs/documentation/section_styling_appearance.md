@@ -56,6 +56,30 @@ ui.label('Label D').tailwind(red_style)
 ui.run()
 ```
 
+## CSS 层级 CSS Layers <Badge type="tip" text="^3.0.0" />
+
+NiceGUI 定义了以下 CSS 层级（按优先级递增排列）：
+"theme"、"base"、"quasar"、"nicegui"、"components"、"utilities"、"overrides" 和 "quasar_importants"。
+
+对于基础样式，您无需将自定义 CSS 放入层级中。但是，要覆盖 Quasar 的 `!important` 规则，您应该在适当的层级中定义 CSS：对于组件特定的样式使用 "components"，对于工具类使用 "utilities"，具体取决于自定义样式的用途。请注意，您需要在自定义样式中使用 `!important`，因为 Quasar 的大部分 CSS 都定义了 `!important`，否则它们会优先生效。
+
+在下面的示例中，我们使用 "utilities" 层级覆盖按钮的背景颜色。
+
+```python:line-numbers
+from nicegui import ui
+
+ui.add_css('''
+    @layer utilities {
+       .red-background {
+           background-color: red !important;
+        }
+    }
+''')
+ui.button('Red Button').classes('red-background')
+
+ui.run()
+```
+
 ## Tailwind CSS 布局
 
 Tailwind CSS 的 `@layer` 指令允许您定义可在 HTML 中使用的自定义类。NiceGUI 通过支持将自定义类添加到组件层来实现这一功能。这样，你可以定义自己的类并在UI元素中使用它们。在下面的示例中，我们定义了一个名为 `blue-box` 的自定义类，并将其应用于两个标签。
@@ -82,6 +106,32 @@ with ui.row():
     ui.label('world').classes('blue-box')
 
 ui.run()
+```
+
+## UnoCSS 引擎 <Badge type="tip" text="^3.7.0" />
+
+作为 [Tailwind CSS Play CDN 引擎](https://v3.tailwindcss.com/docs/installation/play-cdn) 的替代方案，您也可以使用 [UnoCSS 引擎](https://unocss.dev/) 来使 Tailwind CSS 类生效。
+
+通过 `ui.run(unocss=...)` 传入以下预设之一：
+
+- `"mini"`：[UnoCSS Mini 预设](https://unocss.dev/presets/mini)
+- `"wind3"`：[UnoCSS Wind3 预设](https://unocss.dev/presets/wind3)
+- `"wind4"`：[UnoCSS Wind4 预设](https://unocss.dev/presets/wind4)
+
+UnoCSS 是一个更小且性能更优的库，尤其在小型页面上表现突出。在 Lighthouse Desktop 测试中，页面的加载时间从 1.1s 降低到了 0.7s。
+
+但是，与 Tailwind CSS 的完全兼容性无法保证。例如，Tailwind CSS 布局（见上方）在 UnoCSS 下不起作用。
+
+```python:line-numbers
+from nicegui import ui
+
+label = ui.label('这个标签会动态变红。')
+
+ui.button('变红', on_click=lambda: ui.run_javascript(f'''
+    {label.html_id}.classList.add("text-red-500")
+'''))
+
+ui.run(unocss='mini')
 ```
 
 ## 元素过滤 ElementFilter

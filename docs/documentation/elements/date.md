@@ -1,4 +1,4 @@
-# 日期选择器 Date Input
+# 日期选择器 Date Picker
 
 此元素基于 Quasar 的 [QDate](https://quasar.dev/vue-components/date) 组件。日期是以 `mask` 参数定义的格式字符串。
 

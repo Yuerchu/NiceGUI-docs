@@ -7,12 +7,6 @@ next:
 
 # NiceGUI 文档
 
-::: warning 提示
-NiceGUI 3.0 已经正式发布，本文档仅支持到 NiceGUI 2.x 版本。
-
-> 由于译者已经去实习了（在一家小公司干 Web/APP 全栈 + 嵌入式硬件设计与开发），更没时间来维护这个文档了，也请见谅。我会尽可能抽时间来维护这个文档，感谢理解。
-:::
-
 ::: tip 赞助我们
 - 如果你喜欢 NiceGUI ，欢迎前往 **[赞助者](https://github.com/sponsors/zauberzeug)** 页面捐赠 NiceGUI ，或者提交议题/拉取请求来成为 **贡献者**
 - 如果你喜欢 NiceGUI 中文网，你也可以通过 [爱发电](https://afdian.com/a/yuerchu) 来维持本站的无偿运营，或者前往 [NiceGUI 中文网 - Github 仓库](https://github.com/Yuerchu/NiceGUI-docs) 来提交/改进翻译。

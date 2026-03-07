@@ -3,7 +3,9 @@ title: 测试
 prev:
   text: '配置与部署'
   link: '/documentation/section_configuration_deployment'
-next: false
+next:
+  text: '安全最佳实践'
+  link: '/documentation/section_security'
 ---
 
 # 测试

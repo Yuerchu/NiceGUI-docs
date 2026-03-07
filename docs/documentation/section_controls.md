@@ -122,6 +122,12 @@ next:
 
 [查看更多...](./elements/codemirror)
 
+## 终端模拟器 Xterm <Badge type="tip" text="^3.1.0" />
+
+<!--@include: ./elements/xterm.md{3,13}-->
+
+[查看更多...](./elements/xterm)
+
 ## 数字输入器 Number Input
 
 <!--@include: ./elements/number.md{3,30}-->
@@ -146,13 +152,25 @@ next:
 
 [查看更多...](./elements/color_picker)
 
-## 日期选择器 Date Input
+## 日期输入框 Date Input <Badge type="tip" text="^3.3.0" />
+
+<!--@include: ./elements/date_input.md{3,15}-->
+
+[查看更多...](./elements/date_input)
+
+## 日期选择器 Date Picker
 
 <!--@include: ./elements/date.md{3,20}-->
 
 [查看更多...](./elements/date)
 
-## 时间选择器 Time Input
+## 时间输入框 Time Input <Badge type="tip" text="^3.3.0" />
+
+<!--@include: ./elements/time_input.md{3,13}-->
+
+[查看更多...](./elements/time_input)
+
+## 时间选择器 Time Picker
 
 <!--@include: ./elements/time.md{3,18}-->
 

@@ -1,4 +1,4 @@
-# 时间选择器 Time Input
+# 时间选择器 Time Picker
 
 此元素基于 Quasar 的 [QTime](https://quasar.dev/vue-components/time) 组件。时间是以 `mask` 参数定义的格式字符串。
 

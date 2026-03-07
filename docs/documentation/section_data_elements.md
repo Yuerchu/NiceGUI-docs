@@ -207,6 +207,39 @@ with ui.matplotlib(figsize=(3, 2)).figure as fig:
 ui.run()
 ```
 
+## 实时折线图 Line Plot <Badge type="info" text="扩展包" />
+
+使用 pyplot 创建一个折线图。`push` 方法与 `ui.timer` 结合使用时可实现实时更新。
+
+| 参数 Param | 说明 Description |
+| ---------- | ---------------- |
+| n          | 折线数量 |
+| limit      | 每条折线的最大数据点数（新数据将替换最旧的数据，默认值: `100`） |
+| update_every | 推送多次新数据后才更新图表，以节省 CPU 和带宽（默认值: `1`） |
+| close      | 退出上下文后是否关闭图表；设为 `False` 可后续更新（默认值: `True`） |
+| kwargs     | 传递给 [`pyplot.figure`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.figure.html) 的参数，如 `figsize` 等 |
+
+```python:line-numbers
+import math
+from datetime import datetime
+from nicegui import ui
+
+line_plot = ui.line_plot(n=2, limit=20, figsize=(3, 2), update_every=5) \
+    .with_legend(['sin', 'cos'], loc='upper center', ncol=2)
+
+def update_line_plot() -> None:
+    now = datetime.now()
+    x = now.timestamp()
+    y1 = math.sin(x)
+    y2 = math.cos(x)
+    line_plot.push([now], [[y1], [y2]], y_limits=(-1.5, 1.5))
+
+line_updates = ui.timer(0.1, update_line_plot, active=False)
+ui.checkbox('active').bind_value(line_updates, 'active')
+
+ui.run()
+```
+
 ## Plotly 元素
 
 渲染一个 Plotly 图表。有两种方式传递 Plotly 图形进行渲染，具体参见参数 `figure`：
@@ -223,6 +256,140 @@ from nicegui import ui
 fig = go.Figure(go.Scatter(x=[1, 2, 3, 4], y=[1, 2, 3, 2.5]))
 fig.update_layout(margin=dict(l=0, r=0, t=0, b=0))
 ui.plotly(fig).classes('w-full h-40')
+
+ui.run()
+```
+
+## Altair 图表 <Badge type="tip" text="^3.5.0" /> <Badge type="info" text="扩展包" />
+
+通过 anywidget 在 NiceGUI 中封装 [Altair](https://altair-viz.github.io/) 图表。
+
+有关同步 Altair 参数与 Python 的更多信息，请参阅 [Altair 文档](https://altair-viz.github.io/user_guide/interactions/jupyter_chart.html#accessing-variable-params)。
+
+| 参数 Param | 说明 Description |
+| ---------- | ---------------- |
+| chart      | 要封装的图表 |
+| throttle   | Python 接收 widget 更新的最小间隔时间（秒）（默认值: `0.0`） |
+
+```python:line-numbers
+import altair as alt
+from altair.datasets import data
+from nicegui import ui
+
+cars = data.cars()
+
+chart = alt.Chart(cars).mark_point() \
+    .encode(x='Horsepower', y='Miles_per_Gallon', color='Origin') \
+    .interactive()
+
+ui.altair(chart)
+
+ui.run()
+```
+
+### 交互式图表
+
+Altair 图表可以通过添加参数实现交互。此演示展示了如何添加一个滑块来控制数据点的颜色。
+
+```python:line-numbers
+import altair as alt
+import numpy as np
+import pandas as pd
+from nicegui import ui
+
+df = pd.DataFrame({'x': range(100), 'y': np.random.randn(100).cumsum()})
+
+slider = alt.binding_range(min=0, max=100, step=1)
+cutoff = alt.param(name='cutoff', bind=slider, value=50)
+color = alt.condition(alt.datum.x < cutoff, alt.value('red'), alt.value('blue'))
+
+chart = alt.Chart(df).mark_point() \
+    .encode(x='x', y='y', color=color) \
+    .add_params(cutoff)
+
+ui.altair(chart)
+
+ui.run()
+```
+
+## AnyWidget <Badge type="tip" text="^3.5.0" /> <Badge type="info" text="扩展包" />
+
+[anywidget](https://anywidget.dev/en/getting-started/) 是一个允许您以跨前端兼容的方式嵌入任意 JavaScript 小部件的库。
+
+在 [anywidget gallery](https://try.anywidget.dev/) 中有许多公开可用的 anywidget 小部件示例，包括 [altair.JupyterChart](https://altair-viz.github.io/user_guide/interactions/jupyter_chart.html) 和 [quak](https://github.com/manzt/quak)。
+
+| 参数 Param | 说明 Description |
+| ---------- | ---------------- |
+| widget     | 要封装的 `anywidget.AnyWidget` |
+| throttle   | Python 接收 widget 更新的最小间隔时间（秒）（默认值: `0.0`） |
+
+```python:line-numbers
+import anywidget
+import traitlets
+from nicegui import ui
+
+class CounterWidget(anywidget.AnyWidget):
+    _esm = '''
+        function render({ model, el }) {
+            const button = document.createElement("button");
+            button.innerHTML = `Count is ${model.get("value")}`;
+            button.addEventListener("click", () => {
+                model.set("value", model.get("value") + 1);
+                model.save_changes();
+            });
+            model.on("change:value", () => {
+                button.innerHTML = `Count is ${model.get("value")}`;
+            });
+            el.classList.add("counter-widget");
+            el.appendChild(button);
+        }
+        export default { render };
+    '''
+    _css = '''
+        .counter-widget button {
+            color: white;
+            background-color: DarkOrange;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+    '''
+    value = traitlets.Int(0).tag(sync=True)
+
+    def increment(self) -> None:
+        self.value += 1
+
+counter = CounterWidget(value=42)
+ui.anywidget(counter)
+
+ui.label('↑ AnyWidget')
+ui.separator()
+ui.label('↓ NiceGUI')
+
+ui.button(on_click=counter.increment) \
+    .bind_text_from(counter, 'value', backward=lambda c: f'Count is {c}')
+
+ui.run()
+```
+
+### 使用 AnyWidget 集成 Altair 图表
+
+您可以使用 `ui.anywidget` 将现有的 AnyWidget 小部件集成到 NiceGUI 中。此演示展示了如何集成 Altair 图表。
+
+```python:line-numbers
+import altair as alt
+import numpy as np
+import pandas as pd
+from nicegui import ui
+
+df = pd.DataFrame(np.random.random((60, 3)), columns=['x', 'y', 'size'])
+
+chart = alt.Chart(df).mark_circle() \
+    .encode(x='x', y='y', size='size', color='size', tooltip=['x', 'y', 'size'])
+
+jchart = alt.JupyterChart(chart)
+
+ui.anywidget(jchart)
 
 ui.run()
 ```
