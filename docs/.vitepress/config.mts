@@ -260,6 +260,7 @@ export default defineConfig({
               { text: '视频 Video', link: '/documentation/section_audiovisual_elements#视频-video' },
               { text: '图标 Icon', link: '/documentation/section_audiovisual_elements#图标-icon' },
               { text: '头像 Avatar', link: '/documentation/section_audiovisual_elements#头像-avatar' },
+              { text: '视差图片 Parallax', link: '/documentation/section_audiovisual_elements#视差图片-parallax-image' },
               { text: 'SVG', link: '/documentation/section_audiovisual_elements#svg' },
             ]
           },
@@ -399,6 +400,7 @@ export default defineConfig({
               { text: 'URLs', link: '/documentation/section_configuration_deployment#urls' },
               { text: 'ui.run', link: '/documentation/section_configuration_deployment#ui-run' },
               { text: '本机模式 Native Mode', link: '/documentation/section_configuration_deployment#本机模式-native-mode' },
+              { text: '本机窗口事件', link: '/documentation/section_configuration_deployment#本机窗口事件-native-window-events' },
               { text: '环境变量读取', link: '/documentation/section_configuration_deployment#环境变量读取' },
               { text: '后台任务', link: '/documentation/section_configuration_deployment#后台任务-background-tasks' },
               { text: '自定义 Vue 组件', link: '/documentation/section_configuration_deployment#自定义-vue-组件' },
@@ -444,7 +446,7 @@ export default defineConfig({
 
     // 页脚
     footer: {
-      message: '更新日期: 2026 年 3 月 7 日', // 每次提交都记得在这里改一下时间和日期
+      message: '更新日期: 2026 年 3 月 27 日', // 每次提交都记得在这里改一下时间和日期
     },
 
     // 编辑链接
@@ -494,6 +496,6 @@ export default defineConfig({
   rewrites: createRewrites(),
 
   ignoreDeadLinks: [
-    '/documentation/elements'
+    '/documentation/elements',
   ]
 })

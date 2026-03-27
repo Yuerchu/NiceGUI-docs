@@ -462,6 +462,7 @@ ui.run()
 | on_drag_start | 开始拖动 3D 对象时执行的回调函数 |
 | on_drag_end | 释放拖动 3D 对象时执行的回调函数 |
 | drag_constraints | 用于约束拖动对象位置的 JavaScript 表达式（如: 'x = 0, z = y / 2'） |
+| control_type | 场景的控制模式，可选 `"orbit"`、`"trackball"`、`"map"`（默认值: `"orbit"`） <Badge type="tip" text="^3.9.0" /> |
 | background_color | 场景背景颜色（默认值: `"#eee"`） |
 
 ```python:line-numbers
@@ -493,6 +494,34 @@ with ui.scene().classes('w-full h-64') as scene:
 
     scene.text('2D', 'background: rgba(0, 0, 0, 0.2); border-radius: 5px; padding: 5px').move(z=2)
     scene.text3d('3D', 'background: rgba(0, 0, 0, 0.2); border-radius: 5px; padding: 5px').move(y=-2).scale(.05)
+
+ui.run()
+```
+
+### 切换控制模式 Changing Controls
+
+您可以通过 `control_type` 参数来更改场景的控制模式。*3.9.0 版本新增。*
+
+可用的控制类型有：
+
+- **"orbit"（默认）**：适用于大多数应用场景。但相机在绕过"北极"和"南极"时会停止，以保持固定的向上方向。
+- **"trackball"**：类似于 orbit，但可以绕过极点继续旋转。适合需要更灵活的相机操作的应用。
+- **"map"**：允许像 3D 地图视图一样平移和缩放。适合类地图应用，例如 [RoSys](https://rosys.io)。
+
+```python:line-numbers
+from nicegui import ui
+
+ui.label('Orbit 控制（默认）')
+with ui.scene(width=285, height=220):
+    ui.scene.sphere()
+
+ui.label('Trackball 控制')
+with ui.scene(width=285, height=220, control_type='trackball'):
+    ui.scene.sphere()
+
+ui.label('Map 控制')
+with ui.scene(width=285, height=220, control_type='map'):
+    ui.scene.sphere()
 
 ui.run()
 ```

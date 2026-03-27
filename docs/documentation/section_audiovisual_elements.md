@@ -86,6 +86,30 @@ ii = ui.interactive_image(src, on_mouse=mouse_handler, events=['mousedown', 'mou
 ui.run()
 ```
 
+## 视差图片 Parallax Image
+
+显示带有视差滚动效果的图片。此元素基于 Quasar 的 [QParallax](https://quasar.dev/vue-components/parallax) 组件。
+
+*3.9.0 版本新增。*
+
+| 参数 Param | 说明 Description |
+| ---------- | ---------------- |
+| source     | 图片源，可以是 URL、本地文件路径、base64 编码的图片或 PIL 图片 |
+| height     | 视差图片的高度（像素，默认值: `500.0`） |
+| speed      | 视差效果的速度（0 到 1，默认值: `1.0`） |
+
+```python:line-numbers
+from nicegui import ui
+
+with ui.scroll_area():
+    ui.label('上方的一些文本...').classes('border h-32 w-full')
+    with ui.parallax('https://cdn.quasar.dev/img/parallax2.jpg', height=200):
+        ui.label('文本').classes('text-white')
+    ui.label('下方的一些文本...').classes('border h-32 w-full')
+
+ui.run()
+```
+
 ## 音频 Audio
 
 显示一个音频播放器。

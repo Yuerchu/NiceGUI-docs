@@ -59,7 +59,7 @@ ui.run()
 | tailwind | 是否使用 Tailwind (实验性功能，默认值: `True`) |
 | prod_js | 是否使用 Vue 和 Quasar 的生产版本依赖 (默认值: `True`) |
 | endpoint_documentation | 控制自动生成 OpenAPI 文档的端点范围 (默认值: `'none'`，可选: `'none'`, `'internal'`, `'page'`, `'all'`) |
-| storage_secret | 浏览器存储的密钥 (默认值: `None`，需设置值才能启用 `ui.storage.individual` 和 `ui.storage.browser`) |
+| storage_secret | 浏览器存储的密钥 (默认值: `None`，需设置值才能启用 `app.storage.user` 和 `app.storage.browser`) |
 | show_welcome_message | 是否显示欢迎信息 (默认值: `True`) |
 | kwargs | 其他传递给 `uvicorn.run` 的关键字参数 |
 
@@ -92,6 +92,26 @@ ui.label('app running in native mode')
 ui.button('enlarge', on_click=lambda: app.native.main_window.resize(1000, 700))
 
 ui.run(native=True, window_size=(400, 300), fullscreen=False)
+```
+
+### 本机窗口事件 Native Window Events
+
+在本机模式下，您可以使用 `app.native.on` 来响应窗口生命周期事件。处理函数可以是同步或异步的，并且可以选择接受一个 `NativeEventArguments` 参数。*3.9.0 版本新增。*
+
+支持的事件：`"shown"`、`"loaded"`、`"minimized"`、`"maximized"`、`"restored"`、`"resized"`、`"moved"`、`"closed"`、`"drop"`。
+
+其中 `"resized"` 事件在 `e.args` 中提供 `width` 和 `height`，`"moved"` 提供 `x` 和 `y`，`"drop"` 提供 `files`（文件系统路径列表）。
+
+```python:line-numbers
+from nicegui import app, ui
+
+ui.label('在本机模式下尝试此演示以查看事件效果！')
+
+app.native.on('minimized', lambda: print('窗口已最小化'))
+app.native.on('resized', lambda e: print(f'{e.args["width"]}x{e.args["height"]}'))
+app.native.on('drop', lambda e: print(f'拖入的文件: {e.args["files"]}'))
+
+ui.run(native=True)
 ```
 
 请注意，本机应用运行在独立[进程](https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process)中。因此，在[主守卫](https://docs.python.org/3/library/__main__.html#idiomatic-usage)下运行的代码所做的任何配置更改都会被本机应用忽略。以下示例展示了有效配置与无效配置的区别。

@@ -72,8 +72,8 @@
 
 ## ChatGPT 和其他 LLM
 
-正如在[#1371](/zauberzeug/nicegui/discussions/1371)中所讨论的，NiceGUI 目前尚未被 ChatGPT 和其他 LLM 所熟知。
+正如在[#1371](https://github.com/zauberzeug/nicegui/discussions/1371)中所讨论的，NiceGUI 目前尚未被 ChatGPT 和其他 LLM 所熟知。
 这很不幸，因为这常常导致它们胡乱猜测而不是承认自己的无知。
-我们只需使用[这个提示文本](Chat-GPT-4-Prompt)，将其复制粘贴到 ChatGPT 对话的开头即可。
+我们只需使用[这个提示文本](https://github.com/zauberzeug/nicegui/wiki/Chat-GPT-4-Prompt)，将其复制粘贴到 ChatGPT 对话的开头即可。
 这将为 ChatGPT 提供 NiceGUI 的基本概念。
-如果您真的希望 LLM 理解 NiceGUI，我们提供了完整的 JSON 格式文档，网址为 https://nicegui.io/static/sitewide_index.json。您还可以使用一段[简短文本](ChatGPT-Custom-Instructions)作为您的[自定义指令](https://openai.com/blog/custom-instructions-for-chatgpt)的一部分。
+如果您真的希望 LLM 理解 NiceGUI，我们提供了完整的 JSON 格式文档，网址为 https://nicegui.io/static/sitewide_index.json。您还可以使用一段[简短文本](https://github.com/zauberzeug/nicegui/wiki/ChatGPT-Custom-Instructions)作为您的[自定义指令](https://openai.com/blog/custom-instructions-for-chatgpt)的一部分。
