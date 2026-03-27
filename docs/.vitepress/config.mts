@@ -1,29 +1,19 @@
 import { defineConfig } from 'vitepress'
-import { createRewrites, defineTeekConfig } from "vitepress-theme-teek/config";
-
-// Teek 主题配置
-const teekConfig = defineTeekConfig({
-  teekHome: false,
-  windowTransition: true,
-  author: {
-    name: "Yuerchu",
-    link: "https://github.com/Yuerchu"
-  },
-  footerInfo: {
-    copyright: {
-      show: true,
-      createYear: 2018,
-      suffix: "于小丘 Yuerchu"
-    }
-  },
-  vitePlugins: {
-    sidebar: false,
-  },
-});
+import llmstxt from 'vitepress-plugin-llms'
+import { copyOrDownloadAsMarkdownButtons } from 'vitepress-plugin-llms'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  extends: teekConfig,
+  vite: {
+    plugins: [
+      llmstxt({})
+    ]
+  },
+  markdown: {
+    config(md) {
+      md.use(copyOrDownloadAsMarkdownButtons)
+    },
+  },
   lang: 'zh-CN',
   title: "NiceGUI 中文网",
   description: "一个非官方的 NiceGUI 中文文档站",
@@ -492,8 +482,6 @@ export default defineConfig({
     }
 
   },
-  
-  rewrites: createRewrites(),
 
   ignoreDeadLinks: [
     '/documentation/elements',

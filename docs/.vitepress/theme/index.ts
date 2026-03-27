@@ -1,27 +1,30 @@
 // .vitepress/theme/index.ts
 import "@fontsource/maple-mono";
 import './style/custom.css'
+import './style/var.css'
 
-import Teek, { teekConfigContext } from "vitepress-theme-teek";
-import "vitepress-theme-teek/index.css";
+import DefaultTheme from "vitepress/theme";
+import type { Theme } from "vitepress";
+import CopyOrDownloadAsMarkdownButtons from "vitepress-plugin-llms/vitepress-components/CopyOrDownloadAsMarkdownButtons.vue";
 
 import mediumZoom from 'medium-zoom';
-import { onMounted, watch, nextTick, provide } from 'vue';
+import { onMounted, watch, nextTick } from 'vue';
 import { useRoute } from 'vitepress';
 
 export default {
-    extends: Teek, 
+    extends: DefaultTheme,
+    enhanceApp({ app }) {
+      app.component('CopyOrDownloadAsMarkdownButtons', CopyOrDownloadAsMarkdownButtons);
+    },
     setup() {
-      provide(teekConfigContext, {});
       const route = useRoute();
       const initZoom = () => {
-        // mediumZoom('[data-zoomable]', { background: 'var(--vp-c-bg)' }); // 默认
-        mediumZoom(".main img", { background: "var(--vp-c-bg)" }); // 不显式添加{data-zoomable}的情况下为所有图像启用此功能
+        mediumZoom(".main img", { background: "var(--vp-c-bg)" });
       };
       onMounted(() => {
-        initZoom(); 
-      }); 
-      watch(  
+        initZoom();
+      });
+      watch(
         () => route.path,
         () => nextTick(() => initZoom())
       );
