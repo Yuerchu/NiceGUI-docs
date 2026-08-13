@@ -1,3 +1,6 @@
+
+</think>
+
 <a href="https://nicegui.io/#about">
   <img src="https://raw.githubusercontent.com/zauberzeug/nicegui/main/screenshot.png"
     width="200" align="right" alt="Try online!" />
@@ -26,3 +29,7 @@ README 的其他部分请前往 [NiceGUI 官方仓库(English)](https://github.c
 - 审阅并修复基本文档中的问题
 - 将所有文档（包括组件详细用法）翻译为简体中文
 - 审阅文档问题
+
+## 本地运行
+
+您可通过 `pnpm install && pnpm docs:dev` 在本地预览中文网。
