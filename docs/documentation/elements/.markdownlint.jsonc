@@ -1,0 +1,5 @@
+{
+  "extends": "../../../.markdownlint.jsonc",
+  // 元素页会被 include 到章节页的 ## 标题下，所以从 ### 开始是有意的
+  "MD001": false
+}
