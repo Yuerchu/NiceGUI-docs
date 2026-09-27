@@ -1,6 +1,17 @@
 import { defineConfig } from 'vitepress'
 import llmstxt from 'vitepress-plugin-llms'
 import { copyOrDownloadAsMarkdownButtons } from 'vitepress-plugin-llms'
+import { execSync } from 'node:child_process'
+
+// 页脚的更新日期取最新一次提交的日期（按提交者时区），拿不到 git 时退回构建日期
+function siteUpdatedDate(): string {
+  let iso = new Date().toISOString()
+  try {
+    iso = execSync('git log -1 --format=%cI', { encoding: 'utf8' }).trim()
+  } catch {}
+  const [year, month, day] = iso.slice(0, 10).split('-').map(Number)
+  return `${year} 年 ${month} 月 ${day} 日`
+}
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -466,7 +477,7 @@ export default defineConfig({
 
     // 页脚
     footer: {
-      message: '更新日期: 2026 年 3 月 27 日', // 每次提交都记得在这里改一下时间和日期
+      message: `更新日期: ${siteUpdatedDate()}`,
     },
 
     // 编辑链接
