@@ -35,15 +35,6 @@ jobs:
       - name: Build with VitePress
         run: pnpm docs:build
 
-      - name: Copy static files
-        run: |
-          if [ -d "./docs/static/" ]; then
-            cp -r ./docs/static/* ./docs/.vitepress/dist/
-            echo "Static files copied successfully"
-          else
-            echo "Warning: ./docs/static/ directory not found, skipping copy step"
-          fi
-
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
