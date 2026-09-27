@@ -3,72 +3,90 @@
 layout: home
 
 hero:
-  Notice:
-      title: 'NiceGUI 3.0 已正式发布'
-      link: '/version/v3'
   name: "NiceGUI"
-  text: 高性能 Python WebUI 框架
-  tagline: 让任意浏览器即刻成为你 Python 代码的前端交互界面。
+  text: 让任何浏览器成为你 Python 代码的前端
+  tagline: 深受全球机器人、物联网和机器学习团队的喜爱。
   image:
     src: /static/favicon/android-chrome-384x384.png
     alt: NiceGUI
   actions:
     - theme: brand
+      text: 快速上手
+      link: /documentation/quick_start
+    - theme: alt
       text: 阅读文档
       link: /documentation
     - theme: alt
       text: 官方网站 ↗
       link: https://nicegui.io
 
-# 下面这个Features有个bug，只有在被window.href过来才能显示details，后面抽空修一修
 features:
   - icon: 🎯
     title: 交互
-    details: <ul><li><a href="/documentation/section_controls">-> 按钮、开关、滑块、输入……</a></li><li><a href="/documentation/section_page_layout">-> 通知、对话框和菜单</a></li><li><a href="/documentation/section_audiovisual_elements#互动图片-interactive-image">-> 通过 SVG 创建动态图片</a></li><li><a href="/documentation/section_configuration_deployment#窗口模式_native_mode">-> 网页视图与窗口 APP 模式</a></li></ul>
+    details: '<a href="/documentation/elements/button">按钮</a>、<a href="/documentation/elements/switch">开关</a>、<a href="/documentation/elements/slider">滑块</a>、<a href="/documentation/elements/input">输入框</a>……<br><a href="/documentation/section_page_layout#通知-notification">通知</a>、<a href="/documentation/section_page_layout#对话框-dialog">对话框</a>和<a href="/documentation/section_page_layout#菜单-menu">菜单</a><br>支持 SVG 叠加的<a href="/documentation/section_audiovisual_elements#互动图片-interactive-image">交互式图像</a><br>网页与<a href="/documentation/section_configuration_deployment#本机模式-native-mode">原生窗口应用</a>'
   - icon: 🪟
     title: 布局
-    details: <ul><li><a href="/documentation/section_page_layout">-> 导航栏与标签页</a></li><li>-> 横向布局、纵向布局、网格布局与卡片布局</li><li>-> <a href="/documentation/section_text_elements">HTML</a> 与 <a>Markdown</a> 元素</a></li><li>-> 默认基于 flex 布局</li></ul>
+    details: '<a href="/documentation/section_page_layout">导航栏</a>、<a href="/documentation/section_page_layout#标签与标签页-tabs">标签页</a>、<a href="/documentation/section_page_layout#扩展元素-expansion-element">面板</a><br><a href="/documentation/section_page_layout#横向布局-row-element">行</a>、<a href="/documentation/section_page_layout#纵向布局-column-element">列</a>、<a href="/documentation/section_page_layout#网格布局-grid-element">网格</a>和<a href="/documentation/section_page_layout#卡片-card">卡片</a><br><a href="/documentation/elements/html">HTML</a> 和 <a href="/documentation/elements/markdown">Markdown</a> 元素<br>默认使用 Flex 布局'
   - icon: 👀
     title: 可视化
-    details: <ul><li><a href="/documentation/section_data_elements">-> 图表，表格、音频与视频</a></li><li><a href="">-> 3D图形</a></li><li><a href="/documentation/section_binding_properties">-> 易于理解的数据绑定</a></li><li><a href="">-> 定时数据重载</a></li></ul>
+    details: '<a href="/documentation/section_data_elements#apache-echart">图表</a>、<a href="/documentation/section_data_elements#表格-table">表格</a>、<a href="/documentation/section_audiovisual_elements#音频-audio">音频</a>/<a href="/documentation/section_audiovisual_elements#视频-video">视频</a><br><a href="/documentation/section_data_elements#_3d-图形-3d-scene">3D 场景</a><br>简单直接的<a href="/documentation/section_binding_properties">数据绑定</a><br>内置<a href="/documentation/section_action_events#Timer">定时器</a>，轻松刷新数据'
   - icon: 🌅
     title: 样式
-    details: <ul><li><a href="/documentation/section_styling_appearance#颜色主题-color-theming">-> 可自定义的颜色主题</a></li><li>-> 自定义 CSS 与 Classes</a></li><li>-> Material Design 风格的现代化样式</a></li><li><a href="https://tailwind-v3.nodejs.cn/">-> 基于 Tailwind CSS 的自动完成</a></li></ul>
+    details: '可定制的<a href="/documentation/section_styling_appearance#颜色主题-color-theming">颜色主题</a><br>自定义 CSS 和样式类<br>基于 Material Design 的现代外观<br><a href="https://tailwindcss.com/">Tailwind CSS</a>'
   - icon: 📑
-    title: 代码
-    details: <ul><li><a href="">-> 通过路由实现多页面</a></li><li>-> 当代码被修改时自动重载</a></li><li><a href="">-> 多种用户存储方式</a></li><li><a href="/documentation/section_testing">-> 得心应手的测试框架</a></li></ul>
+    title: 编程
+    details: '使用 <a href="/documentation/section_pages_routing#子页面-sub-pages">ui.sub_pages</a> 构建单页应用<br>代码变更时自动重载<br>持久化的<a href="/documentation/section_action_events#持久化-storage">用户会话</a><br>超强的<a href="/documentation/section_testing">测试框架</a>'
   - icon: 🛠️
     title: 技术栈
-    details: <ul><li><a href="https://cn.vuejs.org">-> 通过 Vue 与 Python 绑定</a></li><li><a href="https://quasar.nodejs.cn/">-> 使用 Quasar 创建动态图形界面</a></li><li><a href="https://fastapi.tiangolo.com/zh">-> 高性能的 FastAPI 服务器</a></li><li>-> Python 3.9+ (NiceGUI ≥ 3.0.0) / Python 3.8+ (NiceGUI < 3.0.0)</li></ul>
-
----
-<home />
-
+    details: '<a href="https://cn.vuejs.org/">Vue</a> 与 Python 之间的通用桥接<br>通过 <a href="https://quasar.dev/">Quasar</a> 实现动态界面<br>内容由 <a href="https://fastapi.tiangolo.com/zh/">FastAPI</a> 提供<br>Python 3.10+'
 ---
 
-# 首页
+## 三行代码，应用就能跑起来。
 
-NiceGUI 是一个基于 Python + FastAPI 的高性能 WebUI 框架。 你可以创建按钮，对话框，富文本，3D 图形，图表以及其他形形色色的组件。
+写一个 Python 文件，安装并运行——就这么简单。
 
-它易于创建一些小型网站，仪表盘，机器人项目，智能家居，以及我们想不到的事情。
+**1. 编写** `main.py`
 
-## 通过按钮、对话框、3D场景及可视化图表等丰富组件 —— 实现与Python代码的实时双向交互操作。
+```python
+from nicegui import ui
 
-NiceGUI 为你封装底层 Web 开发细节，助你专注核心业务逻辑的 Python 实现，完美适配：
+ui.label('Hello NiceGUI!')
 
-- 机器人控制系统开发
-- 物联网(IoT)设备管理平台
-- 智能家居中控系统
-- 机器学习可视化界面
-- 凭借原生硬件兼容特性（支持摄像头/GPIO接口等物联网外设），实现统一代码管理的高效开发范式。
+ui.run()
+```
 
-NiceGUI 提供平滑的学习曲线 —— 新手可快速实现基础功能原型，资深开发者则能通过高阶 API 进行深度定制。这种双模开发范式实现：简单需求开箱即用，复杂场景灵活扩展。
+**2. 运行**
 
-你可以通过 [PyPI 包](https://pypi.org/project/nicegui/), [Docker 镜像](https://hub.docker.com/r/zauberzeug/nicegui) 和 [Github](https://github.com/zauberzeug/nicegui) 获取 NiceGUI。
+```bash
+pip3 install nicegui
+python3 main.py
+```
 
-# 为什么创造 NiceGUI？
+**3. 尽情享受**：在浏览器中打开 `http://localhost:8080`，就能看到 `Hello NiceGUI!`。
 
-我们 [Zauberzeug](https://zauberzeug.com) 团队认可 [Streamlit](https://streamlit.io/) 的价值，但发现其在 [状态管理方面存在过多隐式操作](https://github.com/zauberzeug/nicegui/issues/1#issuecomment-847413651)。
-在寻求 Python 图形界面开发的替代方案时，我们发现了 [JustPy](https://justpy.io/)。我们虽然认同其设计理念，但其 *底层HTML操作* 特性不符合我们的日常开发需求。但是这个框架启发了我们采用 [Vue](https://vuejs.org/) 与 [Quasar](https://quasar.dev/) 构建前端体系。
+### 或者用 Docker 运行你的 main.py
 
-NiceGUI 构建于 [FastAPI](https://fastapi.tiangolo.com/) 之上，其底层整合了 ASGI 框架 [Starlette](https://www.starlette.io/) 与高性能 ASGI 服务器 [Uvicorn](https://www.uvicorn.org/)。该组合在保证卓越性能的同时，显著提升开发效率。
+借助官方的[多架构 Docker 镜像](https://hub.docker.com/repository/docker/zauberzeug/nicegui)，无需安装任何软件包即可启动服务器。
+
+```bash
+docker run -it --rm -p 8888:8080 \
+    -v "$PWD":/app zauberzeug/nicegui
+```
+
+该命令会在当前目录中查找 `main.py`，并使应用可通过 `http://localhost:8888` 访问。
+
+## 或者，交给你的 AI 吧！
+
+大多数 LLM 已经了解 NiceGUI。至于其他模型，可以把本站的 [LLM 参考](/llms-full.txt)（一个开箱即用的 Markdown 文件）直接粘贴给它，或将 RAG 流水线指向[文档索引](/documentation/section_configuration_deployment#documentation_index)，获取 JSON 格式的完整 API。
+
+## 为什么？
+
+> “我们喜欢 Streamlit，但发现它在状态管理上用了太多魔法。”
+>
+> [阅读完整故事 →](https://github.com/zauberzeug/nicegui/discussions/21)
+
+- **纯 Python**：无需 HTML、CSS 或 JavaScript。使用熟悉的模式和现有工具，完全用 Python 构建 Web 界面。
+- **伴你成长**：从 10 行的原型到多页面的生产应用——同样的模式、同一个代码库，无需重写。
+- **功能齐备**：100 多个组件、响应式数据绑定、图表与绘图、3D 场景、原生桌面应用以及 Docker 支持——开箱即用。
+
+前端基于 [Vue](https://cn.vuejs.org/) 和 [Quasar](https://quasar.dev/)，底层由 [FastAPI](https://fastapi.tiangolo.com/zh/)、[Starlette](https://www.starlette.io/) 和 [Uvicorn](https://www.uvicorn.org/) 驱动。[了解更多 →](/documentation/section_foundations)
