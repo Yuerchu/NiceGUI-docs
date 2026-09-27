@@ -23,7 +23,7 @@ ui.run()
 
 ### 样式
 
-您可以使用 `color` 参数来为 FAB 及其操作项设置样式。`color` 参数接受 Quasar 颜色、Tailwind 颜色或 CSS 颜色。您还可以使用 `direction` 参数来更改 FAB 的方向。
+你可以使用 `color` 参数来为 FAB 及其操作项设置样式。`color` 参数接受 Quasar 颜色、Tailwind 颜色或 CSS 颜色。你还可以使用 `direction` 参数来更改 FAB 的方向。
 
 ```python:line-numbers
 from nicegui import ui

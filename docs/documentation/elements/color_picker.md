@@ -18,13 +18,13 @@ ui.run()
 
 ## 自定义颜色选择器
 
-您可以通过 props、classes 和 style 属性自定义颜色选择器。由于 QColor 组件嵌套在菜单内部，您不能直接使用 `props` 方法，而要通过 `q_color` 属性访问。
+你可以通过 props、classes 和 style 属性自定义颜色选择器。由于 QColor 组件嵌套在菜单内部，你不能直接使用 `props` 方法，而要通过 `q_color` 属性访问。
 
 ```python:line-numbers
 from nicegui import ui
 
 with ui.button(icon='palette'):
-    picker = ui.color_picker(on_pick=lambda e: ui.notify(f'您选择了 {e.color}'))
+    picker = ui.color_picker(on_pick=lambda e: ui.notify(f'你选择了 {e.color}'))
     picker.q_color.props('default-view=palette no-header no-footer')
 
 ui.run()

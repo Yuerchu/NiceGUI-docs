@@ -50,7 +50,7 @@ ui.run()
 
 ## 多个消息
 
-您可以在 `text` 参数中传入一个列表，这样多个消息气泡就会合并在一起。
+你可以在 `text` 参数中传入一个列表，这样多个消息气泡就会合并在一起。
 
 ```python:line-numbers
 from nicegui import ui
@@ -63,7 +63,7 @@ ui.run()
 
 ## 带子元素的消息
 
-您可以在气泡中添加子元素。
+你可以在气泡中添加子元素。
 
 ```python:line-numbers
 from nicegui import ui

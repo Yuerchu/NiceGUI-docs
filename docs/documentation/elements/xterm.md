@@ -7,6 +7,9 @@
 | 参数 Param | 说明 Description |
 | ---------- | ---------------- |
 | options    | 用于配置终端的选项字典，详见 [xterm.js 文档](https://xtermjs.org/docs/api/terminal/classes/terminal/#constructor) |
+| on_bell    | 终端响铃被触发时调用的可选回调函数 <Badge type="tip" text="^3.10.0" /> |
+| on_data    | 用户在终端中输入或粘贴内容时调用的可选回调函数。在典型的设置中，这些数据应当传递给后备 pty <Badge type="tip" text="^3.10.0" /> |
+| on_resize  | 终端大小被调整时调用的可选回调函数 <Badge type="tip" text="^3.10.0" /> |
 
 ```python:line-numbers
 from nicegui import ui
@@ -34,9 +37,9 @@ ui.run()
 
 ### 订阅事件
 
-Xterm 在您在终端中输入或粘贴文本时会触发 "data" 事件。通常，您会将这些数据传递给 pty 或类似的后端进行处理（参见 [Xterm 示例](https://github.com/zauberzeug/nicegui/blob/main/examples/xterm/main.py)）。但您也可以将此事件连接到终端的 `write` 方法，以便在终端中查看数据。请注意，此演示替换了一些字符，这些字符通常由 pty 处理（换行和退格）。
+Xterm 在你在终端中输入或粘贴文本时会触发 "data" 事件。通常，你会将这些数据传递给 pty 或类似的后端进行处理（参见 [Xterm 示例](https://github.com/zauberzeug/nicegui/blob/main/examples/xterm/main.py)）。但你也可以将此事件连接到终端的 `write` 方法，以便在终端中查看数据。请注意，此演示替换了一些字符，这些字符通常由 pty 处理（换行和退格）。
 
-您还可以处理 "bell" 事件，例如在终端的响铃被触发时播放声音（如按下 `Ctrl-G`）。此演示改为显示通知。
+你还可以处理 "bell" 事件，例如在终端的响铃被触发时播放声音（如按下 `Ctrl-G`）。此演示改为显示通知。
 
 ```python:line-numbers
 from nicegui import ui
@@ -50,7 +53,7 @@ ui.run()
 
 ### 自动调整终端大小
 
-您可以使用 `fit` 方法调整终端大小，使其行数和列数与容器的尺寸匹配。请注意，您可能还需要调整后备 pty 的大小以匹配终端的新尺寸，这可以通过订阅终端的 `resize` 事件来实现。另外请注意，原生 `pty` 模块不支持调整大小。
+你可以使用 `fit` 方法调整终端大小，使其行数和列数与容器的尺寸匹配。请注意，你可能还需要调整后备 pty 的大小以匹配终端的新尺寸，这可以通过订阅终端的 resize 事件来实现。另外请注意，原生 `pty` 模块不支持调整大小。
 
 ```python:line-numbers
 from nicegui import ui
@@ -60,14 +63,14 @@ with ui.card().classes('size-60 resize overflow-auto'):
     ui.element('q-resize-observer').on('resize', terminal.fit)
 
 label = ui.label()
-terminal.on('resize', lambda e: label.set_text(f'大小: {e.args["cols"]}x{e.args["rows"]}'))
+terminal.on_resize(lambda e: label.set_text(f'大小: {e.cols}x{e.rows}'))
 
 ui.run()
 ```
 
 ### 显示子进程输出
 
-您可以将子进程的输出连接到终端。请注意，`subprocess.PIPE` 会将输出缓冲在内存中的 `StreamReader` 对象中。如果您希望子进程表现得像在终端中运行一样，可能需要使用 pty。`convertEol` 参数会自动将换行符（`\n`）转换为回车符 + 换行符（`\r\n`），确保在显示子进程输出时正确换行。
+你可以将子进程的输出连接到终端。请注意，`subprocess.PIPE` 会将输出缓冲在内存中的 `StreamReader` 对象中。如果你希望子进程表现得像在终端中运行一样，可能需要使用 pty。`convertEol` 参数会自动将换行符（`\n`）转换为回车符 + 换行符（`\r\n`），确保在显示子进程输出时正确换行。
 
 ```python:line-numbers
 import asyncio

@@ -19,7 +19,7 @@ ui.run()
 
 ## 处理用户交互
 
-通过参数传递的 `on_change` 函数会在开关被点击*以及*通过 `set_value` 调用更改值时被调用。要仅在用户与开关交互时执行函数，您可以使用通用的 `on` 方法。
+通过参数传递的 `on_change` 函数会在开关被点击*以及*通过 `set_value` 调用更改值时被调用。要仅在用户与开关交互时执行函数，你可以使用通用的 `on` 方法。
 
 ```python:line-numbers
 from nicegui import ui

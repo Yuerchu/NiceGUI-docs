@@ -27,9 +27,10 @@ next:
 | viewport   | 可选的 viewport meta 标签内容 |
 | favicon    | 可选的 favicon 相对路径或绝对 URL (默认值: `None`, 将使用 `ui.run` 的 favicon 参数，译者修复) |
 | dark       | 是否使用 Quasar 的深色模式 (默认跟随 `ui.run` 命令的 dark 参数) |
-| language   | 页面语言 (默认跟随 `ui.run` 命令的 language 参数) |
+| language   | 页面语言，用于 Quasar 元素和 `html` 标签的 `lang` 属性 (默认跟随 `ui.run` 命令的 language 参数；3.14.0 版本起可设为 `None` 以省略 `lang` 属性) |
 | response_timeout | 装饰函数构建页面的最长时间 (默认值: `3.0`秒) |
 | reconnect_timeout | 服务器等待浏览器重新连接的最长时间 (默认跟随 `ui.run` 命令的 reconnect_timeout 参数) |
+| markdown   | 当客户端发送 `Accept: text/markdown` 时，是否返回页面的 Markdown 表示 (实验性功能，默认跟随 `ui.run` 命令的 markdown 参数) <Badge type="tip" text="^3.11.0" /> |
 | api_router | 要使用的 APIRouter 实例，None 表示使用默认值 |
 | kwargs     | 传递给 FastAPI 的 `@app.get` 方法的额外关键字参数 |
 
@@ -72,7 +73,7 @@ ui.run()
 
 ## 页面布局 Page Layout
 
-通过 `ui.header`、`ui.footer`、`ui.left_drawer` 和 `ui.right_drawer`，您可以为页面添加额外的布局元素。fixed 参数控制元素是随页面滚动还是固定在屏幕上。 `top_corner` 和 `bottom_corner` 参数决定抽屉应从页面顶部还是底部展开。有关可用属性的更多信息，请参阅 https://quasar.dev/layout/header-and-footer 和 https://quasar.dev/layout/drawer 。使用 `ui.page_sticky` 可以将元素"粘性"固定在屏幕上。更多详情请见 https://quasar.dev/layout/page-sticky 。
+通过 `ui.header`、`ui.footer`、`ui.left_drawer` 和 `ui.right_drawer`，你可以为页面添加额外的布局元素。fixed 参数控制元素是随页面滚动还是固定在屏幕上。 `top_corner` 和 `bottom_corner` 参数决定抽屉应从页面顶部还是底部展开。有关可用属性的更多信息，请参阅 https://quasar.dev/layout/header-and-footer 和 https://quasar.dev/layout/drawer 。使用 `ui.page_sticky` 可以将元素"粘性"固定在屏幕上。更多详情请见 https://quasar.dev/layout/page-sticky 。
 
 ```python:line-numbers
 from nicegui import ui
@@ -98,7 +99,7 @@ ui.run()
 
 ## 子页面 Sub Pages
 
-子页面通过基于 URL 的导航实现不同视图间的切换，便于轻松构建单页应用（SPA）。`ui.sub_pages` 元素本身作为当前活动子页面的容器，您只需为每个视图构建函数提供路由配置。NiceGUI 会在 URL 变更时自动替换内容，无需触发整页重载。
+子页面通过基于 URL 的导航实现不同视图间的切换，便于轻松构建单页应用（SPA）。`ui.sub_pages` 元素本身作为当前活动子页面的容器，你只需为每个视图构建函数提供路由配置。NiceGUI 会在 URL 变更时自动替换内容，无需触发整页重载。
 
 ::: warning 注意
 这是一个实验性的特性。相关内容会随着更新而改动。
@@ -153,9 +154,58 @@ ui.run()
 | ---------- | ---------------- |
 | title      | 页面标题         |
 
+## 状态码 Status code
+
+设置当前页面响应的 HTTP 状态码。必须在页面构建期间、响应发送到客户端之前调用。
+
+*3.10.0 版本新增。*
+
+| 参数 Param | 说明 Description |
+| ---------- | ---------------- |
+| code       | HTTP 状态码 (例如 200、404、503) |
+
+```python:line-numbers
+from nicegui import ui
+
+@ui.page('/teapot')
+def teapot_page():
+    ui.status_code(418)
+    ui.label('我是一个茶壶')
+
+@ui.page('/')
+def page():
+    ui.link('访问茶壶页面', '/teapot')
+
+ui.run()
+```
+
+### 条件 404 Conditional 404
+
+你可以使用 `ui.status_code` 在找不到对应条目时返回 404 状态码。这对 SEO 很有帮助，也能向客户端表明该页面不存在。
+
+```python:line-numbers
+from nicegui import ui
+
+@ui.page('/item/{item_id}')
+def item_page(item_id: str):
+    if 'a' <= item_id <= 'c':
+        ui.label(f'这是条目 {item_id}')
+    else:
+        ui.status_code(404)
+        ui.label('页面未找到')
+
+@ui.page('/')
+def page():
+    ui.link('显示条目 A', '/item/a')
+    ui.link('显示条目 B', '/item/b')
+    ui.link('显示条目 X', '/item/x')
+
+ui.run()
+```
+
 ## 导航功能 Navigation functions <Badge type="tip" text="^2.0.0" />
 
-这些功能允许您在浏览器历史记录中导航以及跳转至外部 URL 。
+这些功能允许你在浏览器历史记录中导航以及跳转至外部 URL 。
 
 ```python:line-numbers
 from nicegui import ui
@@ -176,7 +226,7 @@ ui.run()
 
 ## 下载函数 Download functions <Badge type="tip" text="^2.14.0" />
 
-此函数将允许您将文件、URLs 或者 raw 数据下载到客户端中。
+此函数将允许你将文件、URLs 或者 raw 数据下载到客户端中。
 
 ```python:line-numbers
 from nicegui import ui
@@ -275,7 +325,7 @@ ui.run()
 
 NiceGUI 基于 FastAPI 构建，这意味着你可以使用 FastAPI 的所有功能。例如，除了图形用户界面外，你还可以实现 RESTful API 。只需从 nicegui 导入 app 对象即可。或者，你可以通过使用 ui.run_with(app) 而非自动启动服务器的 ui.run()，将 NiceGUI 运行在你自己的 FastAPI 应用之上。
 
-在页面函数中，你也可以返回任何其他 FastAPI 的响应对象。例如，当满足特定条件时，可以返回 RedirectResponse 将用户重定向到另一个页面。这一功能在我们的[单点登录演示](https://github.com/zauberzeug/nicegui/tree/main/examples/authentication/main.py)中得到了应用。（不过译者不建议用 NiceGUI 页面写过于敏感的内容，尤其是涉及隐私和金融这块，可能会造成重大损失。参见译者发起的[关于安全性的讨论](https://github.com/zauberzeug/nicegui/discussions/4386)，相信读者您会有更好的解决方案。）
+在页面函数中，你也可以返回任何其他 FastAPI 的响应对象。例如，当满足特定条件时，可以返回 RedirectResponse 将用户重定向到另一个页面。这一功能在我们的[单点登录演示](https://github.com/zauberzeug/nicegui/tree/main/examples/authentication/main.py)中得到了应用。（不过译者不建议用 NiceGUI 页面写过于敏感的内容，尤其是涉及隐私和金融这块，可能会造成重大损失。参见译者发起的[关于安全性的讨论](https://github.com/zauberzeug/nicegui/discussions/4386)，相信读者你会有更好的解决方案。）
 
 ```python:line-numbers
 import random

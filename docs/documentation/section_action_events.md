@@ -17,7 +17,7 @@ next:
 | 参数 Param | 说明 Description |
 | ---------- | ---------------- |
 | interval   | 定时器触发间隔 (运行时可以修改) |
-| callback   | 间隔到期时执行的函数或协程 |
+| callback   | 间隔到期时执行的同步或异步函数 |
 | active     | 是否执行回调 (运行时可以修改) |
 | once       | 是否仅在指定间隔后执行一次 (默认值: `False`) |
 | immediate  | 是否立即执行回调 (默认值: `True`, 当 `once` 为 `True` 时忽略) <Badge type="tip" text="^2.9.0" /> |
@@ -60,10 +60,9 @@ ui.run()
 - backspace, tab, enter, shift, control, alt, pause, caps_lock, escape, space, page_up, page_down, end, home, arrow_left, arrow_up, arrow_right, arrow_down, print_screen, insert, delete, meta, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12: 是否为对应按键
 
 ```python:line-numbers
-from nicegui import ui
-from nicegui.events import KeyEventArguments
+from nicegui import events, ui
 
-def handle_key(e: KeyEventArguments):
+def handle_key(e: events.KeyEventArguments):
     if e.key == 'f' and not e.action.repeat:
         if e.action.keyup:
             ui.notify('f was just released')
@@ -165,7 +164,7 @@ ui.run()
 
 ## 通用事件
 
-大多数 UI 元素都预定义了事件。例如，演示中像 A 这样的 `ui.button` 有一个 `on_click` 参数，它需要一个协程或函数。但你也可以使用 `on` 方法来注册一个通用的事件处理器，如 B 所示。这允许你为 JavaScript 和 Quasar 支持的任何事件注册处理器。
+大多数 UI 元素都预定义了事件。例如，演示中像 A 这样的 `ui.button` 有一个 `on_click` 参数，它需要一个同步或异步函数。但你也可以使用 `on` 方法来注册一个通用的事件处理器，如 B 所示。这允许你为 JavaScript 和 Quasar 支持的任何事件注册处理器。
 
 例如，你可以为 `mousemove` 事件注册一个处理器，如 C 所示，尽管 `ui.button` 没有 `on_mousemove` 参数。像 `mousemove` 这样的事件会频繁触发。为了避免性能问题，你可以像 D 那样使用 `throttle` 参数来限制处理器每 `throttle` 秒才被调用一次。
 
@@ -199,6 +198,8 @@ NiceGUI 提供了一个 `cpu_bound` 函数，用于在**独立进程中**运行 
 :::tip 提示
 此函数需要通过 pickle 将传入函数的完整状态传输到进程中。建议创建自由函数或静态方法，以简单参数形式接收所有数据（即不涉及类或 UI 逻辑）并返回结果，而非将结果写入类属性或全局变量中。
 :::
+
+默认情况下，进程池使用平台的 multiprocessing 启动方式——在 Linux 上直到 Python 3.13 都是 "fork"，而它在多线程进程中并不安全。在 `ui.run()` 之前设置 `run.process_pool_start_method = 'spawn'`，即可改用更安全的 "spawn" 方式（这也是 NiceGUI 4.0 的默认值）；设为 "fork" 则继续使用 fork 并消除相应的警告；如果你更喜欢 "forkserver"，也可以设为 "forkserver"。请注意，以 spawn 方式启动的工作进程会重新导入模块，不会继承模块的全局变量或其他进程状态，因此从 fork 切换过来可能会改变程序的行为。*3.15.0 版本新增。*
 
 ```python:line-numbers
 import time
@@ -239,7 +240,7 @@ ui.run()
 
 这个函数能在浏览器中执行 JavaScript 代码（包括但不限于一些定义的函数）。调用此函数前，客户端必须已连接。
 
-您可以通过 ID 访问客户端 Vue 组件或 HTML 元素，请使用 JavaScript 函数 `getElement()` 或 `getHtmlElement()`。<Badge type="tip" text="^2.9.0" />
+你可以通过 ID 访问客户端 Vue 组件或 HTML 元素，请使用 JavaScript 函数 `getElement()` 或 `getHtmlElement()`。<Badge type="tip" text="^2.9.0" />
 
 若该函数被 await 调用，则返回 JavaScript 代码的执行结果；否则直接执行代码且不等待响应。
 
@@ -276,7 +277,7 @@ ui.run()
 
 由于自动索引页面可被多个浏览器标签页同时访问，该页面不支持读取剪贴板。此功能仅能在通过 `ui.page` 装饰的页面构建函数内实现，如本示例所示。
 
-请注意，您的浏览器可能会请求访问剪贴板的权限，或可能完全不支持此功能。（貌似只能在本地服务器[即Localhost]或者带有 https 的环境中才能使用，译者注）
+请注意，你的浏览器可能会请求访问剪贴板的权限，或可能完全不支持此功能。（貌似只能在本地服务器[即Localhost]或者带有 https 的环境中才能使用，译者注）
 
 ```python:line-numbers
 from nicegui import ui
@@ -303,7 +304,7 @@ ui.run()
 
 ## 事件 Events
 
-NiceGUI 提供了一些异步事件，您可以根据需要来调用。
+你可以为以下生命周期事件注册同步或异步函数，它们会在事件发生时被调用：
 
 - `app.on_startup`: 当 NiceGUI 启动或重启后回调
 - `app.on_shutdown`: 当 NiceGUI 将要关闭或将要重启时回调
@@ -392,7 +393,7 @@ ui.run(reload=False)
 
 NiceGUI 为应用程序内的数据持久化提供了简洁的机制，内置五种存储类型：
 
-- `app.storage.tab`：存储于服务端内存中，每个独立标签页会话拥有专属字典，可保存任意对象。服务器重启时数据将丢失（直至 [https://github.com/zauberzeug/nicegui/discussions/2841](https://github.com/zauberzeug/nicegui/discussions/2841) 功能实现。该存储仅限页面构建函数内使用，需通过 `await client.connected()` 建立连接后访问。
+- `app.storage.tab`：存储于服务端内存中，每个标签页会话拥有专属字典，可保存任意对象。数据在页面重载后依然保留，最长保存 `app.storage.max_tab_storage_age`（默认 30 天）。除非使用 [Redis 存储](https://nicegui.io/documentation/storage#redis_storage)，否则服务器重启时数据将丢失（默认持久化到磁盘的方案正在 [https://github.com/zauberzeug/nicegui/discussions/2841](https://github.com/zauberzeug/nicegui/discussions/2841) 中讨论）。复制标签页时，新标签页会以一份数据副本开始，但此后两个标签页彼此独立。该存储需通过 [`await client.connected()`](https://nicegui.io/documentation/page#wait_for_client_connection) 建立连接后访问。
 - `app.storage.client`：同样存储于服务端内存，每个客户端连接拥有独立字典，可保存任意对象。页面刷新或跳转时数据将被清除。与可留存数日的标签页存储不同，此存储适合缓存高耗资源对象（如动态更新所需的流媒体或数据库连接），用户离开页面或关闭浏览器时立即释放。该存储仅限页面构建函数内使用。
 - `app.storage.user`：基于服务端存储，通过浏览器会话 cookie 中的唯一标识符关联用户。跨标签页共享，`app.storage.browser['id']` 用于用户识别。需在 `ui.run()` 中配置 storage_secret 参数签署 cookie，仅限页面构建函数内使用。
 - `app.storage.general`：服务端存储的共享字典，所有用户均可访问。
@@ -400,20 +401,24 @@ NiceGUI 为应用程序内的数据持久化提供了简洁的机制，内置五
 
 通常更推荐使用 `app.storage.user`，因其具备数据负载更轻、安全性更高、容量更大的优势。默认情况下，NiceGUI 会在 `app.storage.browser['id']` 中保存会话唯一标识符。
 
-下表将协助您选择合适的存储方案。
+下表将协助你选择合适的存储方案。
 
 | 存储类型      | 客户端(client) | 标签页(tab) | 浏览器(browser) | 用户(user) | 通用(general) |
 |---------------|---------|---------|---------|---------|---------|
 | 位置          | 服务器  | 服务器  | 浏览器  | 服务器  | 服务器  |
 | 跨标签页      | 否      | 否      | 是      | 是      | 是      |
 | 跨浏览器      | 否      | 否      | 否      | 否      | 是      |
-| 跨服务器重启  | 否      | 是      | 否      | 是      | 是      |
+| 跨服务器重启  | 否      | 否<sup>1)</sup> | 否      | 是      | 是      |
 | 跨页面重载    | 否      | 是      | 是      | 是      | 是      |
 | 需要页面构建函数 | 是      | 是      | 是      | 是      | 否      |
-| 需要客户端连接 | 否      | 是      | 否      | 否      | 否      |
+| 需要客户端连接 | 否      | 是<sup>2)</sup> | 否      | 否      | 否      |
 | 仅在响应前写入 | 否      | 否      | 是      | 否      | 否      |
 | 需要可序列化数据 | 否      | 否      | 是      | 是      | 是      |
 | 需要存储密钥   | 否      | 否      | 是      | 是      | 否      |
+
+<sup>1)</sup> 仅在使用 [Redis 存储](https://nicegui.io/documentation/storage#redis_storage)时，标签页存储才能在服务器重启后保留。
+
+<sup>2)</sup> 标签页存储只能在 WebSocket 连接建立之后访问。在事件处理函数中连接已经建立，但在构建页面时，你需要先 [`await client.connected()`](https://nicegui.io/documentation/page#wait_for_client_connection)。
 
 ```python:line-numbers
 from nicegui import app, ui

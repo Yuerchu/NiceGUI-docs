@@ -26,9 +26,9 @@ ui.run()
 
 ### 其他 HTML 元素 <Badge type="tip" text="^2.5.0" />
 
-此外，还有一个 `html` 模块，允许您插入其他 HTML 元素，如 `<span>`、`<div>`、`<p>` 等。它等同于使用带有 `tag` 参数的 `ui.element` 方法。
+此外，还有一个 `html` 模块，允许你插入其他 HTML 元素，如 `<span>`、`<div>`、`<p>` 等。它等同于使用带有 `tag` 参数的 `ui.element` 方法。
 
-与任何其他元素一样，您可以添加类、样式、属性、工具提示和事件。一个便利之处在于，关键字参数会自动添加到元素的 `props` 字典中。
+与任何其他元素一样，你可以添加类、样式、属性、工具提示和事件。一个便利之处在于，关键字参数会自动添加到元素的 `props` 字典中。
 
 ```python:line-numbers
 from nicegui import html, ui

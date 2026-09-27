@@ -6,6 +6,7 @@ import './style/var.css'
 import DefaultTheme from "vitepress/theme";
 import type { Theme } from "vitepress";
 import CopyOrDownloadAsMarkdownButtons from "vitepress-plugin-llms/vitepress-components/CopyOrDownloadAsMarkdownButtons.vue";
+import Mermaid from "./components/Mermaid.vue";
 
 import mediumZoom from 'medium-zoom';
 import { onMounted, watch, nextTick } from 'vue';
@@ -15,6 +16,7 @@ export default {
     extends: DefaultTheme,
     enhanceApp({ app }) {
       app.component('CopyOrDownloadAsMarkdownButtons', CopyOrDownloadAsMarkdownButtons);
+      app.component('Mermaid', Mermaid);
     },
     setup() {
       const route = useRoute();

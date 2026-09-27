@@ -32,7 +32,7 @@ ui.run()
 
 通过 `with ui.image(...):` 语句可以在图片中增加多种内容。
 
-您可以使用 [Quasar classes](https://quasar.dev/vue-components/img) 进行字幕的定位和样式设计。若需叠加 SVG，请确保 viewBox 与图像尺寸完全一致，并设置 100% 的宽度/高度以匹配实际渲染大小。
+你可以使用 [Quasar classes](https://quasar.dev/vue-components/img) 进行字幕的定位和样式设计。若需叠加 SVG，请确保 viewBox 与图像尺寸完全一致，并设置 100% 的宽度/高度以匹配实际渲染大小。
 
 ```python:line-numbers
 from nicegui import ui
@@ -154,7 +154,7 @@ ui.run()
 
 此元素基于 Quasar 的 [QIcon](https://quasar.dev/vue-components/icon) 组件。
 
-您可以查阅 [Material Symbols & Icons - Google Fonts](https://fonts.google.com/icons?icon.set=Material+Icons)(中国大陆可能无法直接访问，建议挂代理) 来查看支持的图标。
+你可以查阅 [Material Symbols & Icons - Google Fonts](https://fonts.google.com/icons?icon.set=Material+Icons)(中国大陆可能无法直接访问，建议挂代理) 来查看支持的图标。
 
 | 参数 Param | 说明 Description |
 | ---------- | ---------------- |
@@ -195,7 +195,7 @@ ui.run()
 
 ## SVG
 
-您可通过 `ui.html()` 来添加 SVG 图片。
+你可通过 `ui.html()` 来添加 SVG 图片。
 
 ```python:line-numbers
 from nicegui import ui

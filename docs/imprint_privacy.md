@@ -60,11 +60,11 @@ Sales tax identification number according to §27a Sales Tax Act: DE286384205
 ### 隐私政策  
 
 ::: tip 英文官网翻译
-我们使用 Plausible Analytics 来了解您如何与我们的网站互动。Plausible Analytics 是一款以隐私为先的分析工具，不使用 Cookie，也不收集任何个人数据或可识别个人身份的信息（PII）。Plausible 收集的所有数据均为汇总且匿名的。  
+我们使用 Plausible Analytics 来了解你如何与我们的网站互动。Plausible Analytics 是一款以隐私为先的分析工具，不使用 Cookie，也不收集任何个人数据或可识别个人身份的信息（PII）。Plausible 收集的所有数据均为汇总且匿名的。  
 
 [NiceGUI 官网](https://nicegui.io/)未使用其他第三方分析或跟踪工具。  
 
-这些汇总的、非可识别的使用统计数据是基于我们的合法利益（《通用数据保护条例》第6条第1款第f项）进行处理，以分析和改进我们的网站。您有权随时反对此类处理。如需行使您的权利，请联系我们：`info@zauberzeug.com` 。  
+这些汇总的、非可识别的使用统计数据是基于我们的合法利益（《通用数据保护条例》第6条第1款第f项）进行处理，以分析和改进我们的网站。你有权随时反对此类处理。如需行使你的权利，请联系我们：`info@zauberzeug.com` 。  
 
 有关Plausible Analytics及其数据政策的更多详情，请访问 https://plausible.io/data-policy 。
 
@@ -89,7 +89,7 @@ NiceGUI 中文网 是由 [@于小丘](https://github.com/Yuerchu) 发起的 Nice
 
 我希望，我们可以用 NiceGUI 继续创造，使其不只是 NiceGUI，而是 NiceWorld ~
 
-我们建议您使用 [nicegui.cn](https://nicegui.cn) 访问 NiceGUI 中文网。虽然 [yxqi.cn](https://yxqi.cn) 也可以进入，但在不久的将来将会重启原来的博客项目。
+我们建议你使用 [nicegui.cn](https://nicegui.cn) 访问 NiceGUI 中文网。虽然 [yxqi.cn](https://yxqi.cn) 也可以进入，但在不久的将来将会重启原来的博客项目。
 
 NiceGUI 中文网感谢你们的支持（排名不分先后）：
 
