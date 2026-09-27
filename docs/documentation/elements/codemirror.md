@@ -165,6 +165,7 @@ SUPPORTED_LANGUAGES = Literal[
     'Z80',
 ]
 ```
+
 :::
 
 ::: details 支持的主题
@@ -266,6 +267,7 @@ SUPPORTED_THEMES = Literal[
     'xcodeLightStyle',
 ]
 ```
+
 :::
 
 | 参数 Param | 说明 Description |

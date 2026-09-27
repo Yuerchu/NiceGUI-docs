@@ -323,8 +323,8 @@ ui.run()
 
 渲染一个 Plotly 图表。有两种方式传递 Plotly 图形进行渲染，具体参见参数 `figure`：
 
-- 传递一个 `go.Figure` 对象，详见 https://plotly.com/python/
-- 传递一个包含 `data`、`layout`、`config（可选）`键的Python字典对象，详见 https://plotly.com/javascript/
+- 传递一个 `go.Figure` 对象，详见 <https://plotly.com/python/>
+- 传递一个包含 `data`、`layout`、`config（可选）`键的Python字典对象，详见 <https://plotly.com/javascript/>
 
 为获得最佳性能，建议使用声明式字典方法创建 Plotly 图表。
 
@@ -585,7 +585,7 @@ ui.run()
 | on_drag_start | 开始拖动 3D 对象时执行的回调函数 |
 | on_drag_end | 释放拖动 3D 对象时执行的回调函数 |
 | drag_constraints | 用于约束拖动对象位置的 JavaScript 表达式（如: 'x = 0, z = y / 2'） |
-| control_type | 场景的控制模式，可选 `"orbit"`、`"trackball"`、`"map"`（默认值: `"orbit"`） <Badge type="tip" text="^3.9.0" /> |
+| control_type | 场景的控制模式，可选 `"orbit"`、`"trackball"`、`"map"`（默认值: `"orbit"`）<Badge type="tip" text="^3.9.0" /> |
 | background_color | 场景背景颜色（默认值: `"#eee"`） |
 
 ```python:line-numbers
@@ -680,7 +680,7 @@ q_slider.on_value_change(lambda e: knot.update_topology(p_slider.value, e.value)
 ui.run()
 ```
 
-**JavaScript 模块**
+#### JavaScript 模块
 
 通过 `component=` 引用的 JavaScript 模块（即上面示例中的 `static/torus_knot.js`）需要默认导出一个类。NiceGUI 会为每个场景对象实例化一次该类，并调用以下两个入口之一来构建网格：
 
@@ -718,7 +718,7 @@ export default class TorusKnot {
 }
 ```
 
-**复合对象的材质**
+#### 复合对象的材质
 
 当 Python 调用 `material(...)` 时，NiceGUI 会将颜色、不透明度和渲染面应用到网格的材质上。由多个子网格构成的复合对象可以定义可选的 `apply_material` 钩子，来决定材质应用到哪些部分。该钩子接收单个选项对象；请只解构你需要的字段，这样未来的 NiceGUI 版本新增字段时就不会破坏你的组件。`nicegui-scene` 模块导出的 `apply_material` 函数实现了 NiceGUI 的材质语义（`color=None` 会启用顶点颜色，`side` 可为 "front"、"back" 或 "both"）。
 

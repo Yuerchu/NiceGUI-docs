@@ -26,7 +26,7 @@ ui.image('https://picsum.photos/id/377/640/360')
 ui.run()
 ```
 
-[查看更多]()
+[查看更多](https://nicegui.io/documentation/image)
 
 ## 字幕和叠加 Captions and Overlays
 
@@ -179,7 +179,7 @@ ui.run()
 | icon       | 图标名称或以"img:"为前缀的图片路径（如："map", "img:path/to/image.png"） |
 | color      | 背景颜色（可以是Quasar、Tailwind或CSS颜色值，或设为None，默认值: `"primary"`） |
 | text_color | 文字颜色（使用Quasar调色板中的颜色名称，如："primary", "teal-10"） |
-| size       | 组件尺寸（CSS单位，包含单位名称或标准尺寸名称`xs|sm|md|lg|xl`，如："16px", "2rem"） |
+| size       | 组件尺寸（CSS单位，包含单位名称或标准尺寸名称`xs\|sm\|md\|lg\|xl`，如："16px", "2rem"） |
 | font_size  | 内容（图标/文字）尺寸（CSS单位，需包含单位名称，如："18px", "2rem"） |
 | square     | 移除圆角使边框变为直角（默认值: `False`） |
 | rounded    | 为组件添加小标准圆角（默认值: `False`） |

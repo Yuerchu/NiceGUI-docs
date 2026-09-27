@@ -69,24 +69,25 @@ with ui.link(target='https://github.com/Yuerchu/NiceGUI-Docs'):
 ui.run()
 ```
 
+<!-- markdownlint-disable-next-line MD025 -- 「特性」是与页面主体并列的 API 参考部分，降级会让右侧目录丢掉属性/方法 -->
 # 特性
 
 ## 属性
 
 - **classes**: `Classes[Self]`
-    - 元素的 Classes 。
+  - 元素的 Classes 。
 - **client**: `Client`
-    - The client this element belongs to.
+  - The client this element belongs to.
 - **html_id**: `str` <Badge type="tip" text="^2.16.0" />
-    - 在 HTML DOM 中的元素 ID。
+  - 在 HTML DOM 中的元素 ID。
 - **is_deleted**: `bool`
-    - 元素是否被删除。
+  - 元素是否被删除。
 - **is_ignoring_events**: `bool`
-    - 返回元素当前是否忽略事件。
+  - 返回元素当前是否忽略事件。
 - **props**: `Props[self]`
-    - 元素的 Props 。
+  - 元素的 Props 。
 - **style**: `Style[self]`
-    - 元素的 Style 。
+  - 元素的 Style 。
 - **text**: `BindableProperty`
 - **visiable**: `BindableProperty`
 

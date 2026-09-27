@@ -11,6 +11,7 @@ next:
 # 绑定属性
 
 ## 绑定
+
 NiceGUI 能够直接将 UI 元素与模型绑定。这种绑定适用于 UI 元素的属性，如文本 `text`、值 `value` 或可见性 `visiable` ，也适用于作为（嵌套）类属性的模型属性。每个元素都提供了诸如 `bind_value` 和 `bind_visibility` 等方法，用于与相应属性建立双向绑定。若要定义单向绑定，可使用这些方法的 `_from` 和 `_to` 变体。只需将模型的某个属性作为参数传递给这些方法即可创建绑定。绑定后，数值会立即更新，并在任一属性发生变化时同步更新。
 
 ```python{9-12}:line-numbers
@@ -106,7 +107,7 @@ ui.run()
 
 ## 绑定到存储
 
-我们还可以把东西绑定到 [app.storage]() 上。我们在此存储了文本区域在多次访问之间的值。该笔记还会在同一用户的所有标签页之间共享。
+我们还可以把东西绑定到 [app.storage](/documentation/section_action_events#持久化-storage) 上。我们在此存储了文本区域在多次访问之间的值。该笔记还会在同一用户的所有标签页之间共享。
 
 ```python:line-numbers
 from nicegui import app, ui

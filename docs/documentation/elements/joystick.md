@@ -11,6 +11,7 @@
 | options    | 应传递给 [`nipple.js`](https://github.com/yoannmoinet/nipplejs#options) 库的参数，例如 `color` |
 
 ::: details 可传入 `nipple.js` 的参数
+
 ```typescript
 var options = {
     zone: Element,                  // active zone
@@ -34,6 +35,7 @@ var options = {
     follow: Boolean,                // Makes the joystick follow the thumbstick
 };
 ```
+
 :::
 
 ```python:line-numbers
