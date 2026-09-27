@@ -2,7 +2,7 @@
 
 此元素基于 Quasar 的 [QDate](https://quasar.dev/vue-components/date) 组件。日期是以 `mask` 参数定义的格式字符串。
 
-您还可以使用 `range` 或 `multiple` 属性来选择日期范围或多个日期。
+你还可以使用 `range` 或 `multiple` 属性来选择日期范围或多个日期。
 
 | 参数 Param | 说明 Description |
 | ---------- | ---------------- |
@@ -41,7 +41,7 @@ ui.run()
 
 ## 日期范围输入
 
-您可以使用 "range" 属性选择日期范围。`value` 将是一个包含 "from" 和 "to" 键的字典。以下演示展示了如何将日期范围选择器绑定到输入框，使用 `forward` 和 `backward` 函数在日期选择器的字典和输入字符串之间进行转换。
+你可以使用 "range" 属性选择日期范围。`value` 将是一个包含 "from" 和 "to" 键的字典。以下演示展示了如何将日期范围选择器绑定到输入框，使用 `forward` 和 `backward` 函数在日期选择器的字典和输入字符串之间进行转换。
 
 ```python:line-numbers
 from nicegui import ui

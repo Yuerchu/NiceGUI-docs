@@ -8,7 +8,7 @@ hero:
       link: '/version/v3'
   name: "NiceGUI"
   text: 高性能 Python WebUI 框架
-  tagline: 让任意浏览器即刻成为您 Python 代码的前端交互界面。
+  tagline: 让任意浏览器即刻成为你 Python 代码的前端交互界面。
   image:
     src: /static/favicon/android-chrome-384x384.png
     alt: NiceGUI
@@ -48,13 +48,13 @@ features:
 
 # 首页
 
-NiceGUI 是一个基于 Python + FastAPI 的高性能 WebUI 框架。 您可以创建按钮，对话框，富文本，3D 图形，图表以及其他形形色色的组件。
+NiceGUI 是一个基于 Python + FastAPI 的高性能 WebUI 框架。 你可以创建按钮，对话框，富文本，3D 图形，图表以及其他形形色色的组件。
 
 它易于创建一些小型网站，仪表盘，机器人项目，智能家居，以及我们想不到的事情。
 
 ## 通过按钮、对话框、3D场景及可视化图表等丰富组件 —— 实现与Python代码的实时双向交互操作。
 
-NiceGUI 为您封装底层 Web 开发细节，助您专注核心业务逻辑的 Python 实现，完美适配：
+NiceGUI 为你封装底层 Web 开发细节，助你专注核心业务逻辑的 Python 实现，完美适配：
 
 - 机器人控制系统开发
 - 物联网(IoT)设备管理平台
@@ -64,7 +64,7 @@ NiceGUI 为您封装底层 Web 开发细节，助您专注核心业务逻辑的 
 
 NiceGUI 提供平滑的学习曲线 —— 新手可快速实现基础功能原型，资深开发者则能通过高阶 API 进行深度定制。这种双模开发范式实现：简单需求开箱即用，复杂场景灵活扩展。
 
-您可以通过 [PyPI 包](https://pypi.org/project/nicegui/), [Docker 镜像](https://hub.docker.com/r/zauberzeug/nicegui) 和 [Github](https://github.com/zauberzeug/nicegui) 获取 NiceGUI。
+你可以通过 [PyPI 包](https://pypi.org/project/nicegui/), [Docker 镜像](https://hub.docker.com/r/zauberzeug/nicegui) 和 [Github](https://github.com/zauberzeug/nicegui) 获取 NiceGUI。
 
 # 为什么创造 NiceGUI？
 

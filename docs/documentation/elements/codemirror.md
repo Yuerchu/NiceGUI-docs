@@ -8,7 +8,7 @@
 
 支持的语言列表可查看 [@codemirror/language-data](https://github.com/codemirror/language-data/blob/main/src/language-data.ts) 包。
 
-译者也推荐您参阅 `nicegui/elements/codemirror.py` 的 `SUPPORTED_LANGUAGES` 容器：
+译者也推荐你参阅 `nicegui/elements/codemirror.py` 的 `SUPPORTED_LANGUAGES` 容器：
 
 ```python:line-numbers
 SUPPORTED_LANGUAGES = Literal[
@@ -163,7 +163,7 @@ SUPPORTED_LANGUAGES = Literal[
 
 主题列表可查看 [@uiw/codemirror-themes-all](https://github.com/uiwjs/react-codemirror/tree/master/themes/all) 包。
 
-同样的，译者也推荐您参阅 `nicegui/elements/codemirror.py` 的 `SUPPORTED_THEMES` 容器：
+同样的，译者也推荐你参阅 `nicegui/elements/codemirror.py` 的 `SUPPORTED_THEMES` 容器：
 
 ```python:line-numbers
 SUPPORTED_THEMES = Literal[
@@ -273,7 +273,7 @@ SUPPORTED_THEMES = Literal[
 ```python:line-numbers
 from nicegui import ui
 
-editor = ui.codemirror('print("开始您的编辑")', language='Python').classes('h-32')
+editor = ui.codemirror('print("开始你的编辑")', language='Python').classes('h-32')
 ui.select(editor.supported_languages, label='Language', clearable=True) \
     .classes('w-32').bind_value(editor, 'language')
 ui.select(editor.supported_themes, label='Theme') \

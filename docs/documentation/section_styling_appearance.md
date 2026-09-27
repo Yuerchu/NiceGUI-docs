@@ -16,7 +16,7 @@ NiceGUI 基于 [Quasar 框架](https://quasar.dev/)构建，并且完美地继�
 
 - **`props`**: 该方法中的内容会传递给 [Quasar 组件](https://justpy.io/quasar_tutorial/introduction/#props-of-quasar-components)，具体请参考 [Quasar 文档](https://quasar.dev/vue-components/button#design)。
 - **`classes`**: 该方法中的内容将会被传递给 [Tailwind CSS](https://v3.tailwindcss.com/)，以实现响应式的不同的布局。
-- **`style`**: 该方法可以让您直接使用 CSS。但您需注意，**此时分隔符为分号而非空格**。
+- **`style`**: 该方法可以让你直接使用 CSS。但你需注意，**此时分隔符为分号而非空格**。
 
 这三类方法均支持 `remove` 和 `replace` 参数，以便在特定场景下覆盖预定义的样式效果。
 
@@ -34,11 +34,11 @@ ui.run()
 
 [Tailwind CSS](https://v3.tailwindcss.com/) 是一个用于快速构建自定义用户界面的 CSS 框架。NiceGUI 提供了一个流畅且支持自动补全的接口，用于向 UI 元素添加 Tailwind 类。
 
-您可以通过浏览 tailwind 属性的方法来发现可用的类。构建器模式允许您将多个类链接在一起（如“标签 A”所示）。您还可以通过传递类列表来调用 tailwind 属性（如“标签 B”所示）。
+你可以通过浏览 tailwind 属性的方法来发现可用的类。构建器模式允许你将多个类链接在一起（如“标签 A”所示）。你还可以通过传递类列表来调用 tailwind 属性（如“标签 B”所示）。
 
 尽管这与使用 classes 方法非常相似，但由于自动补全功能，它在处理 Tailwind 类时更为便捷。
 
-最后同样重要的是，您还可以预定义样式并将其应用于多个元素（标签 C 和 D）。
+最后同样重要的是，你还可以预定义样式并将其应用于多个元素（标签 C 和 D）。
 
 请注意，有时 Tailwind 会被 Quasar 样式覆盖，例如在使用 `ui.button('Button').tailwind('bg-red-500')` 时。这是一个已知的限制，不完全在我们的控制范围内。但我们尝试提供解决方案，比如颜色参数：`ui.button('Button', color='red-500')`。
 
@@ -61,7 +61,7 @@ ui.run()
 NiceGUI 定义了以下 CSS 层级（按优先级递增排列）：
 "theme"、"base"、"quasar"、"nicegui"、"components"、"utilities"、"overrides" 和 "quasar_importants"。
 
-对于基础样式，您无需将自定义 CSS 放入层级中。但是，要覆盖 Quasar 的 `!important` 规则，您应该在适当的层级中定义 CSS：对于组件特定的样式使用 "components"，对于工具类使用 "utilities"，具体取决于自定义样式的用途。请注意，您需要在自定义样式中使用 `!important`，因为 Quasar 的大部分 CSS 都定义了 `!important`，否则它们会优先生效。
+对于基础样式，你无需将自定义 CSS 放入层级中。但是，要覆盖 Quasar 的 `!important` 规则，你应该在适当的层级中定义 CSS：对于组件特定的样式使用 "components"，对于工具类使用 "utilities"，具体取决于自定义样式的用途。请注意，你需要在自定义样式中使用 `!important`，因为 Quasar 的大部分 CSS 都定义了 `!important`，否则它们会优先生效。
 
 在下面的示例中，我们使用 "utilities" 层级覆盖按钮的背景颜色。
 
@@ -82,7 +82,7 @@ ui.run()
 
 ## Tailwind CSS 布局
 
-Tailwind CSS 的 `@layer` 指令允许您定义可在 HTML 中使用的自定义类。NiceGUI 通过支持将自定义类添加到组件层来实现这一功能。这样，你可以定义自己的类并在UI元素中使用它们。在下面的示例中，我们定义了一个名为 `blue-box` 的自定义类，并将其应用于两个标签。
+Tailwind CSS 的 `@layer` 指令允许你定义可在 HTML 中使用的自定义类。NiceGUI 通过支持将自定义类添加到组件层来实现这一功能。这样，你可以定义自己的类并在UI元素中使用它们。在下面的示例中，我们定义了一个名为 `blue-box` 的自定义类，并将其应用于两个标签。
 
 ::: warning 注意
 style 标签的类型是 `text/tailwindcss` 而非 `text/css` 。
@@ -110,7 +110,7 @@ ui.run()
 
 ## UnoCSS 引擎 <Badge type="tip" text="^3.7.0" />
 
-作为 [Tailwind CSS Play CDN 引擎](https://v3.tailwindcss.com/docs/installation/play-cdn) 的替代方案，您也可以使用 [UnoCSS 引擎](https://unocss.dev/) 来使 Tailwind CSS 类生效。
+作为 [Tailwind CSS Play CDN 引擎](https://v3.tailwindcss.com/docs/installation/play-cdn) 的替代方案，你也可以使用 [UnoCSS 引擎](https://unocss.dev/) 来使 Tailwind CSS 类生效。
 
 通过 `ui.run(unocss=...)` 传入以下预设之一：
 
@@ -222,7 +222,7 @@ ui.run()
 
 ## CSS 变量
 
-您可以通过设置CSS变量来自定义NiceGUI的外观。目前，以下变量及其默认值可供使用：
+你可以通过设置CSS变量来自定义NiceGUI的外观。目前，以下变量及其默认值可供使用：
 
 - `--nicegui-default-padding: 1rem`
 - `--nicegui-default-gap: 1rem`
@@ -245,7 +245,7 @@ ui.run()
 
 ## 覆写 Tailwind 的默认样式
 
-Tailwind 会重置 HTML 元素的默认样式，例如本例中 `h2` 元素的字体大小。您可以通过添加 type 为 `text/tailwindcss` 的 style 标签来覆盖这些默认值。若未指定此类型，样式会过早被解析，从而被 Tailwind 覆盖。
+Tailwind 会重置 HTML 元素的默认样式，例如本例中 `h2` 元素的字体大小。你可以通过添加 type 为 `text/tailwindcss` 的 style 标签来覆盖这些默认值。若未指定此类型，样式会过早被解析，从而被 Tailwind 覆盖。
 
 ```python:line-numbers
 from nicegui import ui

@@ -15,7 +15,7 @@
 - [CatDesign](https://github.com/ofenbach/CatDesign)：一套全面的设计系统，提供一系列预设样式的组件和功能，可直接使用
 - [OpenLLM](https://github.com/alikalik9/openllm)：与各种 LLM 模型进行对话
 - [NiceGUI WebSerial](https://github.com/zauberzeug/nicegui/discussions/334)：使用 JavaScript 的 WebSerial API，通过运行在服务器上的 Python 代码在客户端控制 NeoPixel LED。- [使用 NiceGUI 的 FIEF Web 应用演示](https://github.com/ClaudioBsh/publicdemos/releases)：使用 Traefik、FastAPI、FIEF、PostgreSQL、Redis、HTML、NiceGUI、Bash 脚本、Docker-Compose
-- [NiceGUI CRUD 组件](https://pypi.org/project/niceguicrud/)：为您的 Python 对象列表提供用户界面，支持创建、更新和删除项目，可从 Pydantic 的 BaseModel 设置自动配置
+- [NiceGUI CRUD 组件](https://pypi.org/project/niceguicrud/)：为你的 Python 对象列表提供用户界面，支持创建、更新和删除项目，可从 Pydantic 的 BaseModel 设置自动配置
 - [NiceDeck](https://github.com/falkoschindler/nicedeck)：使用 NiceGUI 在 Python 中创建幻灯片
 - [NiceGUI 模板](https://github.com/frycodelab/nicegui-component-based)：让初学者或高级开发人员能够轻松启动模块化项目结构。
 
@@ -47,7 +47,7 @@
 - [Beaver Habits Tracker](https://github.com/daya0576/beaverhabits)：一款无需设定目标的自托管习惯追踪应用。
 - [Sonos Moments](https://github.com/falkoschindler/sonos_moments)：一个用于控制 Sonos 音箱的简单网络应用程序。
 - [Night Watcher](https://github.com/daya0576/nightwatcher)：一个带有自定义检测功能的简单 IP 摄像头查看器。
-- [Reemote](https://reemote.org)：Reemote 是一个用于任务自动化、配置管理和应用程序部署的 Python API。您可以使用 Reemote 的图形用户界面在多台服务器上安装和配置软件。
+- [Reemote](https://reemote.org)：Reemote 是一个用于任务自动化、配置管理和应用程序部署的 Python API。你可以使用 Reemote 的图形用户界面在多台服务器上安装和配置软件。
 
 ## 教程
 
@@ -59,8 +59,8 @@
 ### 维基
 
 - [边输入边搜索](https://github.com/zauberzeug/nicegui/wiki/Search-as-You-Type) - 逐步构建鸡尾酒配方示例
-- [在 fly.io 上部署](https://github.com/zauberzeug/nicegui/wiki/fly.io-Deployment) - 将您的网络应用程序部署到 fly.io 托管的公共服务器上
-- [在 Google Cloud Run 上部署](https://github.com/zauberzeug/nicegui/wiki/Cloud-Run-Deployment) - 将您的网络应用程序部署到由 Google 托管的服务器上
+- [在 fly.io 上部署](https://github.com/zauberzeug/nicegui/wiki/fly.io-Deployment) - 将你的网络应用程序部署到 fly.io 托管的公共服务器上
+- [在 Google Cloud Run 上部署](https://github.com/zauberzeug/nicegui/wiki/Cloud-Run-Deployment) - 将你的网络应用程序部署到由 Google 托管的服务器上
 - [ROS2 turtlesim 操纵杆](https://github.com/zauberzeug/nicegui/wiki/ROS2-turtlesim-joystick) - ROS2 如何与 NiceGUI 结合使用以完成 turtlesim 教程
 - [ROS2 图像接收器](https://github.com/zauberzeug/nicegui/wiki/ROS2-image-display) - 基于 ROS2 图像显示示例,介绍 ROS2 如何与 NiceGUI 结合使用
 - [NiceGUI 简体中文文档（本站）](#) - NiceGUI 的非官方中文文档
@@ -76,4 +76,4 @@
 这很不幸，因为这常常导致它们胡乱猜测而不是承认自己的无知。
 我们只需使用[这个提示文本](https://github.com/zauberzeug/nicegui/wiki/Chat-GPT-4-Prompt)，将其复制粘贴到 ChatGPT 对话的开头即可。
 这将为 ChatGPT 提供 NiceGUI 的基本概念。
-如果您真的希望 LLM 理解 NiceGUI，我们提供了完整的 JSON 格式文档，网址为 https://nicegui.io/static/sitewide_index.json。您还可以使用一段[简短文本](https://github.com/zauberzeug/nicegui/wiki/ChatGPT-Custom-Instructions)作为您的[自定义指令](https://openai.com/blog/custom-instructions-for-chatgpt)的一部分。
+如果你真的希望 LLM 理解 NiceGUI，我们提供了完整的 JSON 格式文档，网址为 https://nicegui.io/static/sitewide_index.json。你还可以使用一段[简短文本](https://github.com/zauberzeug/nicegui/wiki/ChatGPT-Custom-Instructions)作为你的[自定义指令](https://openai.com/blog/custom-instructions-for-chatgpt)的一部分。

@@ -38,7 +38,7 @@ ui.run()
 
 ### 带代码块的Markdown
 
-您可以用代码块来展示代码片段。如果在开头的三个反引号后指定语言，代码将会进行语法高亮。请参阅 [Pygments网站](https://pygments.org/languages/) 以获取支持的语言列表。
+你可以用代码块来展示代码片段。如果在开头的三个反引号后指定语言，代码将会进行语法高亮。请参阅 [Pygments网站](https://pygments.org/languages/) 以获取支持的语言列表。
 
 ```python:line-numbers
 from nicegui import ui
@@ -58,7 +58,7 @@ ui.run()
 
 ### Markdown 表格
 
-在激活 "tables" 扩展后，您可以使用 Markdown 表格。请参考 [Markdown2 文档](https://github.com/trentm/python-markdown2/wiki/Extras#implemented-extras) 来查阅所有受支持的扩展。
+在激活 "tables" 扩展后，你可以使用 Markdown 表格。请参考 [Markdown2 文档](https://github.com/trentm/python-markdown2/wiki/Extras#implemented-extras) 来查阅所有受支持的扩展。
 
 ```python:line-numbers
 from nicegui import ui
@@ -80,7 +80,7 @@ ui.run()
 
 ### Mermaid 图表
 
-通过 "mermaid" 扩展，您可以使用 Mermaid 图表。请参阅 [Markdown2 文档](https://github.com/trentm/python-markdown2/wiki/Extras#implemented-extras) 来查阅所有受支持的扩展。
+通过 "mermaid" 扩展，你可以使用 Mermaid 图表。请参阅 [Markdown2 文档](https://github.com/trentm/python-markdown2/wiki/Extras#implemented-extras) 来查阅所有受支持的扩展。
 
 ```python:line-numbers
 from nicegui import ui
@@ -100,7 +100,7 @@ ui.run()
 
 ### LaTeX 公式
 
-激活 "latex" 扩展后，您便可以使用 LaTeX 公式。这需要安装 markdown2 (版本 >=2.5) 以及 `latex2mathml`。
+激活 "latex" 扩展后，你便可以使用 LaTeX 公式。这需要安装 markdown2 (版本 >=2.5) 以及 `latex2mathml`。
 
 ```python:line-numbers
 from nicegui import ui
@@ -116,7 +116,7 @@ ui.run()
 
 ### 更改 Markdown 内容
 
-您可以通过设置其 `content` 属性或调用 `set_content` 方法来更改 Markdown 元素的内容。
+你可以通过设置其 `content` 属性或调用 `set_content` 方法来更改 Markdown 元素的内容。
 
 ```python:line-numbers
 from nicegui import ui
@@ -129,7 +129,7 @@ ui.run()
 
 ### 为 Markdown 内的元素添加样式
 
-要为 `ui.markdown` 元素内的 HTML 元素设置样式，您可以为 "nicegui-markdown" 类添加自定义 CSS 规则。
+要为 `ui.markdown` 元素内的 HTML 元素设置样式，你可以为 "nicegui-markdown" 类添加自定义 CSS 规则。
 
 ```python:line-numbers
 from nicegui import ui

@@ -314,7 +314,7 @@ ui.run()
 
 ## AnyWidget <Badge type="tip" text="^3.5.0" /> <Badge type="info" text="扩展包" />
 
-[anywidget](https://anywidget.dev/en/getting-started/) 是一个允许您以跨前端兼容的方式嵌入任意 JavaScript 小部件的库。
+[anywidget](https://anywidget.dev/en/getting-started/) 是一个允许你以跨前端兼容的方式嵌入任意 JavaScript 小部件的库。
 
 在 [anywidget gallery](https://try.anywidget.dev/) 中有许多公开可用的 anywidget 小部件示例，包括 [altair.JupyterChart](https://altair-viz.github.io/user_guide/interactions/jupyter_chart.html) 和 [quak](https://github.com/manzt/quak)。
 
@@ -374,7 +374,7 @@ ui.run()
 
 ### 使用 AnyWidget 集成 Altair 图表
 
-您可以使用 `ui.anywidget` 将现有的 AnyWidget 小部件集成到 NiceGUI 中。此演示展示了如何集成 Altair 图表。
+你可以使用 `ui.anywidget` 将现有的 AnyWidget 小部件集成到 NiceGUI 中。此演示展示了如何集成 Altair 图表。
 
 ```python:line-numbers
 import altair as alt
@@ -500,7 +500,7 @@ ui.run()
 
 ### 切换控制模式 Changing Controls
 
-您可以通过 `control_type` 参数来更改场景的控制模式。*3.9.0 版本新增。*
+你可以通过 `control_type` 参数来更改场景的控制模式。*3.9.0 版本新增。*
 
 可用的控制类型有：
 

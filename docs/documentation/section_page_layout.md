@@ -16,7 +16,7 @@ next:
 
 在演示中，标签"Card content"被添加到卡片内。由于 `ui.button` 同样被添加到卡片中，因此标签"Click!"也会在这个上下文中创建。一秒后添加一次的标签"Tick!"同样会被加入卡片。
 
-这种设计使得创建模块化组件变得简单，即使这些组件在UI中被移动位置也能继续正常工作。例如，您可以将标签和按钮移动到其他位置，甚至用另一个容器包裹它们，代码依然能够正常运行。
+这种设计使得创建模块化组件变得简单，即使这些组件在UI中被移动位置也能继续正常工作。例如，你可以将标签和按钮移动到其他位置，甚至用另一个容器包裹它们，代码依然能够正常运行。
 
 ```python:line-numbers
 from nicegui import ui
@@ -526,7 +526,7 @@ ui.run()
 
 此元素基于 Quasar 的 [QTooltip](https://quasar.dev/vue-components/tooltip) 组件。它可以作为一个方法被放置在其他元素上。
 
-除了传递字符串作为第一个参数外，您还可以在工具提示内嵌套其他元素。
+除了传递字符串作为第一个参数外，你还可以在工具提示内嵌套其他元素。
 
 | 参数 Param | 说明 Description |
 | ---------- | ---------------- |
@@ -555,7 +555,7 @@ ui.run()
 | multi_line | 启用多行通知显示 |
 
 ::: tip 提示
-您好可以添加额外的参数。敬请参考 [Quasar 的通知 API](https://quasar.dev/quasar-plugins/notify#notify-api)
+你还可以添加额外的参数。请参考 [Quasar 的通知 API](https://quasar.dev/quasar-plugins/notify#notify-api)
 :::
 
 ```python:line-numbers
@@ -585,7 +585,7 @@ ui.run()
 | options    | 包含所有选项的可选字典(会覆盖其他参数) |
 
 ::: tip 提示
-您好可以添加额外的参数。敬请参考 [Quasar 的通知 API](https://quasar.dev/quasar-plugins/notify#notify-api)
+你还可以添加额外的参数。请参考 [Quasar 的通知 API](https://quasar.dev/quasar-plugins/notify#notify-api)
 :::
 
 ```python:line-numbers
@@ -613,7 +613,7 @@ ui.run()
 此元素基于 Quasar 的 [QDialog](https://quasar.dev/vue-components/dialog) 组件。默认情况下，点击或按ESC键可关闭。若需使其保持持久显示，需在对话框元素上设置 `.props(‘persistent’)` 属性。
 
 ::: warning 注意
-对话框是一个元素。这意味着它在关闭时不会被移除，而只是被隐藏。您应该仅创建一次然后重复使用它，或者在关闭后使用 `.clear()` 方法将其移除。
+对话框是一个元素。这意味着它在关闭时不会被移除，而只是被隐藏。你应该仅创建一次然后重复使用它，或者在关闭后使用 `.clear()` 方法将其移除。
 :::
 
 | 参数 Param | 说明 Description |

@@ -8,7 +8,7 @@
 
 若 `new_value_mode` 不为 `None`，则隐含 `with_input=True`，用户可在输入框中输入新值。详情参见 [Quasar 文档](https://quasar.dev/vue-components/select#the-new-value-mode-prop)。注意，当以编程方式设置 `value` 属性时，此模式无效。
 
-可通过 validation 参数定义验证规则字典，当输入内容与验证过程不一致则触发验证失败。例如我们需要保证内容长度小于3，则可以用 `{'内容过长！': lambda value: len(value) < 3}` 进行验证。如果有多个验证规则则将首个验证失败的规则键作为错误信息显示。您也可传递返回可选错误信息的可调用对象。若要禁用每次值变更时的自动验证，可使用 `without_auto_validation` 方法。
+可通过 validation 参数定义验证规则字典，当输入内容与验证过程不一致则触发验证失败。例如我们需要保证内容长度小于3，则可以用 `{'内容过长！': lambda value: len(value) < 3}` 进行验证。如果有多个验证规则则将首个验证失败的规则键作为错误信息显示。你也可传递返回可选错误信息的可调用对象。若要禁用每次值变更时的自动验证，可使用 `without_auto_validation` 方法。
 
 | 参数 Param | 说明 Description |
 | ---------- | ---------------- |
@@ -34,7 +34,7 @@ ui.run()
 
 ## 输入搜索
 
-您可以激活 `with_input` 来获得一个带自动完成的文本输入框。选项会在您输入时被过滤。
+你可以激活 `with_input` 来获得一个带自动完成的文本输入框。选项会在你输入时被过滤。
 
 ```python:line-numbers
 from nicegui import ui
@@ -56,7 +56,7 @@ ui.run()
 
 ## 多选
 
-您可以激活 `multiple` 以允许选择多个项目。
+你可以激活 `multiple` 以允许选择多个项目。
 
 ```python:line-numbers
 from nicegui import ui
@@ -72,7 +72,7 @@ ui.run()
 
 ## 更新选项
 
-可以通过 `options` 属性更改选项。但随后您还需要调用 `update()` 以使更改生效。`set_options` 是一个快捷方法，它同时执行这两个操作，对于 lambda 表达式非常有用。
+可以通过 `options` 属性更改选项。但随后你还需要调用 `update()` 以使更改生效。`set_options` 是一个快捷方法，它同时执行这两个操作，对于 lambda 表达式非常有用。
 
 ```python:line-numbers
 from nicegui import ui

@@ -19,14 +19,14 @@ color 参数接受 Quasar 颜色、Tailwind 颜色或 CSS 颜色。 如果使用
 ```python:line-numbers
 from nicegui import ui
 
-ui.button('点我', on_click=lambda: ui.notify('您点了我'))
+ui.button('点我', on_click=lambda: ui.notify('你点了我'))
 
 ui.run()
 ```
 
 ### 图标
 
-您也可以给按钮添加一个图标。
+你也可以给按钮添加一个图标。
 
 ```python:line-numbers
 from nicegui import ui
@@ -92,7 +92,7 @@ ui.run()
 
 ### 自定义切换按钮
 
-与所有其他元素一样，您可以实现带有专门逻辑的自定义子类。例如这个带有内部布尔状态的红/绿切换按钮。
+与所有其他元素一样，你可以实现带有专门逻辑的自定义子类。例如这个带有内部布尔状态的红/绿切换按钮。
 
 ```python:line-numbers
 from nicegui import ui
@@ -135,4 +135,4 @@ ui.run()
 
 ### 可展开的浮动操作按钮
 
-要创建一个带有多个操作项的浮动操作按钮 (FAB)，并且这些操作项在点击 FAB 时显示出来，您可以使用 `ui.fab` 和 `ui.fab_action` 元素，它们基于 Quasar 的 [QFab 组件](https://quasar.dev/vue-components/fab)。
+要创建一个带有多个操作项的浮动操作按钮 (FAB)，并且这些操作项在点击 FAB 时显示出来，你可以使用 `ui.fab` 和 `ui.fab_action` 元素，它们基于 Quasar 的 [QFab 组件](https://quasar.dev/vue-components/fab)。

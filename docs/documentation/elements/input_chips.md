@@ -4,7 +4,7 @@
 
 该组件基于 Quasar 的 [QSelect](https://quasar.dev/vue-components/select) 组件。与传统下拉选择不同，此变体专注于支持自由文本输入的芯片功能，非常适合用于标签、关键词或任何用户自定义值的列表。
 
-您可通过 `validation` 参数定义验证规则字典，例如 `{'过长！': lambda value: len(value) < 3}`。首个验证失败的规则键名将作为错误信息显示。您也可以传递一个返回可选错误信息的可调用对象。若要禁用每次值变更时的自动验证，可使用 `without_auto_validation` 方法。
+你可通过 `validation` 参数定义验证规则字典，例如 `{'过长！': lambda value: len(value) < 3}`。首个验证失败的规则键名将作为错误信息显示。你也可以传递一个返回可选错误信息的可调用对象。若要禁用每次值变更时的自动验证，可使用 `without_auto_validation` 方法。
 
 | 参数 Param | 说明 Description |
 | ---------- | ---------------- |

@@ -2,11 +2,11 @@
 
 此元素基于 Quasar 的 [QInput](https://quasar.dev/vue-components/input) 组件。
 
-每次按键都会响应 `on_change` 事件，并让相应的值更新。如果您希望等待到用户确认输入，那么您可以注册一个自定义事件回调，比如 `ui.input(...).on('keydown.enter', ...)` 或 `ui.input(...).on('blur', ...)`。
+每次按键都会响应 `on_change` 事件，并让相应的值更新。如果你希望等待到用户确认输入，那么你可以注册一个自定义事件回调，比如 `ui.input(...).on('keydown.enter', ...)` 或 `ui.input(...).on('blur', ...)`。
 
-可通过 validation 参数定义验证规则字典，当输入内容与验证过程不一致则触发验证失败。例如我们需要保证内容长度小于3，则可以用 `{'内容过长！': lambda value: len(value) < 3}` 进行验证。如果有多个验证规则则将首个验证失败的规则键作为错误信息显示。您也可传递返回可选错误信息的可调用对象。若要禁用每次值变更时的自动验证，可使用 `without_auto_validation` 方法。
+可通过 validation 参数定义验证规则字典，当输入内容与验证过程不一致则触发验证失败。例如我们需要保证内容长度小于3，则可以用 `{'内容过长！': lambda value: len(value) < 3}` 进行验证。如果有多个验证规则则将首个验证失败的规则键作为错误信息显示。你也可传递返回可选错误信息的可调用对象。若要禁用每次值变更时的自动验证，可使用 `without_auto_validation` 方法。
 
-关于输入框样式的说明：Quasar 的 `QInput` 组件是对原生 `<input>` 元素的封装。这意味着您无法直接对输入框进行样式设置，但可以通过 `input-class` 和 `input-style` 属性来为原生 input 元素添加样式。更多详情请参阅 [`QInput`](https://quasar.dev/vue-components/input) 文档中的 Style 属性部分。
+关于输入框样式的说明：Quasar 的 `QInput` 组件是对原生 `<input>` 元素的封装。这意味着你无法直接对输入框进行样式设置，但可以通过 `input-class` 和 `input-style` 属性来为原生 input 元素添加样式。更多详情请参阅 [`QInput`](https://quasar.dev/vue-components/input) 文档中的 Style 属性部分。
 
 | 参数 Param | 说明 Description |
 | ---------- | ---------------- |
@@ -23,7 +23,7 @@
 from nicegui import ui
 
 ui.input(label='Text', placeholder='开始输入',
-         on_change=lambda e: result.set_text('您输入了: ' + e.value),
+         on_change=lambda e: result.set_text('你输入了: ' + e.value),
          validation={'太长了!': lambda value: len(value) < 20})
 result = ui.label()
 
@@ -32,7 +32,7 @@ ui.run()
 
 ## 自动完成
 
-`autocomplete` 功能可在您输入时提供建议，使输入更轻松、更快捷。参数 `options` 是一个字符串列表，包含将显示的可用选项。
+`autocomplete` 功能可在你输入时提供建议，使输入更轻松、更快捷。参数 `options` 是一个字符串列表，包含将显示的可用选项。
 
 ```python:line-numbers
 from nicegui import ui
@@ -75,14 +75,14 @@ ui.run()
 
 ## 输入验证
 
-您可以通过两种方式验证输入：
+你可以通过两种方式验证输入：
 
 - 传递一个返回错误信息或 `None` 的可调用对象，或者
 - 传递一个字典，将错误信息映射到返回 `True`（表示输入有效）的可调用对象。
 
 可调用验证函数也可以是异步协程。在这种情况下，验证将在后台异步执行。<Badge type="tip" text="^2.7.0" />
 
-您可以使用 input 元素的 `validate` 方法手动触发验证。如果输入有效，它返回 `True`，否则返回错误信息。对于异步验证函数，必须通过设置 `return_result=False` 显式禁用返回值。
+你可以使用 input 元素的 `validate` 方法手动触发验证。如果输入有效，它返回 `True`，否则返回错误信息。对于异步验证函数，必须通过设置 `return_result=False` 显式禁用返回值。
 
 ```python:line-numbers
 from nicegui import ui
@@ -95,12 +95,12 @@ ui.run()
 
 ## 前缀与后缀
 
-您可以为 NiceGUI 的输入框添加一些前后缀。具体可参考 [前缀与后缀 - Quasar](https://quasar.dev/vue-components/input#prefix-and-suffix)
+你可以为 NiceGUI 的输入框添加一些前后缀。具体可参考 [前缀与后缀 - Quasar](https://quasar.dev/vue-components/input#prefix-and-suffix)
 
 - **前缀**: 使用 `prefix`
 - **后缀**: 使用 `suffix`
 
-比如您有一个网站，需要用户填写邮箱，但限定了只能用 QQ 邮箱。那么此时您可以使用 `.props('suffix="@qq.com"')` 即可。
+比如你有一个网站，需要用户填写邮箱，但限定了只能用 QQ 邮箱。那么此时你可以使用 `.props('suffix="@qq.com"')` 即可。
 
 ```python:line-numbers
 from nicegui import ui

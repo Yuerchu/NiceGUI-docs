@@ -22,7 +22,7 @@ ui.run()
 
 ## 自定义标签
 
-您可以通过单独设置或整体设置来自定义范围及其标签的颜色。
+你可以通过单独设置或整体设置来自定义范围及其标签的颜色。
 
 ```python:line-numbers
 from nicegui import ui

@@ -2,7 +2,7 @@
 
 此元素基于 Quasar 的 [QInput](https://quasar.dev/vue-components/input) 组件。
 
-可通过 validation 参数定义验证规则字典，当输入内容与验证过程不一致则触发验证失败。例如我们需要保证内容长度小于3，则可以用 `{'太小啦！': lambda value: value > 3}` 进行验证。如果有多个验证规则则将首个验证失败的规则键作为错误信息显示。您也可传递返回可选错误信息的可调用对象。若要禁用每次值变更时的自动验证，可使用 `without_auto_validation` 方法。
+可通过 validation 参数定义验证规则字典，当输入内容与验证过程不一致则触发验证失败。例如我们需要保证内容长度小于3，则可以用 `{'太小啦！': lambda value: value > 3}` 进行验证。如果有多个验证规则则将首个验证失败的规则键作为错误信息显示。你也可传递返回可选错误信息的可调用对象。若要禁用每次值变更时的自动验证，可使用 `without_auto_validation` 方法。
 
 | 参数 Param | 说明 Description |
 | ---------- | ---------------- |
@@ -23,7 +23,7 @@
 from nicegui import ui
 
 ui.number(label='Number', value=3.1415927, format='%.2f',
-          on_change=lambda e: result.set_text(f'您输入了: {e.value}'))
+          on_change=lambda e: result.set_text(f'你输入了: {e.value}'))
 result = ui.label()
 
 ui.run()
@@ -44,7 +44,7 @@ ui.run()
 
 ## 小数位数
 
-您可以使用 `precision` 参数指定小数位数。负值表示小数点前的位数。舍入发生在输入失去焦点时、当净化参数（如 min、max 或 precision）更改时，或手动调用 `sanitize()` 时。
+你可以使用 `precision` 参数指定小数位数。负值表示小数点前的位数。舍入发生在输入失去焦点时、当净化参数（如 min、max 或 precision）更改时，或手动调用 `sanitize()` 时。
 
 ```python:line-numbers
 from nicegui import ui

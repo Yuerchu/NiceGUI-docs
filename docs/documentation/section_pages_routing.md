@@ -72,7 +72,7 @@ ui.run()
 
 ## 页面布局 Page Layout
 
-通过 `ui.header`、`ui.footer`、`ui.left_drawer` 和 `ui.right_drawer`，您可以为页面添加额外的布局元素。fixed 参数控制元素是随页面滚动还是固定在屏幕上。 `top_corner` 和 `bottom_corner` 参数决定抽屉应从页面顶部还是底部展开。有关可用属性的更多信息，请参阅 https://quasar.dev/layout/header-and-footer 和 https://quasar.dev/layout/drawer 。使用 `ui.page_sticky` 可以将元素"粘性"固定在屏幕上。更多详情请见 https://quasar.dev/layout/page-sticky 。
+通过 `ui.header`、`ui.footer`、`ui.left_drawer` 和 `ui.right_drawer`，你可以为页面添加额外的布局元素。fixed 参数控制元素是随页面滚动还是固定在屏幕上。 `top_corner` 和 `bottom_corner` 参数决定抽屉应从页面顶部还是底部展开。有关可用属性的更多信息，请参阅 https://quasar.dev/layout/header-and-footer 和 https://quasar.dev/layout/drawer 。使用 `ui.page_sticky` 可以将元素"粘性"固定在屏幕上。更多详情请见 https://quasar.dev/layout/page-sticky 。
 
 ```python:line-numbers
 from nicegui import ui
@@ -98,7 +98,7 @@ ui.run()
 
 ## 子页面 Sub Pages
 
-子页面通过基于 URL 的导航实现不同视图间的切换，便于轻松构建单页应用（SPA）。`ui.sub_pages` 元素本身作为当前活动子页面的容器，您只需为每个视图构建函数提供路由配置。NiceGUI 会在 URL 变更时自动替换内容，无需触发整页重载。
+子页面通过基于 URL 的导航实现不同视图间的切换，便于轻松构建单页应用（SPA）。`ui.sub_pages` 元素本身作为当前活动子页面的容器，你只需为每个视图构建函数提供路由配置。NiceGUI 会在 URL 变更时自动替换内容，无需触发整页重载。
 
 ::: warning 注意
 这是一个实验性的特性。相关内容会随着更新而改动。
@@ -155,7 +155,7 @@ ui.run()
 
 ## 导航功能 Navigation functions <Badge type="tip" text="^2.0.0" />
 
-这些功能允许您在浏览器历史记录中导航以及跳转至外部 URL 。
+这些功能允许你在浏览器历史记录中导航以及跳转至外部 URL 。
 
 ```python:line-numbers
 from nicegui import ui
@@ -176,7 +176,7 @@ ui.run()
 
 ## 下载函数 Download functions <Badge type="tip" text="^2.14.0" />
 
-此函数将允许您将文件、URLs 或者 raw 数据下载到客户端中。
+此函数将允许你将文件、URLs 或者 raw 数据下载到客户端中。
 
 ```python:line-numbers
 from nicegui import ui
@@ -275,7 +275,7 @@ ui.run()
 
 NiceGUI 基于 FastAPI 构建，这意味着你可以使用 FastAPI 的所有功能。例如，除了图形用户界面外，你还可以实现 RESTful API 。只需从 nicegui 导入 app 对象即可。或者，你可以通过使用 ui.run_with(app) 而非自动启动服务器的 ui.run()，将 NiceGUI 运行在你自己的 FastAPI 应用之上。
 
-在页面函数中，你也可以返回任何其他 FastAPI 的响应对象。例如，当满足特定条件时，可以返回 RedirectResponse 将用户重定向到另一个页面。这一功能在我们的[单点登录演示](https://github.com/zauberzeug/nicegui/tree/main/examples/authentication/main.py)中得到了应用。（不过译者不建议用 NiceGUI 页面写过于敏感的内容，尤其是涉及隐私和金融这块，可能会造成重大损失。参见译者发起的[关于安全性的讨论](https://github.com/zauberzeug/nicegui/discussions/4386)，相信读者您会有更好的解决方案。）
+在页面函数中，你也可以返回任何其他 FastAPI 的响应对象。例如，当满足特定条件时，可以返回 RedirectResponse 将用户重定向到另一个页面。这一功能在我们的[单点登录演示](https://github.com/zauberzeug/nicegui/tree/main/examples/authentication/main.py)中得到了应用。（不过译者不建议用 NiceGUI 页面写过于敏感的内容，尤其是涉及隐私和金融这块，可能会造成重大损失。参见译者发起的[关于安全性的讨论](https://github.com/zauberzeug/nicegui/discussions/4386)，相信读者你会有更好的解决方案。）
 
 ```python:line-numbers
 import random

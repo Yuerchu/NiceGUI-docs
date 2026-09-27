@@ -239,7 +239,7 @@ ui.run()
 
 这个函数能在浏览器中执行 JavaScript 代码（包括但不限于一些定义的函数）。调用此函数前，客户端必须已连接。
 
-您可以通过 ID 访问客户端 Vue 组件或 HTML 元素，请使用 JavaScript 函数 `getElement()` 或 `getHtmlElement()`。<Badge type="tip" text="^2.9.0" />
+你可以通过 ID 访问客户端 Vue 组件或 HTML 元素，请使用 JavaScript 函数 `getElement()` 或 `getHtmlElement()`。<Badge type="tip" text="^2.9.0" />
 
 若该函数被 await 调用，则返回 JavaScript 代码的执行结果；否则直接执行代码且不等待响应。
 
@@ -276,7 +276,7 @@ ui.run()
 
 由于自动索引页面可被多个浏览器标签页同时访问，该页面不支持读取剪贴板。此功能仅能在通过 `ui.page` 装饰的页面构建函数内实现，如本示例所示。
 
-请注意，您的浏览器可能会请求访问剪贴板的权限，或可能完全不支持此功能。（貌似只能在本地服务器[即Localhost]或者带有 https 的环境中才能使用，译者注）
+请注意，你的浏览器可能会请求访问剪贴板的权限，或可能完全不支持此功能。（貌似只能在本地服务器[即Localhost]或者带有 https 的环境中才能使用，译者注）
 
 ```python:line-numbers
 from nicegui import ui
@@ -303,7 +303,7 @@ ui.run()
 
 ## 事件 Events
 
-NiceGUI 提供了一些异步事件，您可以根据需要来调用。
+NiceGUI 提供了一些异步事件，你可以根据需要来调用。
 
 - `app.on_startup`: 当 NiceGUI 启动或重启后回调
 - `app.on_shutdown`: 当 NiceGUI 将要关闭或将要重启时回调
@@ -400,7 +400,7 @@ NiceGUI 为应用程序内的数据持久化提供了简洁的机制，内置五
 
 通常更推荐使用 `app.storage.user`，因其具备数据负载更轻、安全性更高、容量更大的优势。默认情况下，NiceGUI 会在 `app.storage.browser['id']` 中保存会话唯一标识符。
 
-下表将协助您选择合适的存储方案。
+下表将协助你选择合适的存储方案。
 
 | 存储类型      | 客户端(client) | 标签页(tab) | 浏览器(browser) | 用户(user) | 通用(general) |
 |---------------|---------|---------|---------|---------|---------|
