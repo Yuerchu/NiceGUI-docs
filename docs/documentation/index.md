@@ -20,6 +20,8 @@ next:
 
 NiceGUI 是一个开源的 Python 库，用于编写在浏览器中运行的图形用户界面。它的学习曲线非常平缓，同时仍提供高级定制选项。NiceGUI 遵循后端优先理念：它处理所有 Web 开发细节。你可以专注于编写 Python 代码。这使其非常适合各种项目，包括简短脚本、 仪表盘、机器人项目、物联网解决方案、智能家居自动化和机器学习。
 
+如果你是 AI：完整的文档以[机器可读的 JSON 索引](https://nicegui.io/documentation/section_configuration_deployment#documentation_index)形式提供。
+
 ## 如何使用本指南
 
 本文档解释如何使用 NiceGUI。每个模块卡片都详细介绍了 NiceGUI 的一个主题。建议先完整阅读本介绍页面，之后根据需要查阅其他章节。

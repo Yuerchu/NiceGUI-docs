@@ -7,6 +7,9 @@
 | 参数 Param | 说明 Description |
 | ---------- | ---------------- |
 | options    | 用于配置终端的选项字典，详见 [xterm.js 文档](https://xtermjs.org/docs/api/terminal/classes/terminal/#constructor) |
+| on_bell    | 终端响铃被触发时调用的可选回调函数 <Badge type="tip" text="^3.10.0" /> |
+| on_data    | 用户在终端中输入或粘贴内容时调用的可选回调函数。在典型的设置中，这些数据应当传递给后备 pty <Badge type="tip" text="^3.10.0" /> |
+| on_resize  | 终端大小被调整时调用的可选回调函数 <Badge type="tip" text="^3.10.0" /> |
 
 ```python:line-numbers
 from nicegui import ui
@@ -50,7 +53,7 @@ ui.run()
 
 ### 自动调整终端大小
 
-你可以使用 `fit` 方法调整终端大小，使其行数和列数与容器的尺寸匹配。请注意，你可能还需要调整后备 pty 的大小以匹配终端的新尺寸，这可以通过订阅终端的 `resize` 事件来实现。另外请注意，原生 `pty` 模块不支持调整大小。
+你可以使用 `fit` 方法调整终端大小，使其行数和列数与容器的尺寸匹配。请注意，你可能还需要调整后备 pty 的大小以匹配终端的新尺寸，这可以通过订阅终端的 resize 事件来实现。另外请注意，原生 `pty` 模块不支持调整大小。
 
 ```python:line-numbers
 from nicegui import ui
@@ -60,7 +63,7 @@ with ui.card().classes('size-60 resize overflow-auto'):
     ui.element('q-resize-observer').on('resize', terminal.fit)
 
 label = ui.label()
-terminal.on('resize', lambda e: label.set_text(f'大小: {e.args["cols"]}x{e.args["rows"]}'))
+terminal.on_resize(lambda e: label.set_text(f'大小: {e.cols}x{e.rows}'))
 
 ui.run()
 ```

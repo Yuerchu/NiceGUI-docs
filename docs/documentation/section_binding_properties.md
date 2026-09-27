@@ -67,6 +67,25 @@ ui.button('Turn 18', on_click=lambda: data.update(age=18))
 ui.run()
 ```
 
+## 绑定到嵌套属性
+
+绑定方法也接受由字符串组成的元组作为嵌套键。这样你就可以绑定到复杂数据结构的嵌套属性，例如字典中的字典或嵌套的数据类。
+
+*3.10.0 版本新增。*
+
+```python:line-numbers
+from nicegui import ui
+
+data = {'user': {'name': 'Bob', 'age': 17}}
+
+ui.label().bind_text_from(data, ('user', 'name'), backward=lambda n: f'Name: {n}')
+ui.label().bind_text_from(data, ('user', 'age'), backward=lambda a: f'Age: {a}')
+
+ui.button('Turn 18', on_click=lambda: data['user'].update(age=18))
+
+ui.run()
+```
+
 ## 绑定到变量
 
 这里我们将日期选择器的值绑定到一个裸变量上。为此，我们使用了包含所有全局变量的字典 `globals()`。本演示基于 [官方日期选择器示例](https://nicegui.io/documentation/date#input_element_with_date_picker)。

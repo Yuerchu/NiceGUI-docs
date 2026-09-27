@@ -37,7 +37,7 @@ with ui.row():
     with ui.button():
         ui.label('子元素')
         ui.image('https://picsum.photos/id/377/640/360') \
-            .classes('rounded-full w-16 h-16 ml-4')
+            .classes('rounded-full size-16 ml-4')
 
 ui.run()
 ```

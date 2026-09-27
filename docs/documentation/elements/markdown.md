@@ -5,7 +5,7 @@
 | 参数 Param | 说明 Description |
 | ---------- | ---------------- |
 | content    | Markdown 内容    |
-| extras     | 参考 [Markdown2 extensions](https://github.com/trentm/python-markdown2/wiki/Extras#implemented-extras) (默认值：`(default: ['fenced-code-blocks', 'tables'])`) |
+| extras     | 参考 [Markdown2 extensions](https://github.com/trentm/python-markdown2/wiki/Extras#implemented-extras) (默认值：`['fenced-code-blocks', 'tables']`，<Badge type="tip" text="^3.14.0" /> 可以通过 `ui.markdown.default_extras` 设置) |
 
 ```python:line-numbers
 from nicegui import ui

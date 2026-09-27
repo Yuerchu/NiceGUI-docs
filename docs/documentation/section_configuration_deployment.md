@@ -37,9 +37,9 @@ ui.run()
 | port | 使用的端口号 (普通模式默认 `8080`，本机模式自动选择可用端口) |
 | title | 页面标题 (默认值: `'NiceGUI'`，可单独设置页面标题) |
 | viewport | 页面 meta viewport 内容 (默认值: `'width=device-width, initial-scale=1'`，可单独设置) |
-| favicon | 相对路径 `/` 绝对 URL 的 favicon (默认值: `None`，使用NiceGUI图标) 或emoji (如'🚀'，多数浏览器支持) |
+| favicon | 相对路径 `/` 绝对 URL 的 favicon (默认值: `None`，使用NiceGUI图标) 或emoji (如'🚀'，多数浏览器支持)。在 Windows 本机模式下，本地 `.ico` 文件路径还会被用作本机窗口图标 |
 | dark | 是否使用 Quasar 暗黑模式 (默认值: `False`，None表示"自动"模式) |
-| language | Quasar 元素语言设置 (默认值: `'en-US'`) |
+| language | Quasar 元素的语言以及 `html` 标签的 `lang` 属性 (默认值: `None`，此时 Quasar 元素使用 `'en-US'`，并省略 `lang` 属性) <Badge type="tip" text="^3.14.0" /> |
 | binding_refresh_interval | 绑定更新的时间间隔 (默认值: `0.1`秒，数值越大 CPU 占用越低) |
 | reconnect_timeout | 服务器等待浏览器重连的最长时间 (默认值: `3.0`秒) |
 | message_history_length | 连接中断后重发的最大消息数 (默认值: `1000`，0 表示禁用) <Badge type="tip" text="^2.9.0" /> |
@@ -61,6 +61,7 @@ ui.run()
 | endpoint_documentation | 控制自动生成 OpenAPI 文档的端点范围 (默认值: `'none'`，可选: `'none'`, `'internal'`, `'page'`, `'all'`) |
 | storage_secret | 浏览器存储的密钥 (默认值: `None`，需设置值才能启用 `app.storage.user` 和 `app.storage.browser`) |
 | show_welcome_message | 是否显示欢迎信息 (默认值: `True`) |
+| markdown | 当客户端发送 `Accept: text/markdown` 请求头时，是否返回页面的 Markdown 表示 (实验性功能，默认值: `False`，可单独为每个页面设置) <Badge type="tip" text="^3.11.0" /> |
 | kwargs | 其他传递给 `uvicorn.run` 的关键字参数 |
 
 ```python:line-numbers
@@ -78,6 +79,14 @@ ui.run(title='My App')
 你还可以通过 `app.native.settings` 修改 `webview.settings` 。
 
 在本机模式下，`app.native.main_window` 对象允许你访问底层窗口，它是 [pywebview 中 Window 类的异步版本](https://pywebview.flowrl.com/api/#webview-window)。
+
+本机模式需要支持 ES 模块和 import map 的浏览器引擎（Chrome 89+）。在 Linux 上，请确保你使用的是现代浏览器引擎，例如最新版本的 WebKitGTK 或基于 Qt 的后端。
+
+在 Windows 上，以文件路径形式指定的 `favicon` 还会被用作本机窗口图标（任务栏、标题栏）。该文件必须是 `.ico` 格式。
+
+**端口选择**：在本机模式下，如果没有通过 `port` 参数指定端口，NiceGUI 会自动查找一个可用端口。这由 `native.find_open_port()` 完成，它默认扫描 8000-8999 范围内的端口。这在使用 PyInstaller 打包应用时尤其有用，可以让同一个可执行文件的多个副本同时运行。在浏览器模式下，端口默认为 8080，且不会自动扫描——如果需要多个实例并行运行，请自行传入 `port=native.find_open_port()`。
+
+**本机模式下的存储**：所有[存储类型](/documentation/section_action_events#持久化-storage)在本机模式下的工作方式都与 Web 模式相同。存储文件保存在 `NICEGUI_STORAGE_PATH` 环境变量指定的路径中（默认为工作目录下的 ".nicegui"）。与任何 NiceGUI 应用一样，从同一工作目录启动的多个实例会共享此路径。由于每个进程都在内存中持有自己的一份数据副本，并在数据变化时重写存储文件，这些实例既看不到彼此的数据，还会悄无声息地覆盖彼此写入的内容。本机模式尤其容易出现这种情况，因为同一个打包后的可执行文件可以同时运行多个副本。为避免这种情况，请为每个实例设置单独的 `NICEGUI_STORAGE_PATH`，或使用 [Redis 存储](https://nicegui.io/documentation/storage#redis_storage)在多个实例之间一致地共享数据。
 
 你需要使用 `pip install pywebview` 来安装 pywebview 依赖，译者注
 
@@ -314,6 +323,63 @@ freeze_support()  # noqa
 ```
 
 `# noqa` 注释指示 Pylance 或 autopep8 不要对这两行应用任何 PEP 规则，确保它们始终位于其他代码之前。这是防止进程生成的关键。
+
+## 使用 Nuitka 打包
+
+NiceGUI 应用也可以使用 [Nuitka](https://nuitka.net/) 打包，它会将 Python 编译为 C。与 PyInstaller 相比，构建耗时更长，但生成的二进制文件更难被反编译。
+
+由于 NiceGUI 使用了 [PEP 562](https://peps.python.org/pep-0562/) 延迟导入，而 Nuitka 的静态分析器无法自行追踪这些导入，因此需要以下两个参数：
+
+- `--include-package=nicegui` 打包所有可通过 `from nicegui import ui` 访问到的子模块。
+- `--include-package-data=nicegui` 打包数据文件（模板、库以及元素的 ESM 包）。
+
+与 PyInstaller 相同的 `ui.run` 规则同样适用：调用时需设置 `reload=False`，并提供一个 `root` 页面或至少一个 `@page` 函数。
+
+```python:line-numbers
+from nicegui import native, ui
+
+def root():
+    ui.label('Hello from Nuitka')
+
+ui.run(root, reload=False, port=native.find_open_port())
+```
+
+```bash
+python -m nuitka \
+    --onefile \
+    --include-package=nicegui \
+    --include-package-data=nicegui \
+    main.py
+```
+
+**提示**：
+
+- 使用 `--standalone` 会生成一个 `main.dist/` 目录，其启动速度比 `--onefile` 更快，因为 `--onefile` 每次启动时都要先将自身解压到临时目录中。
+- 如果你的应用使用了可选包（例如 `ui.echart.from_pyecharts` 所需的 `pyecharts`，或任何其他附带模板或数据文件的第三方包），请添加对应的 `--include-package=<name>` 和 `--include-package-data=<name>` 参数。
+- 本机模式（`ui.run(reload=False, native=True)`）的用法与 PyInstaller 相同。平台相关的参数包括 `--macos-create-app-bundle`（Mac）、`--windows-disable-console`（Windows）和 `--linux-onefile-icon=<path>`（Linux）。
+- 由于 Nuitka 需要编译整个依赖图，首次构建较慢；后续构建会复用 Nuitka 的缓存。可以添加 `--show-progress` 来监控耗时较长的构建。
+
+## 文档索引 {#documentation_index}
+
+NiceGUI 以机器可读的 JSON 端点形式提供其全部文档。每个索引都是一个由对象组成的 JSON 数组，每个对象包含以下字段：
+
+| 字段 | 类型 | 说明 |
+| --- | --- | --- |
+| `title` | string | 章节标题，例如 "Button: Click Handler" 或 "Example: Chat App" |
+| `content` | string | 描述或搜索文本（Markdown 或 reStructuredText） |
+| `format` | string | 内容格式："md" 或 "rst" |
+| `url` | string | 文档页面路径或 GitHub 示例链接 |
+| `demo` | string? | 完整的 Python 演示代码，没有则为 ""（仅 sitewide 索引包含此字段，其他索引中不存在该键） |
+
+**可用索引**：
+
+| 端点 | 包含代码 | 用途 |
+| --- | --- | --- |
+| [`/static/sitewide_index.json`](https://nicegui.io/static/sitewide_index.json) | 是 | RAG、AI 工具、完整上下文 |
+| [`/static/search_index.json`](https://nicegui.io/static/search_index.json) | 否 | 为站内文档搜索提供数据，包含 GitHub 示例 |
+| [`/static/examples_index.json`](https://nicegui.io/static/examples_index.json) | 否 | 仅包含 [GitHub 示例](https://github.com/zauberzeug/nicegui/tree/main/examples) |
+
+我们欢迎为 MCP 服务器、AI 智能体技能以及增强型 RAG 实现贡献代码——请参阅[贡献指南](https://github.com/zauberzeug/nicegui/blob/main/CONTRIBUTING.md)。
 
 ## NiceGUI On Air
 

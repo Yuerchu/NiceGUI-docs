@@ -35,6 +35,30 @@ await user.should_see('Log in')
 用户夹具功能较新，目前仍缺少一些特性。请[在 GitHub 上通过单独的功能请求告知](https://github.com/zauberzeug/nicegui/discussions/new?category=ideas-feature-requests)我们。
 :::
 
+### 限定范围
+
+页面经常会在布局的不同部分复用相同的标记或内容。要将 `user.should_see(...)`、`user.should_not_see(...)` 和 `user.find(...)` 限制在页面的某一部分，可以用 `user.scope(...)` 进入该部分。在代码块内部，只会搜索所进入元素的后代元素。它接受与 `user.find(...)` 相同的筛选参数，必须恰好匹配一个元素，并会返回该元素以便进一步使用。
+
+*3.16.0 版本新增。*
+
+```python
+# UI 代码
+with ui.card().mark('left'):
+    ui.label('Apple')
+    ui.button('Buy')
+with ui.card().mark('right'):
+    ui.label('Banana')
+    ui.button('Buy')
+```
+
+```python
+# 用户断言
+with user.scope(marker='left'):
+    await user.should_see('Apple')
+    await user.should_not_see('Banana')
+    user.find('Buy').click()
+```
+
 ## 屏幕夹具
 
 屏幕测试装置会启动一个真实的（无头）浏览器来与你的应用程序交互。仅当你需要测试特定于浏览器的行为时才需使用此功能。 NiceGUI 本身已通过该装置进行全面测试，确保每个组件都能按预期工作。因此，仅在必要时使用它。

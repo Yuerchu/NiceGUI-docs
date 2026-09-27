@@ -8,7 +8,7 @@
 | max        | 选择器的最大值   |
 | step       | 选择器的步进     |
 | value      | 选择器的初始值   |
-| on_change  | 当选择器的值被改变时的回调函数 |
+| on_change  | 当选择器的值改变时执行的回调函数，拖动过程中也会触发（如果只想在松开选择器时响应，请改用 `.on('change', ...)`） |
 
 ```python:line-numbers
 from nicegui import ui

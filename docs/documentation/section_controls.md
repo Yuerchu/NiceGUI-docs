@@ -118,13 +118,13 @@ next:
 
 ## 代码编辑器 CodeMirror
 
-<!--@include: ./elements/codemirror.md{3,283}-->
+<!--@include: ./elements/codemirror.md{3,298}-->
 
 [查看更多...](./elements/codemirror)
 
 ## 终端模拟器 Xterm <Badge type="tip" text="^3.1.0" />
 
-<!--@include: ./elements/xterm.md{3,13}-->
+<!--@include: ./elements/xterm.md{3,21}-->
 
 [查看更多...](./elements/xterm)
 

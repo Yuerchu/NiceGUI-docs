@@ -287,6 +287,7 @@ export default defineConfig({
               { text: '绑定', link: '/documentation/section_binding_properties#绑定' },
               { text: '转换函数', link: '/documentation/section_binding_properties#转换函数' },
               { text: '绑定到字典', link: '/documentation/section_binding_properties#绑定到字典' },
+              { text: '绑定到嵌套属性', link: '/documentation/section_binding_properties#绑定到嵌套属性' },
               { text: '绑定到变量', link: '/documentation/section_binding_properties#绑定到变量' },
               { text: '绑定到存储', link: '/documentation/section_binding_properties#绑定到存储' },
               { text: '可绑定属性', link: '/documentation/section_binding_properties#实现最佳性能的可绑定属性' },
@@ -305,8 +306,11 @@ export default defineConfig({
               { text: '列表', link: '/documentation/section_page_layout#列表' },
               { text: '滑块项目 Slide Item', link: '/documentation/section_page_layout#滑块项目-slide-item' },
               { text: '全屏控制元素', link: '/documentation/section_page_layout#全屏控制元素' },
+              { text: '跳转链接 Skip Link', link: '/documentation/section_page_layout#跳转链接-skip-link' },
               { text: '清空容器', link: '/documentation/section_page_layout#清空容器-clear-containers' },
+              { text: '可排序容器 Sortable', link: '/documentation/section_page_layout#可排序容器-sortable' },
               { text: '传送门 Teleport', link: '/documentation/section_page_layout#传送门-teleport' },
+              { text: '保持存活 Keep Alive', link: '/documentation/section_page_layout#保持存活-keep-alive' },
               { text: '扩展元素 Expansion', link: '/documentation/section_page_layout#扩展元素-expansion-element' },
               { text: '滑动区 Scroll Area', link: '/documentation/section_page_layout#滑动区-scroll-area' },
               { text: '分割线 Separator', link: '/documentation/section_page_layout#分割线-separator' },
@@ -320,6 +324,7 @@ export default defineConfig({
               { text: '分页 Pagination', link: '/documentation/section_page_layout#分页-pagination' },
               { text: '菜单 Menu', link: '/documentation/section_page_layout#菜单-menu' },
               { text: '上下文菜单', link: '/documentation/section_page_layout#上下文菜单-context-menu' },
+              { text: '弹出层 Popup', link: '/documentation/section_page_layout#弹出层-popup' },
               { text: '气泡提示 Tooltip', link: '/documentation/section_page_layout#气泡提示-tooltip' },
               { text: '通知 Notification', link: '/documentation/section_page_layout#通知-notification' },
               { text: '高级通知', link: '/documentation/section_page_layout#高级通知-notification-element' },
@@ -374,6 +379,7 @@ export default defineConfig({
               { text: '子页面 Sub Pages', link: '/documentation/section_pages_routing#子页面-sub-pages' },
               { text: '参数注入', link: '/documentation/section_pages_routing#参数注入-parameter-injection' },
               { text: '页面标题', link: '/documentation/section_pages_routing#页面标题-page-title' },
+              { text: '状态码', link: '/documentation/section_pages_routing#状态码-status-code' },
               { text: '导航功能', link: '/documentation/section_pages_routing#导航功能-navigation-functions' },
               { text: 'ui.open', link: '/documentation/section_pages_routing#ui-open' },
               { text: '下载函数', link: '/documentation/section_pages_routing#下载函数-download-functions' },
@@ -396,6 +402,8 @@ export default defineConfig({
               { text: '自定义 Vue 组件', link: '/documentation/section_configuration_deployment#自定义-vue-组件' },
               { text: '服务主机 Hosting', link: '/documentation/section_configuration_deployment#服务主机-server-hosting' },
               { text: '打包与安装', link: '/documentation/section_configuration_deployment#打包与安装' },
+              { text: '使用 Nuitka 打包', link: '/documentation/section_configuration_deployment#使用-nuitka-打包' },
+              { text: '文档索引', link: '/documentation/section_configuration_deployment#documentation_index' },
               { text: 'NiceGUI On Air', link: '/documentation/section_configuration_deployment#nicegui-on-air' },
             ]
           },
@@ -418,7 +426,20 @@ export default defineConfig({
               { text: 'URL 验证', link: '/documentation/section_security#url-验证' },
               { text: 'CSS 注入', link: '/documentation/section_security#css-注入' },
               { text: '客户端密钥', link: '/documentation/section_security#客户端密钥' },
+              { text: '示例只是起点', link: '/documentation/section_security#示例只是起点' },
               { text: '其他资源', link: '/documentation/section_security#其他资源' },
+            ]
+          },
+          {
+            text: '技术栈',
+            link: '/documentation/section_foundations',
+            items: [
+              { text: 'UI 框架', link: '/documentation/section_foundations#ui-框架' },
+              { text: '组件库', link: '/documentation/section_foundations#组件库' },
+              { text: '后端', link: '/documentation/section_foundations#后端' },
+              { text: '实时通信', link: '/documentation/section_foundations#实时通信' },
+              { text: '样式', link: '/documentation/section_foundations#样式' },
+              { text: '各部分如何协同工作', link: '/documentation/section_foundations#各部分如何协同工作' },
             ]
           }
         ]

@@ -8,7 +8,7 @@
 | max        | 滑块的最大值     |
 | step       | 滑块的步进       |
 | value      | 滑块的初始值     |
-| on_change  | 当滑块的值被改变时的回调函数 |
+| on_change  | 当滑块的值改变时执行的回调函数，拖动过程中也会触发（如果只想在松开滑块时响应，请改用 `.on('change', ...)`） |
 
 ```python:line-numbers
 from nicegui import ui

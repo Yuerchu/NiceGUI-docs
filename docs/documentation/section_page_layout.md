@@ -170,6 +170,64 @@ ui.button('Toggle Fullscreen', on_click=fullscreen.toggle)
 ui.run()
 ```
 
+## 跳转链接 Skip Link <Badge type="tip" text="^3.13.0" />
+
+一个仅供键盘使用的"跳转链接"，在通过 Tab 键获得焦点之前保持隐藏，激活时会将键盘焦点移动到 `target`。它让键盘用户可以绕过重复的导航内容，满足 [WCAG 2.4.1 "绕过区块"](https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks.html) 的要求。
+
+它被渲染为一个 `<a href="#...">` 元素，因此由浏览器原生处理片段导航；额外的点击处理器会在目标元素上设置 `tabindex="-1"`，使不可聚焦的元素（例如 `<div>`）也能获得焦点。
+
+该链接会被自动移动到页面布局的顶部，使其成为键盘最先到达的元素。多个跳转链接会按创建顺序排列。
+
+传入 `text=''` 并将该元素用作上下文管理器，即可提供自定义的子内容（例如在标签旁放置一个图标）。
+
+目标元素通过创建时捕获的 ID 来解析，因此 `target` 应该是一个稳定的容器，而不是会被重新创建的临时内容（例如被 refreshable 或子页面路由切换重新创建的内容），否则该链接会静默失效。
+
+| 参数 Param | 说明 Description |
+| ---------- | ---------------- |
+| text       | 链接文本 (默认值: `"Skip to main content"`) |
+| target     | 激活链接时要将焦点移动到的元素 |
+
+```python:line-numbers
+from nicegui import ui
+
+@ui.page('/skip_link_demo')
+def skip_link_demo():
+    ui.button('Navigation 1')
+    ui.button('Navigation 2')
+    main = ui.label('Press Tab to reveal the skip link, then Enter to jump here.')
+    ui.skip_link(target=main)
+
+@ui.page('/')
+def page():
+    ui.link('show page with skip link', skip_link_demo)
+
+ui.run()
+```
+
+### 自定义内容
+
+传入不同的 `text` 可以自定义链接文本，也可以将 `ui.skip_link` 用作上下文管理器来插入任意子内容，例如图标。
+
+```python:line-numbers
+from nicegui import ui
+
+@ui.page('/skip_link_custom_demo')
+def skip_link_custom_demo():
+    ui.button('Menu', icon='menu')
+    with ui.column() as main:
+        ui.label('Main content starts here')
+    with ui.skip_link('', target=main).classes('bg-primary text-white p-2'):
+        with ui.row(align_items='center'):
+            ui.icon('skip_next').classes('text-2xl')
+            ui.label('Jump to main content')
+
+@ui.page('/')
+def page():
+    ui.link('show page with custom skip link', skip_link_custom_demo)
+
+ui.run()
+```
+
 ## 清空容器 Clear Containers
 
 要移除行、列或卡片容器中的所有元素，可以调用 `container.clear()`
@@ -197,6 +255,97 @@ ui.button('Clear', on_click=container.clear)
 ui.run()
 ```
 
+## 可排序容器 Sortable <Badge type="tip" text="^3.11.0" />
+
+像 `ui.column`、`ui.row` 和 `ui.card` 这样的容器元素可以通过 `make_sortable()` 方法实现拖放排序。该方法返回一个 `Sortable` 控制器，可用于启用、禁用排序或更改排序行为。
+
+注意：只有容器的直接子元素可以排序；嵌套的容器可以单独设置为可排序。
+
+::: warning 注意
+不支持在容器上设置自定义 HTML ID（例如通过 `.props('id="my-list"')`），这会破坏内部的插槽同步。
+:::
+
+| 参数 Param  | 说明 Description |
+| ----------- | ---------------- |
+| options     | SortableJS 原始选项字典（若同时提供，会覆盖 `animation` 等具名参数） |
+| on_end      | 排序操作结束时调用的回调函数（只在源容器上触发，跨容器移动时也是如此） |
+| animation   | 动画时长(秒) (默认值: `0.15`) |
+| handle      | 拖动手柄元素的 CSS 选择器 (默认值: `None`，即整个项目均可拖动) |
+| group       | 用于跨容器拖动的共享组名或配置字典 |
+| ghost_class | 应用于放置占位符的 CSS 类 (默认值: `"opacity-50"`) |
+
+```python:line-numbers
+from nicegui import ui
+
+with ui.card() as card:
+    for name in ['Alice', 'Bob', 'Carol']:
+        ui.label(name).classes('cursor-grab active:cursor-grabbing')
+card.make_sortable(on_end=lambda e: ui.notify(f'Moved from {e.old_index} to {e.new_index}'))
+
+ui.run()
+```
+
+### 跨容器拖动
+
+使用 `group` 参数可以在多个容器之间拖动项目。所有具有相同组名的容器都可以相互交换项目。
+
+注意：即使是跨容器移动，`on_end` 回调也只会在*源*容器上触发。
+
+```python:line-numbers
+from nicegui import ui
+
+with ui.row():
+    with ui.card():
+        ui.label('Card 1').classes('font-bold')
+        with ui.column() as column1:
+            for name in ['Alice', 'Bob', 'Carol']:
+                ui.label(name).classes('cursor-grab active:cursor-grabbing')
+    with ui.card():
+        ui.label('Card 2').classes('font-bold')
+        with ui.column() as column2:
+            for name in ['Dave', 'Eve', 'Frank']:
+                ui.label(name).classes('cursor-grab active:cursor-grabbing')
+column1.make_sortable(group='shared')
+column2.make_sortable(group='shared')
+
+ui.run()
+```
+
+### 拖动手柄
+
+使用 `handle` 参数并传入一个 CSS 选择器，可以将拖动限制在特定元素上。只有手柄元素才能发起拖动操作。
+
+```python:line-numbers
+from nicegui import ui
+
+with ui.card() as card:
+    for name in ['Alice', 'Bob', 'Carol']:
+        with ui.row().classes('items-center gap-2'):
+            ui.icon('drag_indicator') \
+                .classes('handle cursor-grab active:cursor-grabbing')
+            ui.label(name)
+card.make_sortable(handle='.handle')
+
+ui.run()
+```
+
+### 启用 / 禁用
+
+`make_sortable()` 返回的 `Sortable` 控制器提供了 `enable()` 和 `disable()` 方法，用于在运行时切换排序功能。
+
+```python:line-numbers
+from nicegui import ui
+
+with ui.card() as card:
+    for name in ['Alice', 'Bob', 'Carol']:
+        ui.label(name).classes('cursor-grab active:cursor-grabbing')
+sortable = card.make_sortable()
+ui.switch('Enable', value=True,
+          on_change=lambda e: sortable.enable() if e.value else sortable.disable())
+
+ui.run()
+```
+
 ## 传送门 Teleport
 
 一个允许我们将组件内部的内容传送到页面任意位置的元素。
@@ -216,6 +365,58 @@ def inject_input():
         ui.input('name').classes('inline-flex').props('dense outlined')
 
 ui.button('inject input', on_click=inject_input)
+
+ui.run()
+```
+
+## 保持存活 Keep Alive <Badge type="tip" text="^3.11.0" />
+
+包裹其子元素，使它们即使在外层容器当前不可见时（例如未激活的 `ui.tab_panel`、已关闭的 `ui.dialog` 或 `ui.menu`，或当前未路由到的子页面），也保持挂载在 DOM 中。
+
+这适用于那些在首次显示之前客户端状态会丢失或无法访问的元素：例如向从未打开过的标签页中的 `ui.xterm` 写入内容、从已关闭的对话框中读取 `ui.aggrid.get_client_data()`，或在切换标签页时保留 `ui.codemirror` 的编辑历史。对内部元素的方法调用和事件会立即在实时的组件实例上执行，永远不会被缓冲或重放。
+
+在内部，子元素会被渲染到页面根部的一个隐藏宿主中，并在包装器可见时被传送到包装器所在的位置。因此，在服务端的元素树中，子元素的父级是这个宿主，而不是外层容器：在表面上的父元素上调用 `descendants()` 以及限定范围的 `ui.element_filter` 都不会遍历到这个子树中。如果需要以编程方式访问内部元素，请保留对它们的直接引用。
+
+注意，这会让子元素在客户端的整个生命周期内保持存活，从而占用内存。仅在确实需要提前挂载的地方使用它。由于状态与客户端绑定，而每次 `@ui.page` 导航都会创建一个新的客户端，因此 `ui.keep_alive` 无法跨 `@ui.page` 导航保留任何内容；它只在单个页面内有效（未激活的标签页、已关闭的对话框、未路由到的子页面）。
+
+```python:line-numbers
+from nicegui import ui
+
+with ui.tabs() as tabs:
+    ui.tab('Other')
+    ui.tab('Terminal')
+with ui.tab_panels(tabs, value='Other'):
+    with ui.tab_panel('Other'):
+        ui.label('Open the second tab to see the buffered output.')
+    with ui.tab_panel('Terminal'):
+        with ui.keep_alive():
+            terminal = ui.xterm({'cols': 28, 'rows': 9})
+
+ui.button('Write hello', on_click=lambda: terminal.writeln('Hello, NiceGUI!'))
+
+ui.run()
+```
+
+### 从隐藏的 AG Grid 中读取数据
+
+可编辑的 `ui.aggrid` 允许用户在客户端修改单元格，而 `get_client_data` 可以读回这些修改。如果不使用 `ui.keep_alive`，在未打开的标签页或已关闭的对话框中的表格上调用该方法会静默返回一个空列表，因为表格尚未被挂载。将表格包裹在 `ui.keep_alive` 中会让它提前挂载，因此可以立即访问它的 API。
+
+```python:line-numbers
+from nicegui import ui
+
+with ui.dialog() as dialog, ui.card().classes('min-w-96'):
+    with ui.keep_alive():
+        grid = ui.aggrid({
+            'columnDefs': [{'field': 'name', 'editable': True}, {'field': 'age'}],
+            'rowData': [{'name': 'Alice', 'age': 18}, {'name': 'Bob', 'age': 21}],
+        })
+    ui.button('Close', on_click=dialog.close)
+
+async def show_data():
+    ui.notify(await grid.get_client_data())
+
+ui.button('Open dialog', on_click=dialog.open)
+ui.button('Read data', on_click=show_data)
 
 ui.run()
 ```
@@ -254,9 +455,9 @@ ui.run()
 from nicegui import ui
 
 with ui.row():
-    with ui.scroll_area().classes('w-32 h-32 border'):
+    with ui.scroll_area().classes('size-32 border'):
         ui.label('I scroll. ' * 20)
-    with ui.column().classes('p-4 w-32 h-32 border'):
+    with ui.column().classes('p-4 size-32 border'):
         ui.label('I will not scroll. ' * 10)
 
 ui.run()
@@ -463,7 +664,7 @@ ui.run()
 | ---------- | ---------------- |
 | min        | 最小页码         |
 | max        | 最大页码         |
-| direction_links | 是否显示首页/末页链接 |
+| direction_links | 是否显示方向链接（上一页/下一页）；如需首页/末页链接，请使用 `.props('boundary-links')` |
 | value      | 初始页码 (若未提供则默认为min) |
 | on_change  | 当页码变化时触发的回调函数 |
 
@@ -518,6 +719,30 @@ with ui.image('https://picsum.photos/id/377/640/360'):
         ui.menu_item('Flip vertically')
         ui.separator()
         ui.menu_item('Reset', auto_close=False)
+
+ui.run()
+```
+
+## 弹出层 Popup <Badge type="tip" text="^3.15.0" />
+
+基于 Quasar 的 [QPopupProxy](https://quasar.dev/vue-components/popup-proxy) 组件创建一个弹出层。弹出层应放置在需要显示它的元素内部，当用户点击该元素时打开。根据屏幕宽度，它会显示为菜单，或者在屏幕宽度低于 "breakpoint" prop（默认值: 450px）时显示为对话框。
+
+| 参数 Param | 说明 Description |
+| ---------- | ---------------- |
+| value      | 弹出层是否已打开 (默认值: `False`) |
+
+```python:line-numbers
+from nicegui import app, ui
+
+@ui.page('/')
+def index():
+    app.storage.client['name'] = 'NiceGUI User'
+
+    with ui.label().bind_text_from(app.storage.client, 'name').classes('cursor-pointer'):
+        with ui.popup() as popup:
+            ui.input().props('autofocus') \
+                .bind_value(app.storage.client, 'name') \
+                .on('keydown.enter', popup.close)
 
 ui.run()
 ```

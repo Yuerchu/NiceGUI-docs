@@ -57,7 +57,7 @@ ui.run()
 | options | AG Grid 配置选项字典 |
 | html_columns | 需要渲染为HTML的列列表（默认值: `[]`） |
 | theme | AG Grid主题样式（默认值: `"balham"`） |
-| auto_size_columns | 是否自动调整列宽以适应网格宽度（默认值: `True`） |
+| auto_size_columns | 是否自动调整列宽以适应网格宽度（默认值: `None`，即列未使用 `flex` 时自动适应网格宽度） |
 
 ```python:line-numbers
 from nicegui import ui
@@ -87,6 +87,52 @@ ui.button('Show parent', on_click=lambda: grid.run_grid_method('setColumnsVisibl
 
 ui.run()
 ```
+
+### 添加行时保留客户端编辑 Adding rows without losing client-side edits
+
+修改 `grid.options['rowData']` 会在客户端触发整个网格的重建，并丢弃所有正在进行的单元格编辑。
+
+AG Grid 的 [transaction](https://www.ag-grid.com/javascript-data-grid/data-update-transactions/) 可以在不重建网格的情况下添加行，因此未保存的编辑会被保留。将对 `rowData` 的修改包裹在 `grid.props.suspend_updates()` 中，既能让服务端的列表保持同步，又不会触发重建。
+
+试试看：开始编辑某个单元格，然后在不离开该单元格的情况下点击*添加行*——你的编辑会保持不变。
+
+```python:line-numbers
+from nicegui import ui
+
+def add():
+    row = {'Name': f'Row {len(grid.options["rowData"])}'}
+    with grid.props.suspend_updates():
+        grid.options['rowData'].append(row)
+    grid.run_grid_method('applyTransaction', {'add': [row]})
+    grid.run_grid_method('ensureIndexVisible', len(grid.options['rowData']) - 1)
+
+grid = ui.aggrid({
+    'columnDefs': [{'field': 'Name', 'editable': True}],
+    'rowData': [],
+    'stopEditingWhenCellsLoseFocus': True,
+}).classes('h-52')
+ui.button('添加行', on_click=add)
+
+ui.run()
+```
+
+::: warning 注意
+某些事件（例如 `rowClicked`）看起来无法正常工作。这是因为部分事件参数包含循环引用。对于这些看似无效的事件，你会在浏览器的开发者控制台中看到序列化错误。
+
+要查看事件参数并找到你关心的值，可以把事件注册替换为以下 JavaScript 处理函数：
+
+```python
+.on('rowClicked', js_handler='console.log')
+```
+
+然后将事件参数限制为必要的部分（例如 `data`），从而排除循环引用：
+
+```python
+.on('rowClicked', lambda event: ui.notify(f'Row: {event.args}'), ['data'])
+```
+
+这样筛选后的参数可以被安全地序列化，事件也能正常工作。
+:::
 
 ## Highcharts chart <Badge type="info" text="扩展包" />
 
@@ -125,6 +171,39 @@ def update():
     chart.update()
 
 ui.button('Update', on_click=update)
+
+ui.run()
+```
+
+### 添加和移除数据系列 Adding and removing series
+
+`options` 字典是图表的唯一数据源：当它发生变化时，数据系列和坐标轴会被相应地添加、更新和移除，使其始终与 options 保持一致。在客户端添加的状态（例如通过 JavaScript 添加的）不会在更新后保留。
+
+动态添加和移除数据系列时，建议为每个数据系列指定明确的 `id`。否则数据系列会按位置进行匹配，诸如点击图例切换可见性之类的用户状态可能会被关联到错误的数据系列上。
+
+::: warning 注意
+当用户处于图表的下钻视图中时（`extras=['drilldown']`），来自服务端的更新会重置下钻视图。
+:::
+
+```python:line-numbers
+from nicegui import ui
+from random import random
+
+chart = ui.highchart({
+    'title': False,
+    'series': [],
+}).classes('w-full h-64')
+
+def toggle(name: str, value: bool) -> None:
+    series = chart.options['series']
+    if value:
+        series.append({'id': name, 'name': name, 'data': [random() for _ in range(5)]})
+    else:
+        series.remove(next(s for s in series if s['id'] == name))
+
+with ui.row():
+    ui.switch('Alpha', on_change=lambda e: toggle('Alpha', e.value))
+    ui.switch('Beta', on_change=lambda e: toggle('Beta', e.value))
 
 ui.run()
 ```
@@ -254,6 +333,50 @@ import plotly.graph_objects as go
 from nicegui import ui
 
 fig = go.Figure(go.Scatter(x=[1, 2, 3, 4], y=[1, 2, 3, 2.5]))
+fig.update_layout(margin=dict(l=0, r=0, t=0, b=0))
+ui.plotly(fig).classes('w-full h-40')
+
+ui.run()
+```
+
+### 追加轨迹数据而无需重发整个图形 Extending traces without re-sending the full figure
+
+调用 `plot.update()` 会把整个图形重新传输到客户端。对于实时数据，[`Plotly.extendTraces`](https://plotly.com/javascript/plotlyjs-function-reference/#plotlyextendtraces) 能以极小的流量向已有轨迹追加数据点。使用 `plot.run_plot_method('extendTraces', ...)` 直接调用它，同时在服务端修改 `figure['data']`，这样下一次 `plot.update()` 就能反映完整的状态。注意这里使用的是字典形式的图形（而不是 `go.Figure`），这样轨迹的 `x` 和 `y` 仍是可以追加的可变列表。*3.13.0 版本新增。*
+
+```python:line-numbers
+from random import random
+from nicegui import ui
+
+fig = {
+    'data': [{'type': 'scatter', 'x': [], 'y': []}],
+    'layout': {'margin': {'l': 30, 'r': 0, 't': 0, 'b': 30}},
+}
+plot = ui.plotly(fig).classes('w-full h-40')
+
+def add_point():
+    t = len(fig['data'][0]['x'])
+    y = random()
+    fig['data'][0]['x'].append(t)
+    fig['data'][0]['y'].append(y)
+    plot.run_plot_method('extendTraces', {'x': [[t]], 'y': [[y]]}, [0])
+
+ui.button('添加数据点', on_click=add_point)
+
+ui.run()
+```
+
+### 大型数据集 Large datasets
+
+绘制大量数据点时，请将 NumPy 数组（或 pandas Series）直接传给 Plotly，而不是 Python 列表，并避免用 `.tolist()` 把它们转换回列表。对于 NumPy 数组，Plotly 会使用紧凑的二进制编码（base64 编码的类型化数组），使载荷大小大约减半——需要传输、解析和保存在内存中的数据大幅减少——这正是在大规模更新时避免界面卡死的关键。此功能需要 Plotly 6.0 或更高版本，这些版本默认使用二进制编码。
+
+```python:line-numbers
+import numpy as np
+import plotly.graph_objects as go
+from nicegui import ui
+
+x = np.linspace(0, 10, 100_000)
+y = np.sin(x) + np.random.normal(0, 0.1, x.size)
+fig = go.Figure(go.Scattergl(x=x, y=y, mode='markers', marker=dict(size=2)))
 fig.update_layout(margin=dict(l=0, r=0, t=0, b=0))
 ui.plotly(fig).classes('w-full h-40')
 
@@ -525,6 +648,101 @@ with ui.scene(width=285, height=220, control_type='map'):
 
 ui.run()
 ```
+
+### 自定义 Three.js 对象 Custom Three.js Objects
+
+如果 NiceGUI 内置的基本图元无法满足你的需求，或者你想在客户端运行复杂的逻辑，可以创建自己的 3D 对象。继承 `Object3D`，并通过 `component=` 传入 JavaScript 模块的路径，该路径相对于 Python 文件解析。传给 `super().__init__(...)` 的参数会按位置转发给该模块的工厂方法。额外的 Python 方法可以通过 `run_method` 调用 JavaScript 类中的同名方法。
+
+此示例所用的 JavaScript 模块见下文。*3.16.0 版本新增。*
+
+```python:line-numbers
+from nicegui import ui
+from nicegui.elements.scene import Object3D
+
+class TorusKnot(Object3D, component='static/torus_knot.js'):
+    def __init__(self, *, radius: float, tube: float, p: int, q: int) -> None:
+        super().__init__(radius, tube, p, q)
+
+    def update_topology(self, p: int, q: int) -> None:
+        self.run_method('update_topology', p, q)
+
+with ui.scene().classes('w-full h-96'):
+    knot = TorusKnot(radius=1.5, tube=0.4, p=2, q=3).move(z=1)
+
+ui.label('绕旋转轴缠绕的圈数：')
+p_slider = ui.slider(min=1, max=10, value=2)
+ui.label('绕内部圆环缠绕的圈数：')
+q_slider = ui.slider(min=1, max=10, value=3)
+
+p_slider.on_value_change(lambda e: knot.update_topology(e.value, q_slider.value))
+q_slider.on_value_change(lambda e: knot.update_topology(p_slider.value, e.value))
+
+ui.run()
+```
+
+**JavaScript 模块**
+
+通过 `component=` 引用的 JavaScript 模块（即上面示例中的 `static/torus_knot.js`）需要默认导出一个类。NiceGUI 会为每个场景对象实例化一次该类，并调用以下两个入口之一来构建网格：
+
+- `create_geometry(...args)` 返回一个 `THREE.BufferGeometry`。NiceGUI 会用 `MeshPhongMaterial` 包装它（如果向 `super().__init__()` 传入了 `wireframe=True`，则包装为线框 `LineSegments`），因此内置的 `material()`、`move()`、`scale()` 等方法可以直接生效。
+- `create_mesh(...args)` 返回一个 `THREE.Object3D`，让你拥有完全的控制权。当对象不只是单个几何体，或者你自己的方法需要持续访问该网格时（例如下面的 `update_topology`），请使用它。
+
+```js:line-numbers
+// torus_knot.js
+import { THREE } from "nicegui-scene";
+
+export default class TorusKnot {
+  mesh;
+  radius;
+  tube;
+
+  create_mesh(radius, tube, p, q) {
+    this.radius = radius;
+    this.tube = tube;
+
+    const geometry = new THREE.TorusKnotGeometry(radius, tube, 128, 16, p, q);
+    const material = new THREE.MeshStandardMaterial({
+      color: 0xcc33ff,
+      roughness: 0.1,
+      metalness: 0.8,
+    });
+
+    this.mesh = new THREE.Mesh(geometry, material);
+    return this.mesh;
+  }
+
+  update_topology(p, q) {
+    this.mesh.geometry.dispose();
+    this.mesh.geometry = new THREE.TorusKnotGeometry(this.radius, this.tube, 128, 16, p, q);
+  }
+}
+```
+
+**复合对象的材质**
+
+当 Python 调用 `material(...)` 时，NiceGUI 会将颜色、不透明度和渲染面应用到网格的材质上。由多个子网格构成的复合对象可以定义可选的 `apply_material` 钩子，来决定材质应用到哪些部分。该钩子接收单个选项对象；请只解构你需要的字段，这样未来的 NiceGUI 版本新增字段时就不会破坏你的组件。`nicegui-scene` 模块导出的 `apply_material` 函数实现了 NiceGUI 的材质语义（`color=None` 会启用顶点颜色，`side` 可为 "front"、"back" 或 "both"）。
+
+```js:line-numbers
+// robot.js
+import { apply_material, THREE } from "nicegui-scene";
+
+export default class Robot {
+  create_mesh() {
+    this.body = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 2), new THREE.MeshPhongMaterial({ transparent: true }));
+    this.eyes = new THREE.Mesh(new THREE.SphereGeometry(0.2), new THREE.MeshPhongMaterial({ color: "black" }));
+    this.eyes.position.set(0.5, 0, 1);
+    return new THREE.Group().add(this.body, this.eyes);
+  }
+
+  apply_material(options) {
+    apply_material(this.body.material, options); // 只给机身着色，眼睛保持黑色
+  }
+}
+```
+
+此外还有一个可选的 `created()` 钩子，它会在网格构建完成后立即被调用。
+
+注意，NiceGUI 在 WebGL 上下文丢失后进行恢复时，会根据每个对象的构造参数（`self.args`）以及位置、旋转、材质等内置状态重新创建所有对象。仅通过 `run_method` 修改的状态在这种情况下会丢失——请在会修改状态的方法中同步更新 `self.args`，使重新创建的对象能反映最新状态。
 
 ## 地图 Leaflet map
 

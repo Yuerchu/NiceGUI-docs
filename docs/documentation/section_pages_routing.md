@@ -27,9 +27,10 @@ next:
 | viewport   | 可选的 viewport meta 标签内容 |
 | favicon    | 可选的 favicon 相对路径或绝对 URL (默认值: `None`, 将使用 `ui.run` 的 favicon 参数，译者修复) |
 | dark       | 是否使用 Quasar 的深色模式 (默认跟随 `ui.run` 命令的 dark 参数) |
-| language   | 页面语言 (默认跟随 `ui.run` 命令的 language 参数) |
+| language   | 页面语言，用于 Quasar 元素和 `html` 标签的 `lang` 属性 (默认跟随 `ui.run` 命令的 language 参数；3.14.0 版本起可设为 `None` 以省略 `lang` 属性) |
 | response_timeout | 装饰函数构建页面的最长时间 (默认值: `3.0`秒) |
 | reconnect_timeout | 服务器等待浏览器重新连接的最长时间 (默认跟随 `ui.run` 命令的 reconnect_timeout 参数) |
+| markdown   | 当客户端发送 `Accept: text/markdown` 时，是否返回页面的 Markdown 表示 (实验性功能，默认跟随 `ui.run` 命令的 markdown 参数) <Badge type="tip" text="^3.11.0" /> |
 | api_router | 要使用的 APIRouter 实例，None 表示使用默认值 |
 | kwargs     | 传递给 FastAPI 的 `@app.get` 方法的额外关键字参数 |
 
@@ -152,6 +153,55 @@ ui.run()
 | 参数 Param | 说明 Description |
 | ---------- | ---------------- |
 | title      | 页面标题         |
+
+## 状态码 Status code
+
+设置当前页面响应的 HTTP 状态码。必须在页面构建期间、响应发送到客户端之前调用。
+
+*3.10.0 版本新增。*
+
+| 参数 Param | 说明 Description |
+| ---------- | ---------------- |
+| code       | HTTP 状态码 (例如 200、404、503) |
+
+```python:line-numbers
+from nicegui import ui
+
+@ui.page('/teapot')
+def teapot_page():
+    ui.status_code(418)
+    ui.label('我是一个茶壶')
+
+@ui.page('/')
+def page():
+    ui.link('访问茶壶页面', '/teapot')
+
+ui.run()
+```
+
+### 条件 404 Conditional 404
+
+你可以使用 `ui.status_code` 在找不到对应条目时返回 404 状态码。这对 SEO 很有帮助，也能向客户端表明该页面不存在。
+
+```python:line-numbers
+from nicegui import ui
+
+@ui.page('/item/{item_id}')
+def item_page(item_id: str):
+    if 'a' <= item_id <= 'c':
+        ui.label(f'这是条目 {item_id}')
+    else:
+        ui.status_code(404)
+        ui.label('页面未找到')
+
+@ui.page('/')
+def page():
+    ui.link('显示条目 A', '/item/a')
+    ui.link('显示条目 B', '/item/b')
+    ui.link('显示条目 X', '/item/x')
+
+ui.run()
+```
 
 ## 导航功能 Navigation functions <Badge type="tip" text="^2.0.0" />
 
