@@ -12,6 +12,15 @@ export default defineConfig({
   markdown: {
     config(md) {
       md.use(copyOrDownloadAsMarkdownButtons)
+      // ```mermaid 代码块交给 <Mermaid> 组件在客户端渲染，mermaid 只在用到的页面按需加载
+      const fence = md.renderer.rules.fence!
+      md.renderer.rules.fence = (tokens, idx, options, env, self) => {
+        const token = tokens[idx]
+        if (token.info.trim() === 'mermaid') {
+          return `<Mermaid code="${encodeURIComponent(token.content)}" />`
+        }
+        return fence(tokens, idx, options, env, self)
+      }
     },
   },
   lang: 'zh-CN',
