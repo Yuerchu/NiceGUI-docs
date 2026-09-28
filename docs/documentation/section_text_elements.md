@@ -36,7 +36,7 @@ next:
 
 ## Markdown 元素 `Markdown Element` {#markdown_element}
 
-<!--@include: ./elements/markdown.md{3,18}-->
+<!--@include: ./elements/markdown.md{3,16}-->
 
 [查看更多...](./elements/markdown)
 
@@ -48,7 +48,7 @@ next:
 
 ## 美人鱼图 `Mermaid Diagrams` {#mermaid_diagrams}
 
-<!--@include: ./elements/mermaid.md{3,30}-->
+<!--@include: ./elements/mermaid.md{3,28}-->
 
 [查看更多...](./elements/mermaid)
 
@@ -60,11 +60,9 @@ next:
 
 ## 其他 HTML 元素 `Other HTML Elements` <Badge type="tip" text="^2.5.0" /> {#other_html_elements}
 
-还存在一个html模块，允许你插入其他HTML元素如`<span>`、`<div>`、`<p>`等。
-其功能等同于使用带 tag 参数的 `ui.element` 方法。
+还存在一个html模块，允许你插入其他HTML元素如`<span>`、`<div>`、`<p>`等。其功能等同于使用带 tag 参数的 `ui.element` 方法。
 
-与任何其他元素一样，你可以添加类名、样式、属性、工具提示和事件。
-其中一项便利之处在于，关键字参数会自动添加到元素的 props 字典中。
+与任何其他元素一样，你可以添加类名、样式、属性、工具提示和事件。其中一项便利之处在于，关键字参数会自动添加到元素的 props 字典中。
 
 ```python:line-numbers
 from nicegui import html, ui

@@ -58,8 +58,7 @@ ui.run()
 
 ## CSS 层级 CSS Layers <Badge type="tip" text="^3.0.0" />
 
-NiceGUI 定义了以下 CSS 层级（按优先级递增排列）：
-"theme"、"base"、"quasar"、"nicegui"、"components"、"utilities"、"overrides" 和 "quasar_importants"。
+NiceGUI 定义了以下 CSS 层级（按优先级递增排列）："theme"、"base"、"quasar"、"nicegui"、"components"、"utilities"、"overrides" 和 "quasar_importants"。
 
 对于基础样式，你无需将自定义 CSS 放入层级中。但是，要覆盖 Quasar 的 `!important` 规则，你应该在适当的层级中定义 CSS：对于组件特定的样式使用 "components"，对于工具类使用 "utilities"，具体取决于自定义样式的用途。请注意，你需要在自定义样式中使用 `!important`，因为 Quasar 的大部分 CSS 都定义了 `!important`，否则它们会优先生效。
 
@@ -293,14 +292,13 @@ ui.run()
 | content    | CSS内容（字符串或文件路径） |
 | shared     | 是否将代码添加到所有页面 (默认值: `False`) <Badge type="tip" text="^2.14.0" /> |
 
-
 ## 使用其他基于 Vue 框架的 UI <Badge type="tip" text="^2.21.0" />
 
 :::warning 注意
 **这是一个实验性的功能。许多 NiceGUI 组件将会出现问题，它们的 API 也可能随时会改变。**
 :::
 
-NiceGUI 默认使用 [Quasar 框架]()，但你也可以尝试其他 Vue UI 框架，如 [Element Plus](https://element-plus.org/zh-CN/) 或 [Vuetify](https://vuetifyjs.com/zh-Hans/) 。为此，需将这些框架的 JavaScript 和 CSS 文件添加到 HTML 文档的头部，并通过扩展或替换 `app.config.vue_config_script` 来相应配置 NiceGUI 。
+NiceGUI 默认使用 [Quasar 框架](https://quasar.dev/)，但你也可以尝试其他 Vue UI 框架，如 [Element Plus](https://element-plus.org/zh-CN/) 或 [Vuetify](https://vuetifyjs.com/zh-Hans/) 。为此，需将这些框架的 JavaScript 和 CSS 文件添加到 HTML 文档的头部，并通过扩展或替换 `app.config.vue_config_script` 来相应配置 NiceGUI 。
 
 ```python:line-numbers
 from nicegui import app, ui

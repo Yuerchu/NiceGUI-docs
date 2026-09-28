@@ -2,13 +2,14 @@
 
 这里是我们的额外内容托管区，社区成员可以轻松编辑。
 
-查看 [常见问题解答](/wiki/FAQs) 以及我们官方文档中的数百个实时示例，网址为：https://nicegui.io
+查看 [常见问题解答](/wiki/FAQs) 以及我们官方文档中的数百个实时示例，网址为：<https://nicegui.io>
 
 ---
 
 ## 社区项目
 
 ### 扩展和库
+
 - [RoSys](https://rosys.io/)：由 NiceGUI 维护者开发的易于使用的机器人系统，其用途与 ROS/ROS2 类似
 - [Tabulator](https://github.com/CrystalWindSnake/nicegui-tabulator)：使用 [Tabulator](https://github.com/olifolkerd/tabulator) 库创建表格的出色工具包
 - [ex4nicegui](https://github.com/CrystalWindSnake/ex4nicegui)：内置响应式组件和数据响应式界面编程的扩展库
@@ -63,7 +64,7 @@
 - [在 Google Cloud Run 上部署](https://github.com/zauberzeug/nicegui/wiki/Cloud-Run-Deployment) - 将你的网络应用程序部署到由 Google 托管的服务器上
 - [ROS2 turtlesim 操纵杆](https://github.com/zauberzeug/nicegui/wiki/ROS2-turtlesim-joystick) - ROS2 如何与 NiceGUI 结合使用以完成 turtlesim 教程
 - [ROS2 图像接收器](https://github.com/zauberzeug/nicegui/wiki/ROS2-image-display) - 基于 ROS2 图像显示示例,介绍 ROS2 如何与 NiceGUI 结合使用
-- [NiceGUI 简体中文文档（本站）](#) - NiceGUI 的非官方中文文档
+- [NiceGUI 简体中文文档（本站）](/) - NiceGUI 的非官方中文文档
 
 ### 发布内容
 
@@ -72,8 +73,4 @@
 
 ## ChatGPT 和其他 LLM
 
-正如在[#1371](https://github.com/zauberzeug/nicegui/discussions/1371)中所讨论的，NiceGUI 目前尚未被 ChatGPT 和其他 LLM 所熟知。
-这很不幸，因为这常常导致它们胡乱猜测而不是承认自己的无知。
-我们只需使用[这个提示文本](https://github.com/zauberzeug/nicegui/wiki/Chat-GPT-4-Prompt)，将其复制粘贴到 ChatGPT 对话的开头即可。
-这将为 ChatGPT 提供 NiceGUI 的基本概念。
-如果你真的希望 LLM 理解 NiceGUI，我们提供了完整的 JSON 格式文档，网址为 https://nicegui.io/static/sitewide_index.json。你还可以使用一段[简短文本](https://github.com/zauberzeug/nicegui/wiki/ChatGPT-Custom-Instructions)作为你的[自定义指令](https://openai.com/blog/custom-instructions-for-chatgpt)的一部分。
+正如在[#1371](https://github.com/zauberzeug/nicegui/discussions/1371)中所讨论的，NiceGUI 目前尚未被 ChatGPT 和其他 LLM 所熟知。这很不幸，因为这常常导致它们胡乱猜测而不是承认自己的无知。我们只需使用[这个提示文本](https://github.com/zauberzeug/nicegui/wiki/Chat-GPT-4-Prompt)，将其复制粘贴到 ChatGPT 对话的开头即可。这将为 ChatGPT 提供 NiceGUI 的基本概念。如果你真的希望 LLM 理解 NiceGUI，我们提供了完整的 JSON 格式文档，网址为 <https://nicegui.io/static/sitewide_index.json>。你还可以使用一段[简短文本](https://github.com/zauberzeug/nicegui/wiki/ChatGPT-Custom-Instructions)作为你的[自定义指令](https://openai.com/blog/custom-instructions-for-chatgpt)的一部分。

@@ -34,7 +34,8 @@ const members = [
 ## NiceGUI 官方 - Zauberzeug 团队
 
 ### Zauberzeug GmbH
-```
+
+```text
 德国哈维克斯贝克市霍恩霍尔特街 43 号，邮编 48329
 Hohenholter Str. 43, 48329 Havixbeck, Germany
 
@@ -46,13 +47,15 @@ Phone: +49 2507 3817, Email: info@zauberzeug.com
 ```
 
 ### 注册信息
-```
+
+```text
 注册法院：科斯费尔德地方法院，注册号：HRB 14215
 Registry court: Amtsgericht Coesfeld, Registry number: HRB 14215
 ```
 
 ### 税务
-```
+
+```text
 根据《销售税法》第 27a 条的销售税识别号：DE286384205
 Sales tax identification number according to §27a Sales Tax Act: DE286384205
 ```
@@ -66,15 +69,15 @@ Sales tax identification number according to §27a Sales Tax Act: DE286384205
 
 这些汇总的、非可识别的使用统计数据是基于我们的合法利益（《通用数据保护条例》第6条第1款第f项）进行处理，以分析和改进我们的网站。你有权随时反对此类处理。如需行使你的权利，请联系我们：`info@zauberzeug.com` 。  
 
-有关Plausible Analytics及其数据政策的更多详情，请访问 https://plausible.io/data-policy 。
+有关Plausible Analytics及其数据政策的更多详情，请访问 <https://plausible.io/data-policy> 。
 
 We use Plausible Analytics to understand how you interact with our site. Plausible Analytics is a privacy-first analytics tool that does not use cookies or collect any personal data or personally identifiable information (PII). All data collected by Plausible is aggregated and anonymized.
 
 No other third-party analytics or tracking tools are used on NiceGUI official website.
 
-These aggregated, non-identifiable usage statistics are processed on the basis of our legitimate interest (Art. 6 (1)(f) GDPR) to analyze and improve our website. You have the right to object to this processing at any time. To exercise your right, please contact us at info@zauberzeug.com.
+These aggregated, non-identifiable usage statistics are processed on the basis of our legitimate interest (Art. 6 (1)(f) GDPR) to analyze and improve our website. You have the right to object to this processing at any time. To exercise your right, please contact us at <info@zauberzeug.com>.
 
-For more details on Plausible Analytics and its data policy, visit https://plausible.io/data-policy.
+For more details on Plausible Analytics and its data policy, visit <https://plausible.io/data-policy>.
 :::
 
 ## NiceGUI 中文网

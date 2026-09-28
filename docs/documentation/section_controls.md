@@ -12,7 +12,7 @@ next:
 
 ## 按钮 `Button`
 
-<!--@include: ./elements/button.md{3,26}-->
+<!--@include: ./elements/button.md{3,25}-->
 
 [查看更多...](./elements/button)
 
@@ -100,7 +100,7 @@ next:
 
 ## 虚拟摇杆 Joystick
 
-<!--@include: ./elements/joystick.md{3,50}-->
+<!--@include: ./elements/joystick.md{3,52}-->
 
 [查看更多...](./elements/joystick)
 
@@ -118,7 +118,7 @@ next:
 
 ## 代码编辑器 CodeMirror
 
-<!--@include: ./elements/codemirror.md{3,298}-->
+<!--@include: ./elements/codemirror.md{3,300}-->
 
 [查看更多...](./elements/codemirror)
 
@@ -154,7 +154,7 @@ next:
 
 ## 日期输入框 Date Input <Badge type="tip" text="^3.3.0" />
 
-<!--@include: ./elements/date_input.md{3,15}-->
+<!--@include: ./elements/date_input.md{3,20}-->
 
 [查看更多...](./elements/date_input)
 
@@ -166,7 +166,7 @@ next:
 
 ## 时间输入框 Time Input <Badge type="tip" text="^3.3.0" />
 
-<!--@include: ./elements/time_input.md{3,13}-->
+<!--@include: ./elements/time_input.md{3,19}-->
 
 [查看更多...](./elements/time_input)
 

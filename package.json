@@ -1,6 +1,7 @@
 {
   "packageManager": "pnpm@10.18.2",
   "devDependencies": {
+    "markdownlint-cli2": "^0.23.3",
     "medium-zoom": "^1.1.0",
     "mermaid": "^11.17.2",
     "vitepress": "^1.6.4",
@@ -9,7 +10,12 @@
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "lint:md": "markdownlint-cli2",
+    "test:lint-rules": "node scripts/test-markdownlint-zh.mjs",
+    "check:includes": "node scripts/check-includes.mjs",
+    "check:anchors": "node scripts/check-anchors.mjs",
+    "lint": "pnpm lint:md && pnpm test:lint-rules && pnpm check:includes"
   },
   "dependencies": {
     "@fontsource/maple-mono": "^5.3.0"

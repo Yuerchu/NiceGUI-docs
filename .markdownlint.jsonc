@@ -1,0 +1,17 @@
+{
+  "default": true,
+  // 中文段落按约定写成一整行（段内换行会渲染成空格），行宽限制与之冲突
+  "MD013": false,
+  // 表格按字符数对齐对中文（全角宽度）没有意义
+  "MD060": false,
+  // frontmatter 的 title 只作页面标题，不会渲染成正文 h1
+  "MD025": { "front_matter_title": "" },
+  // 首页、隐私页、include 片段不以 h1 开头；页面标题由 frontmatter 提供
+  "MD041": false,
+  // VitePress 组件与少量必要的 HTML
+  "MD033": { "allowed_elements": ["Badge", "sup", "br", "script", "img", "a", "VPTeamMembers", "Mermaid"] },
+  // 中文标题允许以 。！？ 结尾（与官网文案一致），逗号、冒号、分号仍视为笔误
+  "MD026": { "punctuation": ".,;:，；：" },
+  // VitePress 的锚点规则（Badge、{#id}）与 GitHub 不同，改由 scripts/check-anchors.mjs 检查构建产物
+  "MD051": false
+}

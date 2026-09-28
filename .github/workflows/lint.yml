@@ -1,18 +1,17 @@
-# 构建 VitePress 站点并将其部署到 Cloudflare Pages
+# 检查 Markdown 规范、中文排版、include 行号范围，并在构建后检查站内锚点
 #
-name: Deploy NiceGUI docs site to Cloudflare Pages
+name: Lint docs
 
 on:
+  pull_request:
   push:
     branches: [main]
-
-  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  build-and-deploy:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -30,14 +29,13 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint Markdown, custom rule self-tests and include ranges
+        run: pnpm lint
 
       - name: Build with VitePress
         run: pnpm docs:build
 
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy docs/.vitepress/dist --project-name=nicegui
+      - name: Check anchored links against the build output
+        run: pnpm check:anchors

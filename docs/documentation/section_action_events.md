@@ -41,20 +41,21 @@ ui.run()
 - sender: 键盘元素  
 - client: 客户端对象  
 - action: 包含以下属性的 `KeyboardAction` 对象：  
-    - keydown: 按键是否被按下  
-    - keyup: 按键是否被释放  
-    - repeat: 是否为重复按键事件  
+  - keydown: 按键是否被按下  
+  - keyup: 按键是否被释放  
+  - repeat: 是否为重复按键事件  
 - key: 包含以下属性的 `KeyboardKey` 对象：  
-    - name: 键名（如 "a"、"Enter"、"ArrowLeft"；可取值列表[参见此处](https://developer.mozilla.org/zh-CN/docs/Web/API/UI_Events/Keyboard_event_key_values)）  
-    - code: 键码（如 "KeyA"、"Enter"、"ArrowLeft"）  
-    - location: 键位位置（ 0 表示标准键，1 表示左侧键，2 表示右侧键，3 表示数字小键盘键）  
+  - name: 键名（如 "a"、"Enter"、"ArrowLeft"；可取值列表[参见此处](https://developer.mozilla.org/zh-CN/docs/Web/API/UI_Events/Keyboard_event_key_values)）  
+  - code: 键码（如 "KeyA"、"Enter"、"ArrowLeft"）  
+  - location: 键位位置（ 0 表示标准键，1 表示左侧键，2 表示右侧键，3 表示数字小键盘键）  
 - modifiers: 包含以下属性的 `KeyboardModifiers` 对象：  
-    - alt: Alt 键是否被按下  
-    - ctrl: Ctrl 键是否被按下  
-    - meta: Meta 键是否被按下  
-    - shift: Shift 键是否被按下  
+  - alt: Alt 键是否被按下  
+  - ctrl: Ctrl 键是否被按下  
+  - meta: Meta 键是否被按下  
+  - shift: Shift 键是否被按下  
 
 为方便起见，`KeyboardKey` 对象还具有以下属性：  
+
 - is_cursorkey: 是否为方向键  
 - number: 数字键的整数值（0-9，非数字键为None）  
 - backspace, tab, enter, shift, control, alt, pause, caps_lock, escape, space, page_up, page_down, end, home, arrow_left, arrow_up, arrow_right, arrow_down, print_screen, insert, delete, meta, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12: 是否为对应按键

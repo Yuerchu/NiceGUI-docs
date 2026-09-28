@@ -61,7 +61,7 @@ ui.run()
 
 ### reStructuredText 表格
 
-有关 reStructuredText 表格的更多信息，请参阅 [Sphinx 文档](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#tables)。 [2]
+有关 reStructuredText 表格的更多信息，请参阅 [Sphinx 文档](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#tables)。[2]
 
 ```python:line-numbers
 from nicegui import ui

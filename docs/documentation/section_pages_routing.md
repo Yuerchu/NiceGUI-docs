@@ -15,9 +15,10 @@ next:
 此装饰器用于标记一个函数作为页面构建器。每个访问给定路由的用户将看到该页面的一个新实例。这意味着该页面是用户私有的，不会与他人共享（与将元素放置在页面装饰器外部时的处理方式不同）。
 
 ::: warning 注意事项
+
 - NiceGUI 不使用被装饰函数的名称，可以任意命名。
 - 页面路由由路径参数决定，并在全局范围内注册。
-- 该装饰器仅适用于自由函数和静态方法。实例方法或初始化器需要 self 参数，路由器无法关联此类参数。请参阅我们的[模块化示例]()以了解代码结构策略。
+- 该装饰器仅适用于自由函数和静态方法。实例方法或初始化器需要 self 参数，路由器无法关联此类参数。请参阅我们的[模块化示例](https://github.com/zauberzeug/nicegui/blob/main/examples/modularization/api_router_example.py)以了解代码结构策略。
 :::
 
 | 参数 Param | 说明 Description |
@@ -73,7 +74,7 @@ ui.run()
 
 ## 页面布局 Page Layout
 
-通过 `ui.header`、`ui.footer`、`ui.left_drawer` 和 `ui.right_drawer`，你可以为页面添加额外的布局元素。fixed 参数控制元素是随页面滚动还是固定在屏幕上。 `top_corner` 和 `bottom_corner` 参数决定抽屉应从页面顶部还是底部展开。有关可用属性的更多信息，请参阅 https://quasar.dev/layout/header-and-footer 和 https://quasar.dev/layout/drawer 。使用 `ui.page_sticky` 可以将元素"粘性"固定在屏幕上。更多详情请见 https://quasar.dev/layout/page-sticky 。
+通过 `ui.header`、`ui.footer`、`ui.left_drawer` 和 `ui.right_drawer`，你可以为页面添加额外的布局元素。fixed 参数控制元素是随页面滚动还是固定在屏幕上。`top_corner` 和 `bottom_corner` 参数决定抽屉应从页面顶部还是底部展开。有关可用属性的更多信息，请参阅 <https://quasar.dev/layout/header-and-footer> 和 <https://quasar.dev/layout/drawer> 。使用 `ui.page_sticky` 可以将元素"粘性"固定在屏幕上。更多详情请见 <https://quasar.dev/layout/page-sticky> 。
 
 ```python:line-numbers
 from nicegui import ui

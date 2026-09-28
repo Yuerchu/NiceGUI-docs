@@ -1,0 +1,6 @@
+{
+  // 规则配置在 .markdownlint.jsonc（子目录的 .markdownlint.jsonc 通过 extends 继承它）
+  "globs": ["docs/**/*.md", "README.md"],
+  "ignores": ["docs/.vitepress/**", "node_modules/**"],
+  "customRules": ["./scripts/markdownlint-zh.cjs"]
+}

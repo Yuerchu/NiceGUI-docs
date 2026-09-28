@@ -45,7 +45,7 @@ features:
 
 写一个 Python 文件，安装并运行——就这么简单。
 
-**1. 编写** `main.py`
+**1. 编写** `main.py`：
 
 ```python
 from nicegui import ui
@@ -55,7 +55,7 @@ ui.label('Hello NiceGUI!')
 ui.run()
 ```
 
-**2. 运行**
+**2. 运行**：
 
 ```bash
 pip3 install nicegui

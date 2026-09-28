@@ -354,7 +354,6 @@ ui.run()
 | ---------- | ---------------- |
 | to         | 用于传送内容的目标元素的 NiceGUI 元素或 CSS 选择器 |
 
-
 ```python:line-numbers
 from nicegui import ui
 
@@ -632,7 +631,7 @@ ui.run()
 
 ## 幻灯片灯箱 Carousel
 
-此元素基于 Quasar 的 [QCarousel]() 组件。它包含独立的轮播幻灯片。
+此元素基于 Quasar 的 [QCarousel](https://quasar.dev/vue-components/carousel) 组件。它包含独立的轮播幻灯片。
 
 | 参数 Param | 说明 Description |
 | ---------- | ---------------- |
@@ -679,7 +678,7 @@ ui.run()
 
 ## 菜单 Menu
 
-创建一个基于 Quasar 的 [QMenu]() 组件。这个菜单应放置在需要显示的元素内部。
+创建一个基于 Quasar 的 [QMenu](https://quasar.dev/vue-components/menu) 组件。这个菜单应放置在需要显示的元素内部。
 
 ::: tip 高级提示
 使用 `auto-close` 自动关闭 prop 可以在任何点击事件触发（甚至与服务器断开连接时）自动地关闭这个菜单。
@@ -790,7 +789,7 @@ ui.button('Say hi!', on_click=lambda: ui.notify('Hi!', close_button='OK'))
 
 ui.run()
 ```
- 
+
 ## 高级通知 Notification Element
 
 在屏幕上显示一个通知。不同于 `ui.notify`，该元素允许在通知显示后更新通知消息及其他属性。可通过 `dismiss()` 方法移除通知。

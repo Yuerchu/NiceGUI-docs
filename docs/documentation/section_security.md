@@ -52,9 +52,11 @@ ui.run()
 
 ::: danger 警告
 **绝对不要这样做：**
+
 ```python
 value = eval(user_input.value)  # 可以执行任意 Python 代码！
 ```
+
 :::
 
 ## 组件选择
@@ -95,10 +97,12 @@ ui.run()
 
 ::: danger 警告
 **绝对不要这样做：**
+
 ```python
 ui.add_body_html(f"<div>欢迎 {username}</div>")  # XSS: "<img src=x onerror=alert(1)>"
 ui.add_head_html(f"<script>alert('{username}')</script>")  # XSS: "');alert(1);//"
 ```
+
 :::
 
 ## URL 验证
@@ -133,10 +137,12 @@ ui.run()
 
 ::: danger 警告
 **绝对不要这样做：**
+
 ```python
 ui.navigate.to(user_url.value)  # 允许 javascript: URL 注入！
 ui.link(user_url.value)  # 渲染 javascript: URL 而不进行验证！
 ```
+
 :::
 
 ## CSS 注入
@@ -167,9 +173,11 @@ ui.run()
 
 ::: danger 警告
 **绝对不要这样做：**
+
 ```python
 label.style['color'] = user_color.value  # 允许 CSS 注入和数据窃取
 ```
+
 :::
 
 ## 客户端密钥

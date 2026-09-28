@@ -63,7 +63,7 @@ CPU 密集型任务需要在另一个进程中运行，这可以通过 NiceGUI �
 :::
 
 ::: info 关于页面装饰器
-如果使用 `@ui.page` 装饰的页面构建器未被标记为 `async`，FastAPI 将会在一个后台线程中运行它（详情请见：https://fastapi.tiangolo.com/async/#path-operation-functions）。这意味着你可以非常放心地在这些函数中使用 IO 阻塞代码，例如文件读取、数据库访问或请求，而不会暂停主线程。只需注意，后续将其重构为异步的页面构建器将会破坏你的代码。这就是为什么我们建议尽可能避免依赖这种模式。
+如果使用 `@ui.page` 装饰的页面构建器未被标记为 `async`，FastAPI 将会在一个后台线程中运行它（详情请见：<https://fastapi.tiangolo.com/async/#path-operation-functions>）。这意味着你可以非常放心地在这些函数中使用 IO 阻塞代码，例如文件读取、数据库访问或请求，而不会暂停主线程。只需注意，后续将其重构为异步的页面构建器将会破坏你的代码。这就是为什么我们建议尽可能避免依赖这种模式。
 :::
 
 #### 调试阻塞代码
@@ -85,15 +85,15 @@ app.on_startup(startup)
 
 ### 我可以做些什么来提高性能？
 
-**1. 使用异步操作**
+#### 1. 使用异步操作
 
 你所有的 [CPU 密集型任务](https://nicegui.io/documentation/section_action_events#running_cpu-bound_tasks)（例如计算 1000 位圆周率）和 [IO 密集型任务](https://nicegui.io/documentation/section_action_events#running_i_o-bound_tasks)（例如发出网络请求、读取文件等）都应该是 `async` 的。否则，它们将阻塞每个人的执行（见上文）。
 
-**2. 优化 UI 元素数量**
+#### 2. 优化 UI 元素数量
 
 检查正在提供服务的 NiceGUI 元素数量是否尽可能少，采用诸如 [服务器端分页](https://github.com/zauberzeug/nicegui/discussions/2351) 等技术，或者在必要时采用一些潜在的特殊技术，例如 [将内容分组到高级自定义元素中](https://github.com/zauberzeug/nicegui/discussions/4434#discussioncomment-12450524)。
 
-**3. 使用负载均衡器**
+#### 3. 使用负载均衡器
 
 确保你的代码库中实现了步骤 (1) 和 (2)。只有在存在其他原因导致单个 CPU 计算量过大时，才继续执行步骤 (3)。也许你别无选择，只能以高频率显示 10,000 个元素，或者每秒需要处理大量页面访问。
 
@@ -145,7 +145,7 @@ for i in [1, 2, 3]:
 
 你可能正在使用 `reload=True`，它让主代码运行一次，然后生成一个子进程，该子进程在文件更改时会被终止并重新启动。为了避免在第一次"init"中评估你的代码，你有几个选择：
 
-**选项 1：禁用自动重新加载**
+#### 选项 1：禁用自动重新加载
 
 ```python
 ui.run(reload=False)
@@ -153,7 +153,7 @@ ui.run(reload=False)
 
 当然，你会失去方便的自动重新加载功能。但在生产环境中务必使用它。
 
-**选项 2：使用主保护**
+#### 选项 2：使用主保护
 
 ```python
 if __name__ == '__mp_main__':
@@ -164,7 +164,7 @@ ui.run()
 
 这避免了在 `"__main__"` 进程中评估代码，并将其限制在子进程 `"__mp_main__"` 中。
 
-**选项 3：使用页面装饰器**
+#### 选项 3：使用页面装饰器
 
 ```python
 @ui.page('/')
@@ -175,7 +175,7 @@ def main():
 
 这仅在访问时评估 UI。但是，如果你在启动脚本时需要执行一次昂贵的初始化，这可能不是最佳方法。页面装饰器还会改变可见性，因为它为每个客户端生成一个新页面，因此状态不再共享。
 
-**选项 4：使用启动回调**
+#### 选项 4：使用启动回调
 
 ```python
 def startup():
