@@ -13,6 +13,9 @@ function siteUpdatedDate(): string {
   return `${year} 年 ${month} 月 ${day} 日`
 }
 
+// 译文同步到的 NiceGUI 版本，追上游文档时一起改
+const SYNCED_NICEGUI_VERSION = '3.17.1'
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   vite: {
@@ -477,7 +480,7 @@ export default defineConfig({
 
     // 页脚
     footer: {
-      message: `更新日期: ${siteUpdatedDate()}`,
+      message: `内容同步至 NiceGUI ${SYNCED_NICEGUI_VERSION} · 更新日期: ${siteUpdatedDate()}`,
     },
 
     // 编辑链接
