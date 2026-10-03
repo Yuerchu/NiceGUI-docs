@@ -19,6 +19,7 @@
 - [NiceGUI CRUD 组件](https://pypi.org/project/niceguicrud/)：为你的 Python 对象列表提供用户界面，支持创建、更新和删除项目，可从 Pydantic 的 BaseModel 设置自动配置
 - [NiceDeck](https://github.com/falkoschindler/nicedeck)：使用 NiceGUI 在 Python 中创建幻灯片
 - [NiceGUI 模板](https://github.com/frycodelab/nicegui-component-based)：让初学者或高级开发人员能够轻松启动模块化项目结构。
+- [nicegui-shadcn](https://github.com/XiangQinxi/nicegui-shadcn)：把 [shadcn/ui](https://ui.shadcn.com/) 的组件与设计系统带到 NiceGUI，用纯 Python 即可获得 shadcn 的观感，无需编写任何前端代码
 
 ### 示例
 
